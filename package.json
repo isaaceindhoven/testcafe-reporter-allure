@@ -1,0 +1,37 @@
+{
+  "name": "testcafe-reporter-isaac",
+  "version": "0.1.0",
+  "description": "An Allure reporter plugin for TestCafé. Used to generate test reports for e2e-tests.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isaaceindhoven/testcafe-reporter-isaac.git"
+  },
+  "author": "ISAAC E-commerce Solutions BV",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/isaaceindhoven/testcafe-reporter-isaac/issues"
+  },
+  "homepage": "https://github.com/isaaceindhoven/testcafe-reporter-isaac#readme",
+  "scripts": {
+    "version": "node -v",
+    "semantic-release": "semantic-release"
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "commitizen": "^4.0.4",
+    "cz-conventional-changelog": "^3.1.0",
+    "husky": "^4.2.5",
+    "semantic-release": "^17.0.4"
+  },
+  "dependencies": {}
+}
