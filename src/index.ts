@@ -1,7 +1,3 @@
-function test(log: string) {
+export function customLog(log: string) {
     return `Log: ${log}!`
 }
-
-const log = 'This is a test function.'
-
-console.log(test(log))

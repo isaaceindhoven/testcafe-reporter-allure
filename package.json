@@ -16,6 +16,8 @@
   "scripts": {
     "version": "node -v",
     "build": "tsc",
+    "test:unit": "jest",
+    "test:unit:coverage": "jest --coverage",
     "semantic-release": "semantic-release"
   },
   "husky": {
@@ -28,11 +30,25 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  },
   "devDependencies": {
+    "@types/jest": "^25.2.1",
     "commitizen": "^4.0.4",
     "cz-conventional-changelog": "^3.1.0",
     "husky": "^4.2.5",
+    "jest": "^25.3.0",
     "semantic-release": "^17.0.4",
+    "ts-jest": "^25.3.1",
     "typescript": "^3.8.3"
   },
   "dependencies": {}
