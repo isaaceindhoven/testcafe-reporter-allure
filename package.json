@@ -15,6 +15,7 @@
   "homepage": "https://github.com/isaaceindhoven/testcafe-reporter-isaac#readme",
   "scripts": {
     "version": "node -v",
+    "build": "tsc",
     "semantic-release": "semantic-release"
   },
   "husky": {
@@ -31,7 +32,8 @@
     "commitizen": "^4.0.4",
     "cz-conventional-changelog": "^3.1.0",
     "husky": "^4.2.5",
-    "semantic-release": "^17.0.4"
+    "semantic-release": "^17.0.4",
+    "typescript": "^3.8.3"
   },
   "dependencies": {}
 }
