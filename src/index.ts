@@ -1,3 +1,3 @@
-export function customLog(log: string) {
-    return `Log: ${log}!`
+export default function customLog(log: string) {
+  return `Log: ${log}!`;
 }
