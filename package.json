@@ -5,7 +5,7 @@
   "license": "MIT",
   "description": "An Allure reporter plugin for TestCafé. Used to generate test reports for e2e-tests.",
   "keywords": [
-    "testCafé",
+    "testcafé",
     "allure",
     "integration"
   ],
