@@ -1,24 +1,30 @@
 {
   "name": "testcafe-reporter-isaac",
-  "version": "0.1.0",
+  "version": "0.0.0-develop",
+  "author": "ISAAC E-commerce Solutions BV",
+  "license": "MIT",
   "description": "An Allure reporter plugin for TestCafé. Used to generate test reports for e2e-tests.",
-  "main": "index.js",
+  "keywords": [
+    "testCafé",
+    "allure",
+    "integration"
+  ],
+  "main": "index.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/isaaceindhoven/testcafe-reporter-isaac.git"
   },
-  "author": "ISAAC E-commerce Solutions BV",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/isaaceindhoven/testcafe-reporter-isaac/issues"
   },
   "homepage": "https://github.com/isaaceindhoven/testcafe-reporter-isaac#readme",
   "scripts": {
-    "version": "node -v",
     "build": "tsc",
+    "test": "npm run test:lint && npm run test:unit",
     "test:lint": "eslint {src,tests}/**/*.{ts,js}",
     "test:lint:fix": "eslint {src,tests}/**/*.{ts,js} --fix",
     "test:unit": "jest",
+    "version": "node -v",
     "semantic-release": "semantic-release"
   },
   "husky": {
@@ -57,6 +63,7 @@
       }
     }
   },
+  "dependencies": {},
   "devDependencies": {
     "@types/jest": "^25.2.1",
     "@typescript-eslint/eslint-plugin": "^2.28.0",
@@ -76,6 +83,5 @@
     "semantic-release": "^17.0.4",
     "ts-jest": "^25.3.1",
     "typescript": "^3.8.3"
-  },
-  "dependencies": {}
+  }
 }
