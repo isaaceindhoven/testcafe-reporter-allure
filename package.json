@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/isaaceindhoven/testcafe-reporter-isaac#readme",
   "scripts": {
-    "build": "tsc --build tsconfig.prod.json",
+    "build:prod": "tsc --build tsconfig.prod.json",
+    "build:test": "tsc --build tsconfig.test.json",
     "test": "npm run test:lint && npm run test:unit",
     "test:lint": "eslint --ext .js,.ts --ignore-pattern !.* --ignore-path .gitignore .",
     "test:lint:fix": "eslint --ext .js,.ts --ignore-pattern !.* --ignore-path .gitignore . --fix",
@@ -29,7 +30,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run build && npm run test:unit && lint-staged",
+      "pre-commit": "npm run build:prod && npm run test:unit && lint-staged",
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
     }
   },
@@ -44,6 +45,10 @@
     }
   },
   "jest": {
+    "roots": [
+      "src",
+      "tests"
+    ],
     "transform": {
       ".(ts|tsx)": "ts-jest"
     },
