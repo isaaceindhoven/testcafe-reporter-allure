@@ -1,8 +1,9 @@
 {
     "extends": "./tsconfig.base.json",
     "include": [
+        // All TypeScript files within the project.
         "**/*.ts",
-        // Lint all config files in the project 
+        // Lint all config files in the project. 
         "**/.*"
     ]
 }
