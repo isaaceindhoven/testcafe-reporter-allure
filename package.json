@@ -24,48 +24,13 @@
     "test": "npm run test:lint && npm run test:unit",
     "test:lint": "eslint --ext .js,.ts --ignore-pattern !.* --ignore-path .gitignore .",
     "test:lint:fix": "eslint --ext .js,.ts --ignore-pattern !.* --ignore-path .gitignore . --fix",
-    "test:unit": "jest",
+    "test:unit": "jest --config .jestrc.js",
     "version": "node -v",
     "semantic-release": "semantic-release"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run build:prod && npm run test:unit && lint-staged",
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
-    }
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "eslint --fix"
-    ]
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "jest": {
-    "roots": [
-      "src",
-      "tests"
-    ],
-    "transform": {
-      ".(ts|tsx)": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "collectCoverage": true,
-    "coverageThreshold": {
-      "global": {
-        "branches": 80,
-        "functions": 80,
-        "lines": 80,
-        "statements": 80
-      }
     }
   },
   "dependencies": {},
