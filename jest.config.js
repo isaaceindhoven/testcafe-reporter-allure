@@ -1,6 +1,6 @@
 module.exports = {
   verbose: true,
-  roots: ['src', 'tests'],
+  roots: ['src', 'tests/unit'],
   transform: {
     '.(ts|tsx)': 'ts-jest',
   },

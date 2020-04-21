@@ -21,10 +21,11 @@
   "scripts": {
     "build:prod": "tsc --build tsconfig.prod.json",
     "build:test": "tsc --build tsconfig.test.json",
-    "test": "npm run test:lint && npm run test:unit",
+    "test": "npm run test:lint && npm run test:unit && npm run test:e2e",
     "test:lint": "eslint --ext .js,.ts --ignore-pattern !.* --ignore-path .gitignore .",
     "test:lint:fix": "eslint --ext .js,.ts --ignore-pattern !.* --ignore-path .gitignore . --fix",
     "test:unit": "jest",
+    "test:e2e": "node tests/runner.js",
     "version": "node -v",
     "semantic-release": "semantic-release"
   },
@@ -33,7 +34,9 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "testcafe": "^1.8.4"
+  },
   "devDependencies": {
     "@types/jest": "^25.2.1",
     "@typescript-eslint/eslint-plugin": "^2.28.0",
