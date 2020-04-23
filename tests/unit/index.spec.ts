@@ -1,7 +1,5 @@
-import customLog from '../../src/index';
-
-describe('Filter function', () => {
-  it('CustomLog test', () => {
-    expect(customLog('Test')).toBe('Log: Test!');
+describe('Example Test', () => {
+  it('Example Test', () => {
+    expect('Example').toBe('Example');
   });
 });

@@ -2,7 +2,7 @@ import { Selector } from 'testcafe';
 
 fixture('TestCafé example test').page('http://devexpress.github.io/testcafe/example');
 
-test('My first test', async (t) => {
+test('My first e2e test', async (t) => {
   await t
     .typeText('#developer-name', 'John Smith')
     .click('#submit-button')
