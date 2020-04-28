@@ -26,8 +26,6 @@
     "test:lint:fix": "eslint --ext .js,.ts --ignore-pattern !.* --ignore-path .gitignore . --fix",
     "test:unit": "jest",
     "test:e2e": "node tests/runner.js",
-    "test:e2e:link": "npm run pretest && node tests/runner.js && npm run posttest",
-    "link": "npm link && npm link testcafe-reporter-isaac",
     "version": "node -v",
     "semantic-release": "semantic-release"
   },
