@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const createTestCafe = require('testcafe');
+/* eslint-disable-next-line import/no-unresolved */
 const isaacReporter = require('../dist/index.js');
 
 let testcafe = null;
