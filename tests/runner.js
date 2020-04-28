@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const createTestCafe = require('testcafe');
+const isaacReporter = require('../dist/index.js');
 
 let testcafe = null;
 
@@ -11,15 +12,7 @@ createTestCafe()
     return runner
       .src(['tests/e2e/*.ts'])
       .browsers('firefox:headless')
-      .reporter([
-        {
-          name: 'spec',
-        },
-        // Self reference to test the reporter, needs to be self-linked via npm link for TestCafé to find it.
-        // {
-        //   name: 'isaac',
-        // },
-      ])
+      .reporter(isaacReporter)
       .tsConfigPath('tsconfig.test.json')
       .run();
   })
