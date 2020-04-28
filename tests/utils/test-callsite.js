@@ -1,11 +1,7 @@
 const createCallsiteRecord = require('callsite-record');
 
-function someFunc() {
-  throw new Error('Hey ya!');
-}
-
 try {
-  someFunc();
+  throw new Error('Create error');
 } catch (err) {
-  module.exports = createCallsiteRecord(err);
+  module.exports = createCallsiteRecord({ forError: err });
 }

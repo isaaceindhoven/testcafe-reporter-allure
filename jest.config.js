@@ -1,10 +1,11 @@
 module.exports = {
+  preset: 'ts-jest',
   verbose: true,
   roots: ['src', 'tests/unit'],
   transform: {
     '.(ts|tsx)': 'ts-jest',
   },
-  testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$',
+  testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$',
   moduleFileExtensions: ['ts', 'tsx', 'js'],
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.{ts,tsx}', '!dist/', '!tests/'],
