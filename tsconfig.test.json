@@ -1,5 +1,6 @@
 {
     "extends": "./tsconfig.base.json",
+    "allowjs": true,
     "include": [
         // All Java- and TypeScript files within the project.
         "**/*.ts",
