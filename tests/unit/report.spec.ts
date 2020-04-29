@@ -1,15 +1,9 @@
-const { readFileSync } = require('fs');
-const normalizeNewline = require('normalize-newline');
-const { resolve } = require('path');
-const createReport = require('../utils/create-report');
+const { createReport, readReport } = require('../utils/generate-report');
 
 describe('Example reporter output test', () => {
   it('Should produce report', () => {
-    let report = createReport();
-    let expected = readFileSync(resolve(__dirname, '../data/report'), { encoding: 'utf8' });
-
-    report = normalizeNewline(report).trim();
-    expected = normalizeNewline(expected).trim();
+    const report = createReport();
+    const expected = readReport();
 
     expect(report).toBe(expected);
   });
