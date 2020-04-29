@@ -18,10 +18,12 @@ createTestCafe()
       .run();
   })
   .then((failed) => {
-    console.log(`Tests failed: ${failed}`);
     testcafe.close();
+    if (failed > 0) {
+      throw new Error(`TestCafé tests failed: ${failed}`);
+    }
   })
   .catch((error) => {
-    console.log(error);
     testcafe.close();
+    throw error;
   });
