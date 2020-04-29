@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-const createTestCafe = require('testcafe');
+import createTestCafe from 'testcafe';
 /* eslint-disable-next-line import/no-unresolved */
-const isaacReporter = require('../dist/index.js');
+import * as isaacReporter from '../dist/index';
 
 let testcafe = null;
 

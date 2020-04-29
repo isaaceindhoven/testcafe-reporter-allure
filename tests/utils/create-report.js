@@ -1,9 +1,9 @@
 /* eslint-disable prefer-spread */
-const { buildReporterPlugin } = require('testcafe').embeddingUtils;
-const pluginFactory = require('../../src');
-const reporterTestCalls = require('./reporter-test-calls');
+import { embeddingUtils } from 'testcafe';
+import * as pluginFactory from '../../src';
+import * as reporterTestCalls from './reporter-test-calls';
 
-module.exports = function createReport() {
+export default function createReport() {
   const outStream = {
     data: '',
 
@@ -12,7 +12,7 @@ module.exports = function createReport() {
     },
   };
 
-  const plugin = buildReporterPlugin(pluginFactory, outStream);
+  const plugin = embeddingUtils.buildReporterPlugin(pluginFactory, outStream);
 
   reporterTestCalls.forEach((call) => {
     plugin[call.method].apply(plugin, call.args);
@@ -20,4 +20,4 @@ module.exports = function createReport() {
 
   // NOTE: mock stack entries
   return outStream.data.replace(/\s*?\(.+?:\d+:\d+\)/g, ' (some-file:1:1)');
-};
+}

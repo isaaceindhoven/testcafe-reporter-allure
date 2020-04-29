@@ -1,4 +1,4 @@
-const createCallsiteRecord = require('callsite-record');
+import * as createCallsiteRecord from 'callsite-record';
 
 try {
   throw new Error('Create error');
