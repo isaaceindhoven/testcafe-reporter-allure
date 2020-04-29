@@ -21,12 +21,13 @@
   "scripts": {
     "build:prod": "tsc --project tsconfig.prod.json",
     "build:test": "tsc --project tsconfig.test.json",
-    "test": "npm run test:lint && npm run test:unit && npm run test:e2e",
+    "test": "npm run test:lint && npm run test:unit && npm run build:prod && npm run test:e2e",
     "test:lint": "eslint --ext .js,.ts --ignore-pattern !.* --ignore-path .gitignore .",
     "test:lint:fix": "eslint --ext .js,.ts --ignore-pattern !.* --ignore-path .gitignore . --fix",
     "test:unit": "jest",
-    "test:e2e": "npm run build:prod && node tests/runner.js",
+    "test:e2e": "node tests/runner.js",
     "version": "node -v",
+    "browsers": "testcafe --list-browsers",
     "semantic-release": "semantic-release"
   },
   "config": {
