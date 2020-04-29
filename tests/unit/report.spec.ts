@@ -1,7 +1,7 @@
-import { readFileSync } from 'fs';
-import * as normalizeNewline from 'normalize-newline';
-import { resolve } from 'path';
-import createReport from '../utils/create-report';
+const { readFileSync } = require('fs');
+const normalizeNewline = require('normalize-newline');
+const { resolve } = require('path');
+const createReport = require('../utils/create-report');
 
 describe('Example reporter output test', () => {
   it('Should produce report', () => {

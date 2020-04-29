@@ -1,9 +1,7 @@
-import { embeddingUtils } from 'testcafe';
-import testCallsite from './test-callsite';
-
-const { TestRunErrorFormattableAdapter } = embeddingUtils;
-const { UncaughtErrorOnPage } = embeddingUtils.testRunErrors;
-const { ActionElementNotFoundError } = embeddingUtils.testRunErrors;
+const { TestRunErrorFormattableAdapter } = require('testcafe').embeddingUtils;
+const { UncaughtErrorOnPage } = require('testcafe').embeddingUtils.testRunErrors;
+const { ActionElementNotFoundError } = require('testcafe').embeddingUtils.testRunErrors;
+const testCallsite = require('./test-callsite');
 
 function makeErrors(errDescrs) {
   return errDescrs.map((descr) => {

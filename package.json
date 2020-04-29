@@ -19,8 +19,8 @@
   },
   "homepage": "https://github.com/isaaceindhoven/testcafe-reporter-isaac#readme",
   "scripts": {
-    "build:prod": "tsc --build tsconfig.prod.json",
-    "build:test": "tsc --build tsconfig.test.json",
+    "build:prod": "tsc --project tsconfig.prod.json",
+    "build:test": "tsc --project tsconfig.test.json",
     "test": "npm run test:lint && npm run test:unit && npm run test:e2e",
     "test:lint": "eslint --ext .js,.ts --ignore-pattern !.* --ignore-path .gitignore .",
     "test:lint:fix": "eslint --ext .js,.ts --ignore-pattern !.* --ignore-path .gitignore . --fix",

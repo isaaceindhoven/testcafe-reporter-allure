@@ -1,9 +1,9 @@
 /* eslint-disable prefer-spread */
-import { embeddingUtils } from 'testcafe';
-import * as pluginFactory from '../../src';
-import * as reporterTestCalls from './reporter-test-calls';
+const { embeddingUtils } = require('testcafe');
+const pluginFactory = require('../../src');
+const reporterTestCalls = require('./reporter-test-calls');
 
-export default function createReport() {
+module.exports = function createReport() {
   const outStream = {
     data: '',
 
@@ -20,4 +20,4 @@ export default function createReport() {
 
   // NOTE: mock stack entries
   return outStream.data.replace(/\s*?\(.+?:\d+:\d+\)/g, ' (some-file:1:1)');
-}
+};
