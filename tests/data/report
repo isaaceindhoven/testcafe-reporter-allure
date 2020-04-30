@@ -1,0 +1,19 @@
+Task has been started
+Fixture "First fixture" has been started
+Test "First test in first fixture" has been started
+Test "First test in first fixture" has been finished
+Test "Second test in first fixture" has been started
+Test "Second test in first fixture" has been finished
+Test "Third test in first fixture" has been started
+Test "Third test in first fixture" has been finished
+Fixture "Second fixture" has been started
+Test "First test in second fixture" has been started
+Test "First test in second fixture" has been finished
+Test "Second test in second fixture" has been started
+Test "Second test in second fixture" has been finished
+Test "Third test in second fixture" has been started
+Test "Third test in second fixture" has been finished
+Fixture "Third fixture" has been started
+Test "First test in third fixture" has been started
+Test "First test in third fixture" has been finished
+Task has been completed
