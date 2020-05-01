@@ -19,6 +19,7 @@ createTestCafe()
   })
   .then((failed) => {
     testcafe.close();
+
     if (failed > 0) {
       throw new Error(`TestCafé tests failed: ${failed}`);
     }

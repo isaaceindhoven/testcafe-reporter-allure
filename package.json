@@ -26,6 +26,9 @@
     "test:lint:fix": "eslint --ext .js,.ts --ignore-pattern !.* --ignore-path .gitignore . --fix",
     "test:unit": "jest",
     "test:e2e": "node tests/runner.js",
+    "test:e2e:build": "npm run build:prod && node tests/runner.js",
+    "test:e2e:build:allure": "npm run build:prod && node tests/runner.js && npm run allure",
+    "allure": "allure generate ./allure/allure-results --clean -o ./allure/allure-report && allure open ./allure/allure-report",
     "version": "node -v",
     "browsers": "testcafe --list-browsers",
     "semantic-release": "semantic-release"
@@ -35,11 +38,14 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "allure-js-commons": "^2.0.0-beta.6"
+  },
   "devDependencies": {
     "@types/jest": "^25.2.1",
     "@typescript-eslint/eslint-plugin": "^2.28.0",
     "@typescript-eslint/parser": "^2.28.0",
+    "allure-commandline": "^2.13.0",
     "callsite-record": "^4.1.3",
     "commitizen": "^4.0.4",
     "cz-conventional-changelog": "^3.1.0",
