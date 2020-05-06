@@ -17,6 +17,9 @@ module.exports = () => {
 
     async reportFixtureStart(name: string, path: string, meta: object): Promise<void> {
       try {
+        // End the previous group because testcafe does not trigger the reporter when a fixture ends.
+        this.allureReporter.endGroup();
+
         this.allureReporter.startGroup(name);
         this.write(`Fixture "${name}" has been started`).newline();
       } catch (error) {
