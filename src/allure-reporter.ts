@@ -1,8 +1,4 @@
-import { AllureConfig } from 'allure-js-commons/dist/src/AllureConfig';
-import { AllureGroup } from 'allure-js-commons/dist/src/AllureGroup';
-import { AllureRuntime } from 'allure-js-commons/dist/src/AllureRuntime';
-import { AllureTest } from 'allure-js-commons/dist/src/AllureTest';
-import { Stage, Status, StatusDetails } from 'allure-js-commons/dist/src/model';
+import { AllureConfig, AllureGroup, AllureRuntime, AllureTest, Stage, Status, StatusDetails } from 'allure-js-commons';
 
 export default class AllureReporter /* implements IAllureReporter */ {
   private groups: AllureGroup[] = [];
