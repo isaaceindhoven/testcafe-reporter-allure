@@ -33,3 +33,10 @@ test('My fourth e2e test', async (t) => {
     .expect(Selector('#article-header').innerText)
     .eql('Thank you, John Smith!');
 });
+test('My failing e2e test', async (t) => {
+  await t
+    .typeText('#developer-name', 'John Smith')
+    .click('#submit-button')
+    .expect(Selector('#article-header').innerText)
+    .eql('Thank you, Jane Smith!');
+});

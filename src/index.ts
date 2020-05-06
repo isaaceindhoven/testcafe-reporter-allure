@@ -1,6 +1,9 @@
 /* eslint-disable no-console,@typescript-eslint/no-unused-vars */
 // Above eslint rules disabled for development
-const AllureReporter = require('./allure-reporter').default;
+// const { IAllureReporter, AllureReporter } = require('./allure-reporter');
+import AllureReporter from './allure-reporter';
+// import AllureReporterFactory = require('./allure-reporter');
+// const AllureReporter = AllureReporterFactory.AllureReporter;
 
 module.exports = () => {
   return {
@@ -8,6 +11,7 @@ module.exports = () => {
 
     async reportTaskStart(startTime: Date, userAgents: string[], testCount: number): Promise<void> {
       this.allureReporter = new AllureReporter();
+
       this.write('Task has been started').newline();
     },
 
@@ -31,15 +35,17 @@ module.exports = () => {
 
     async reportTestDone(name: string, testRunInfo, meta: object): Promise<void> {
       try {
-        this.allureReporter.endTest();
-        // const hasErr = !!testRunInfo.errs.length;
+        const hasErr = !!testRunInfo.errs.length;
 
-        // if (hasErr) {
-        //   testRunInfo.errs.forEach((err, idx) => {
-        //     this.newline()
-        //       .write(this.formatError(err, `${idx + 1}) `));
-        //   });
-        // }
+        if (hasErr) {
+          // testRunInfo.errs.forEach((err, idx) => {
+          //   this.newline().write(this.formatError(err, `${idx + 1}) `));
+          // });
+
+          this.allureReporter.endTestFailed(name, testRunInfo.errs[0]);
+        } else {
+          this.allureReporter.endTestPassed(name);
+        }
         this.write(`Test "${name}" has been finished`).newline();
       } catch (error) {
         console.log(error);
