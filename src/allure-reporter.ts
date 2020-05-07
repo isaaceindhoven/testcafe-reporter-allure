@@ -1,10 +1,6 @@
-import { AllureConfig } from 'allure-js-commons/dist/src/AllureConfig';
-import { AllureGroup } from 'allure-js-commons/dist/src/AllureGroup';
-import { AllureRuntime } from 'allure-js-commons/dist/src/AllureRuntime';
-import { AllureTest } from 'allure-js-commons/dist/src/AllureTest';
-import { Stage, Status, StatusDetails } from 'allure-js-commons/dist/src/model';
+import { AllureConfig, AllureGroup, AllureRuntime, AllureTest, Stage, Status, StatusDetails } from 'allure-js-commons';
 
-export default class AllureReporter /* implements IAllureReporter */ {
+export default class AllureReporter {
   private groups: AllureGroup[] = [];
 
   private runningTest: AllureTest | null = null;
@@ -13,15 +9,15 @@ export default class AllureReporter /* implements IAllureReporter */ {
 
   private allureResultsPathDefault: string = './allure/allure-results';
 
-  constructor(allureResultsPath?: string) {
-    let allureConfig = null;
-    if (!allureResultsPath) {
-      allureConfig = new AllureConfig(this.allureResultsPathDefault);
+  constructor(allureConfig?: AllureConfig) {
+    let config: AllureConfig;
+    if (!allureConfig) {
+      config = new AllureConfig(this.allureResultsPathDefault);
     } else {
-      allureConfig = new AllureConfig(allureResultsPath);
+      config = allureConfig;
     }
 
-    this.runtime = new AllureRuntime(allureConfig);
+    this.runtime = new AllureRuntime(config);
   }
 
   public startGroup(groupName: string): void {
