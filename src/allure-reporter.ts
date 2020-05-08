@@ -1,4 +1,5 @@
 import { AllureConfig, AllureGroup, AllureRuntime, AllureTest, Stage, Status, StatusDetails } from 'allure-js-commons';
+import * as AllureConfigDoc from '../allure.config';
 import Metadata from './metadata';
 
 export default class AllureReporter {
@@ -8,14 +9,12 @@ export default class AllureReporter {
 
   private runtime: AllureRuntime = null;
 
-  private allureResultsPathDefault: string = './allure/allure-results';
-
   private groupMetadata: Metadata;
 
   constructor(allureConfig?: AllureConfig) {
     let config: AllureConfig;
     if (!allureConfig) {
-      config = new AllureConfig(this.allureResultsPathDefault);
+      config = new AllureConfig(AllureConfigDoc.RESULT_DIR);
     } else {
       config = allureConfig;
     }

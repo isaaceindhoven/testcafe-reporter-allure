@@ -24,7 +24,7 @@ module.exports = [
   },
   {
     method: 'reportTestStart',
-    args: ['First test in first fixture', { severity: 'BLOCKER' }],
+    args: ['First test in first fixture', { severity: 'BLOCKER', story: 'TEST-STORY' }],
   },
   {
     method: 'reportTestDone',

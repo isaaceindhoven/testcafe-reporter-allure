@@ -1,17 +1,16 @@
-import { InMemoryAllureWriter, Severity, Stage, Status } from 'allure-js-commons';
+import { InMemoryAllureWriter, LinkType, Severity, Stage, Status } from 'allure-js-commons';
 import { createObjectReport } from '../utils/create-report';
-// Import the custom jest enum matcher
-import '../utils/enum-matcher';
+import '../utils/jest-enum-matcher';
 
 describe('Test results', () => {
-  it('Should contain a valid status', () => {
+  it('Should contain valid statuses', () => {
     const report: InMemoryAllureWriter = createObjectReport();
 
     report.tests.forEach((test) => {
       expect(test.status).toBeContainedWithinEnum(Status);
     });
   });
-  it('Should contain a valid stage', () => {
+  it('Should contain valid stages', () => {
     const report: InMemoryAllureWriter = createObjectReport();
 
     report.tests.forEach((test) => {
@@ -34,7 +33,7 @@ describe('Test results', () => {
       expect(test.stage).toBeDefined();
     });
   });
-  it('Should contain a valid severity', () => {
+  it('Should contain valid severitys', () => {
     // If no label exists allure will default to 'Normal' severity so checking if the label exists is not nessesary only that if it exits it is valid.
     const report: InMemoryAllureWriter = createObjectReport();
 
@@ -42,6 +41,28 @@ describe('Test results', () => {
       test.labels.forEach((label) => {
         if (label.name === 'severity') {
           expect(label.value).toBeContainedWithinEnum(Severity);
+        }
+      });
+    });
+  });
+  it('Should contain a specific link', () => {
+    // If no label exists allure will default to 'Normal' severity so checking if the label exists is not nessesary only that if it exits it is valid.
+    const report: InMemoryAllureWriter = createObjectReport();
+
+    const link = report.tests[0].links[0];
+    expect(link.name).toBe('JIRA Story: TEST-STORY');
+    expect(link.url).toBe('https://jira.example.nl/browse/TEST-STORY');
+    expect(link.type).toBe(LinkType.ISSUE);
+  });
+
+  it('Should contain a valid linkTypes', () => {
+    // If no label exists allure will default to 'Normal' severity so checking if the label exists is not nessesary only that if it exits it is valid.
+    const report: InMemoryAllureWriter = createObjectReport();
+
+    report.tests.forEach((test) => {
+      test.links.forEach((link) => {
+        if (link.type) {
+          expect(link.type).toBeContainedWithinEnum(LinkType);
         }
       });
     });
