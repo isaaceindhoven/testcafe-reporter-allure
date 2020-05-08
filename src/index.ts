@@ -28,7 +28,7 @@ module.exports = () => {
         // End the previous group because testcafe does not trigger the reporter when a fixture ends.
         this.allureReporter.endGroup();
 
-        this.allureReporter.startGroup(name);
+        this.allureReporter.startGroup(name, meta);
         // this.write(`Fixture "${name}" has been started`).newline();
       } catch (error) {
         console.log(error);
@@ -37,7 +37,7 @@ module.exports = () => {
 
     async reportTestStart(name: string, meta: object): Promise<void> {
       try {
-        this.allureReporter.startTest(name);
+        this.allureReporter.startTest(name, meta);
         // this.write(`Test "${name}" has been started`).newline();
       } catch (error) {
         console.log(error);
@@ -49,13 +49,9 @@ module.exports = () => {
         const hasErr = !!testRunInfo.errs.length;
 
         if (hasErr) {
-          // testRunInfo.errs.forEach((err, idx) => {
-          //   this.newline().write(this.formatError(err, `${idx + 1}) `));
-          // });
-
-          this.allureReporter.endTestFailed(name, testRunInfo.errs[0]);
+          this.allureReporter.endTestFailed(name, meta, testRunInfo.errs[0]);
         } else {
-          this.allureReporter.endTestPassed(name);
+          this.allureReporter.endTestPassed(name, meta);
         }
         // this.write(`Test "${name}" has been finished`).newline();
       } catch (error) {

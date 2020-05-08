@@ -1,4 +1,5 @@
 import { AllureConfig, AllureGroup, AllureRuntime, AllureTest, Stage, Status, StatusDetails } from 'allure-js-commons';
+import Metadata from './metadata';
 
 export default class AllureReporter {
   private groups: AllureGroup[] = [];
@@ -8,6 +9,8 @@ export default class AllureReporter {
   private runtime: AllureRuntime = null;
 
   private allureResultsPathDefault: string = './allure/allure-results';
+
+  private groupMetadata: Metadata;
 
   constructor(allureConfig?: AllureConfig) {
     let config: AllureConfig;
@@ -20,10 +23,9 @@ export default class AllureReporter {
     this.runtime = new AllureRuntime(config);
   }
 
-  public startGroup(groupName: string): void {
-    const currentGroup = this.getCurrentGroup();
-    const scope = currentGroup || this.runtime;
-    const suite = scope.startGroup(groupName || 'Global');
+  public startGroup(name: string, meta: object): void {
+    this.groupMetadata = new Metadata(meta);
+    const suite = this.runtime.startGroup(name);
     this.groups.push(suite);
   }
 
@@ -35,31 +37,35 @@ export default class AllureReporter {
     }
   }
 
-  public startTest(testName: string): void {
+  public startTest(name: string, meta: object): void {
+    const currentMetadata = new Metadata(meta);
     const currentGroup = this.getCurrentGroup();
     if (currentGroup === null) {
       throw new Error('No active suite');
     }
 
-    const currentTest = currentGroup.startTest(testName);
-    currentTest.fullName = testName;
-    currentTest.historyId = testName;
+    const currentTest = currentGroup.startTest(name);
+    currentTest.fullName = `${currentGroup.name} : ${name}`;
+    currentTest.historyId = name;
     currentTest.stage = Stage.RUNNING;
+
+    currentMetadata.addMetadataToTest(currentTest, this.groupMetadata);
+
     this.setCurrentTest(currentTest);
   }
 
-  public endTestPassed(testName: string): void {
+  public endTestPassed(name: string, meta: object): void {
     const currentTest = this.getCurrentTest();
     if (currentTest === null) {
-      this.startTest(testName);
+      this.startTest(name, meta);
     }
     this.endTest(Status.PASSED);
   }
 
-  public endTestFailed(testName: string, error: Error) {
+  public endTestFailed(name: string, meta: object, error: Error) {
     const currentTest = this.getCurrentTest();
     if (currentTest === null) {
-      this.startTest(testName);
+      this.startTest(name, meta);
     } else {
       const latestStatus = currentTest.status;
       // if test already has a failed state, we should not overwrite it
@@ -67,8 +73,7 @@ export default class AllureReporter {
         return;
       }
     }
-    const status = error.name === 'AssertionError' ? Status.FAILED : Status.BROKEN;
-
+    const status = Status.FAILED;
     this.endTest(status, { message: error.message, trace: error.stack });
   }
 

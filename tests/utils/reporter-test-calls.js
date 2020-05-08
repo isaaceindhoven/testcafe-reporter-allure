@@ -24,7 +24,7 @@ module.exports = [
   },
   {
     method: 'reportTestStart',
-    args: ['First test in first fixture'],
+    args: ['First test in first fixture', { severity: 'BLOCKER' }],
   },
   {
     method: 'reportTestDone',
@@ -40,7 +40,7 @@ module.exports = [
   },
   {
     method: 'reportTestStart',
-    args: ['Second test in first fixture'],
+    args: ['Second test in first fixture', { severity: 'CRITICAL' }],
   },
   {
     method: 'reportTestDone',
@@ -93,7 +93,7 @@ module.exports = [
   },
   {
     method: 'reportFixtureStart',
-    args: ['Second fixture', './fixture2.js'],
+    args: ['Second fixture', './fixture2.js', { severity: 'MINOR' }],
   },
   {
     method: 'reportTestStart',
