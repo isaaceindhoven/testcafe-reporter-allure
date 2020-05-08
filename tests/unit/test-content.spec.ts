@@ -45,8 +45,13 @@ describe('Test results', () => {
       });
     });
   });
+  it('Should contain a specific severity', () => {
+    const report: InMemoryAllureWriter = createObjectReport();
+
+    const label = report.tests[0].labels[0];
+    expect(label.value).toBe(Severity.BLOCKER);
+  });
   it('Should contain a specific link', () => {
-    // If no label exists allure will default to 'Normal' severity so checking if the label exists is not nessesary only that if it exits it is valid.
     const report: InMemoryAllureWriter = createObjectReport();
 
     const link = report.tests[0].links[0];
@@ -56,7 +61,6 @@ describe('Test results', () => {
   });
 
   it('Should contain a valid linkTypes', () => {
-    // If no label exists allure will default to 'Normal' severity so checking if the label exists is not nessesary only that if it exits it is valid.
     const report: InMemoryAllureWriter = createObjectReport();
 
     report.tests.forEach((test) => {
