@@ -1,5 +1,8 @@
+/* eslint-disable class-methods-use-this */
 import { AllureTest, LinkType, Severity } from 'allure-js-commons';
 import * as AllureConfigDoc from '../allure.config';
+
+export { Severity } from 'allure-js-commons';
 
 export default class Metadata {
   severity: Severity;
@@ -10,28 +13,23 @@ export default class Metadata {
 
   constructor(meta?: any) {
     if (meta) {
-      this.severity = meta.severity;
-      this.description = meta.description;
-      this.story = meta.story;
+      if (meta.severity && this.isValidEnumValue(meta.severity, Severity)) {
+        this.severity = meta.severity;
+      }
+      if (meta.description && this.isString(meta.description)) {
+        this.description = meta.description;
+      }
+      if (meta.story && this.isString(meta.story)) {
+        this.story = meta.story;
+      }
     }
   }
 
-  setSeverity(severity: Severity): Metadata {
-    this.severity = severity;
-    return this;
-  }
-
-  setStory(story: string): Metadata {
-    this.story = story;
-    return this;
-  }
-
-  setDescription(description: string): Metadata {
-    this.description = description;
-    return this;
-  }
-
   addMetadataToTest(test: AllureTest, groupMetadata: Metadata) {
+    if (!(groupMetadata instanceof Metadata)) {
+      throw new Error('groupMetadata is not a valid Metadata object');
+    }
+
     // Once metadata has been set it cannot be overritten,
     // therefore priority metadata has to be loaded added first
     // The results will list both entries if both added but allure will only take the first.
@@ -64,5 +62,13 @@ export default class Metadata {
     if (!this.story && metadata.story) {
       this.story = metadata.story;
     }
+  }
+
+  private isValidEnumValue(value: string, validEnum: { [s: string]: string }): boolean {
+    return value.toUpperCase() in validEnum;
+  }
+
+  private isString(value: any): boolean {
+    return typeof value === 'string';
   }
 }
