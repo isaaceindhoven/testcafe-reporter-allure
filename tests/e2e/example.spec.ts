@@ -5,7 +5,7 @@ fixture('TestCafé example test fixture 1').page('http://devexpress.github.io/te
 
 test.meta({
   severity: Severity.TRIVIAL,
-  story: 'TEST-STORY',
+  issue: 'TEST-ISSUE',
   description: 'An example discription',
 })('My first e2e test', async (t) => {
   await t

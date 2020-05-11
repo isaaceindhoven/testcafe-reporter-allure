@@ -3,6 +3,6 @@ module.exports = {
   META: {
     SEVERITY: 'severity',
   },
-  STORY_LABEL: 'JIRA Story',
-  STORY_URL: 'https://jira.example.nl/browse/',
+  ISSUE_LABEL: 'JIRA Issue',
+  ISSUE_URL: 'https://jira.example.nl/browse/',
 };

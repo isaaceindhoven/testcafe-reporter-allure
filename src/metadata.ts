@@ -9,7 +9,7 @@ export default class Metadata {
 
   description: string;
 
-  story: string;
+  issue: string;
 
   constructor(meta?: any) {
     if (meta) {
@@ -19,8 +19,8 @@ export default class Metadata {
       if (meta.description && this.isString(meta.description)) {
         this.description = meta.description;
       }
-      if (meta.story && this.isString(meta.story)) {
-        this.story = meta.story;
+      if (meta.issue && this.isString(meta.issue)) {
+        this.issue = meta.issue;
       }
     }
   }
@@ -42,10 +42,10 @@ export default class Metadata {
       /* eslint-disable-next-line no-param-reassign */
       test.description = this.description;
     }
-    if (this.story) {
+    if (this.issue) {
       test.addLink(
-        `${AllureConfigDoc.STORY_URL}${this.story}`,
-        `${AllureConfigDoc.STORY_LABEL}: ${this.story}`,
+        `${AllureConfigDoc.ISSUE_URL}${this.issue}`,
+        `${AllureConfigDoc.ISSUE_LABEL}: ${this.issue}`,
         LinkType.ISSUE,
       );
     }
@@ -59,8 +59,8 @@ export default class Metadata {
     if (!this.description && metadata.description) {
       this.description = metadata.description;
     }
-    if (!this.story && metadata.story) {
-      this.story = metadata.story;
+    if (!this.issue && metadata.issue) {
+      this.issue = metadata.issue;
     }
   }
 

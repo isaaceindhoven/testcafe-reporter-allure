@@ -25,7 +25,7 @@ describe('Metadata validation', () => {
     expect(metadata).toBeDefined();
     expect(metadata.severity).not.toBeDefined();
     expect(metadata.description).not.toBeDefined();
-    expect(metadata.story).not.toBeDefined();
+    expect(metadata.issue).not.toBeDefined();
   });
   it('Should add a valid severity', () => {
     const meta = { severity: Severity.NORMAL };
@@ -57,21 +57,21 @@ describe('Metadata validation', () => {
 
     expect(metadata.description).not.toBeDefined();
   });
-  it('Should add a valid story', () => {
-    const story: string = 'Valid Story';
-    const meta = { story };
+  it('Should add a valid issue', () => {
+    const issue: string = 'Valid Issue';
+    const meta = { issue };
 
     const metadata: Metadata = new Metadata(meta);
 
-    expect(metadata.story).toBe(story);
+    expect(metadata.issue).toBe(issue);
   });
-  it('Should ignore an invalid story', () => {
-    const story: number = 1;
-    const meta = { story };
+  it('Should ignore an invalid issue', () => {
+    const issue: number = 1;
+    const meta = { issue };
 
     const metadata: Metadata = new Metadata(meta);
 
-    expect(metadata.story).not.toBeDefined();
+    expect(metadata.issue).not.toBeDefined();
   });
 });
 
@@ -85,13 +85,13 @@ describe('Metadata merging', () => {
     const test: AllureTest = new AllureTest(null);
     const localMeta = {
       severity: Severity.NORMAL,
-      story: 'Local story',
+      issue: 'Local issue',
       description: 'Local description',
     };
     const localMetaData: Metadata = new Metadata(localMeta);
     const groupMeta = {
       severity: Severity.BLOCKER,
-      story: 'Group story',
+      issue: 'Group issue',
       description: 'Group description',
     };
     const groupMetaData: Metadata = new Metadata(groupMeta);
@@ -99,7 +99,7 @@ describe('Metadata merging', () => {
     localMetaData.addMetadataToTest(test, groupMetaData);
 
     expect(localMetaData.description).toBe(localMeta.description);
-    expect(localMetaData.story).toBe(localMeta.story);
+    expect(localMetaData.issue).toBe(localMeta.issue);
     expect(localMetaData.severity).toBe(localMeta.severity);
 
     expect(mockAddLabel).toHaveBeenCalledTimes(1);
@@ -110,7 +110,7 @@ describe('Metadata merging', () => {
     const localMetaData: Metadata = new Metadata();
     const groupMeta = {
       severity: Severity.BLOCKER,
-      story: 'Group story',
+      issue: 'Group issue',
       description: 'Group description',
     };
     const groupMetaData: Metadata = new Metadata(groupMeta);
@@ -118,7 +118,7 @@ describe('Metadata merging', () => {
     localMetaData.addMetadataToTest(test, groupMetaData);
 
     expect(localMetaData.description).toBe(groupMeta.description);
-    expect(localMetaData.story).toBe(groupMeta.story);
+    expect(localMetaData.issue).toBe(groupMeta.issue);
     expect(localMetaData.severity).toBe(groupMeta.severity);
 
     expect(mockAddLabel).toHaveBeenCalledTimes(1);

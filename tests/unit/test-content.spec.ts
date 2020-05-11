@@ -55,8 +55,8 @@ describe('Test results', () => {
     const report: InMemoryAllureWriter = createObjectReport();
 
     const link = report.tests[0].links[0];
-    expect(link.name).toBe('JIRA Story: TEST-STORY');
-    expect(link.url).toBe('https://jira.example.nl/browse/TEST-STORY');
+    expect(link.name).toBe('JIRA Issue: TEST-ISSUE');
+    expect(link.url).toBe('https://jira.example.nl/browse/TEST-ISSUE');
     expect(link.type).toBe(LinkType.ISSUE);
   });
 
