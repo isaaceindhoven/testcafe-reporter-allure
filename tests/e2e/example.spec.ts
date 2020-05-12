@@ -7,6 +7,7 @@ test.meta({
   severity: Severity.TRIVIAL,
   issue: 'TEST-ISSUE',
   description: 'An example discription',
+  otherMeta: 'Example otherMeta parameter.',
 })('My first e2e test', async (t) => {
   await t
     .typeText('#developer-name', 'John Smith')

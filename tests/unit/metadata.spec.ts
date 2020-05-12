@@ -6,6 +6,7 @@ import '../utils/jest-enum-matcher';
 // jest will then also mock Severity within Metadata.
 const mockAddLabel = jest.fn();
 const mockAddLink = jest.fn();
+const mockAddParameter = jest.fn();
 jest.mock('allure-js-commons/dist/src/AllureTest', () => {
   return {
     AllureTest: jest.fn().mockImplementation(() => {
@@ -13,6 +14,7 @@ jest.mock('allure-js-commons/dist/src/AllureTest', () => {
         constructor: () => {},
         addLabel: mockAddLabel,
         addLink: mockAddLink,
+        addParameter: mockAddParameter,
       };
     }),
   };
@@ -73,12 +75,31 @@ describe('Metadata validation', () => {
 
     expect(metadata.issue).not.toBeDefined();
   });
+  it('Should add a valid otherMeta', () => {
+    const test: string = 'test';
+    const test2: string = 'test2';
+    const meta = { test, test2 };
+
+    const metadata: Metadata = new Metadata(meta);
+
+    expect(metadata.otherMeta.size).toBe(2);
+  });
+  it('Should ignore an invalid  otherMeta', () => {
+    const test: string = 'test';
+    const test2: number = 1;
+    const meta = { test, test2 };
+
+    const metadata: Metadata = new Metadata(meta);
+
+    expect(metadata.otherMeta.size).toBe(1);
+  });
 });
 
 describe('Metadata merging', () => {
   beforeEach(() => {
     mockAddLabel.mockClear();
     mockAddLink.mockClear();
+    mockAddParameter.mockClear();
   });
 
   it('Should give priority to test than group metadata', () => {
@@ -87,12 +108,14 @@ describe('Metadata merging', () => {
       severity: Severity.NORMAL,
       issue: 'Local issue',
       description: 'Local description',
+      otherMeta: 'Local otherMeta',
     };
     const localMetaData: Metadata = new Metadata(localMeta);
     const groupMeta = {
       severity: Severity.BLOCKER,
       issue: 'Group issue',
       description: 'Group description',
+      otherMeta: 'Group otherMeta',
     };
     const groupMetaData: Metadata = new Metadata(groupMeta);
 
@@ -101,7 +124,9 @@ describe('Metadata merging', () => {
     expect(localMetaData.description).toBe(localMeta.description);
     expect(localMetaData.issue).toBe(localMeta.issue);
     expect(localMetaData.severity).toBe(localMeta.severity);
+    expect(localMetaData.otherMeta.get('otherMeta')).toBe(localMeta.otherMeta);
 
+    expect(mockAddParameter).toHaveBeenCalledTimes(1);
     expect(mockAddLabel).toHaveBeenCalledTimes(1);
     expect(mockAddLink).toHaveBeenCalledTimes(1);
   });
@@ -112,6 +137,7 @@ describe('Metadata merging', () => {
       severity: Severity.BLOCKER,
       issue: 'Group issue',
       description: 'Group description',
+      otherMeta: 'Group otherMeta',
     };
     const groupMetaData: Metadata = new Metadata(groupMeta);
 
@@ -120,7 +146,9 @@ describe('Metadata merging', () => {
     expect(localMetaData.description).toBe(groupMeta.description);
     expect(localMetaData.issue).toBe(groupMeta.issue);
     expect(localMetaData.severity).toBe(groupMeta.severity);
+    expect(localMetaData.otherMeta.get('otherMeta')).toBe(groupMeta.otherMeta);
 
+    expect(mockAddParameter).toHaveBeenCalledTimes(1);
     expect(mockAddLabel).toHaveBeenCalledTimes(1);
     expect(mockAddLink).toHaveBeenCalledTimes(1);
   });
@@ -131,8 +159,9 @@ describe('Metadata merging', () => {
 
     localMetaData.addMetadataToTest(test, groupMetaData);
 
-    // No calls to AllureTest functions have been made if there is no metadata.
-    expect(mockAddLabel).toHaveBeenCalledTimes(0);
+    // No calls to AllureTest functions have been made if there is no metadata, execept for a default severity label.
+    expect(mockAddParameter).toHaveBeenCalledTimes(0);
+    expect(mockAddLabel).toHaveBeenCalledTimes(1);
     expect(mockAddLink).toHaveBeenCalledTimes(0);
   });
   it('Should validate if the groupMetadata object is valid', () => {
