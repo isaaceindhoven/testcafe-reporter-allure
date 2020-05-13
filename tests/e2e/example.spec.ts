@@ -1,5 +1,5 @@
+import { Severity } from 'allure-js-commons';
 import { Selector } from 'testcafe';
-import { Severity } from '../../src/reporter/metadata';
 
 fixture('TestCafé example test fixture 1').page('http://devexpress.github.io/testcafe/example');
 

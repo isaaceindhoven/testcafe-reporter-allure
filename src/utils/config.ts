@@ -7,7 +7,7 @@ const defaultConfig = {
   CLEAN_RESULT_DIR: true,
   CLEAN_REPORT_DIR: true,
   META: {
-    SEVERITY: 'Trivial',
+    SEVERITY: 'Normal',
     ISSUE_URL: 'https://jira.example.nl/browse/',
   },
   LABEL: {

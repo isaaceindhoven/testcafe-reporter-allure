@@ -4,8 +4,6 @@ import Config from '../utils/config';
 
 const reporterConfig = Config();
 
-export { Severity } from 'allure-js-commons';
-
 export default class Metadata {
   severity: Severity;
 

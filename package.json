@@ -38,8 +38,10 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
+  "peerDependencies": {
+    "allure-js-commons": "^2.0.0-beta.6"
+  },
   "dependencies": {
-    "allure-js-commons": "^2.0.0-beta.6",
     "rimraf": "^3.0.2"
   },
   "devDependencies": {
