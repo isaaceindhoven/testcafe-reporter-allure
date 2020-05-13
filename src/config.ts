@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-const defaultReporterConfig = {
+const defaultConfig = {
   CONFIG_DIR: 'allure.config.js',
   RESULT_DIR: './allure/allure-results',
   META: {
@@ -14,19 +14,19 @@ const defaultReporterConfig = {
 };
 
 function loadCustomConfig(): object {
-  let customReporterConfig: object = null;
+  let customConfig: object = null;
   try {
     // The presents of this config module is not guarenteed therefore this approach is needed.
     /* eslint-disable-next-line import/no-dynamic-require,global-require */
-    customReporterConfig = require(path.resolve(process.cwd(), defaultReporterConfig.CONFIG_DIR));
+    customConfig = require(path.resolve(process.cwd(), defaultConfig.CONFIG_DIR));
   } catch (error) {
-    customReporterConfig = {};
+    customConfig = {};
   }
-  return customReporterConfig;
+  return customConfig;
 }
 
-export default function ReporterConfig(): any {
-  const customReporterConfig = loadCustomConfig();
-  const mergedReporterConfig: object = { ...defaultReporterConfig, ...customReporterConfig };
-  return mergedReporterConfig;
+export default function Config(): any {
+  const customConfig = loadCustomConfig();
+  const mergedConfig: object = { ...defaultConfig, ...customConfig };
+  return mergedConfig;
 }

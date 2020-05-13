@@ -1,8 +1,8 @@
 /* eslint-disable class-methods-use-this,array-callback-return */
 import { AllureTest, LinkType, Severity } from 'allure-js-commons';
-import ReporterConfig from './config';
+import Config from './config';
 
-const reporterConfig = ReporterConfig();
+const reporterConfig = Config();
 
 export { Severity } from 'allure-js-commons';
 
