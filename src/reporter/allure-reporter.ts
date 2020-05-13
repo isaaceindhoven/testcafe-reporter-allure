@@ -1,4 +1,5 @@
 import { AllureConfig, AllureGroup, AllureRuntime, AllureTest, Stage, Status, StatusDetails } from 'allure-js-commons';
+import CleanAllureFolders from '../utils/clean-folders';
 import Config from '../utils/config';
 import Metadata from './metadata';
 
@@ -14,6 +15,8 @@ export default class AllureReporter {
   private groupMetadata: Metadata;
 
   constructor(allureConfig?: AllureConfig) {
+    CleanAllureFolders();
+
     let config: AllureConfig;
     if (!allureConfig) {
       config = new AllureConfig(reporterConfig.RESULT_DIR);
