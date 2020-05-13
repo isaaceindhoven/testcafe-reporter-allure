@@ -1,6 +1,8 @@
 import { AllureConfig, AllureGroup, AllureRuntime, AllureTest, Stage, Status, StatusDetails } from 'allure-js-commons';
-import * as AllureConfigDoc from '../allure.config';
+import ReporterConfig from './config';
 import Metadata from './metadata';
+
+const reporterConfig = ReporterConfig();
 
 export default class AllureReporter {
   private groups: AllureGroup[] = [];
@@ -14,7 +16,7 @@ export default class AllureReporter {
   constructor(allureConfig?: AllureConfig) {
     let config: AllureConfig;
     if (!allureConfig) {
-      config = new AllureConfig(AllureConfigDoc.RESULT_DIR);
+      config = new AllureConfig(reporterConfig.RESULT_DIR);
     } else {
       config = allureConfig;
     }

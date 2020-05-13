@@ -27,5 +27,6 @@ createTestCafe()
   /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
   .catch((error) => {
     testcafe.close();
+    console.log(error);
     // throw error;
   });

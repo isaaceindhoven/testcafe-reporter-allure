@@ -1,6 +1,8 @@
 /* eslint-disable class-methods-use-this,array-callback-return */
 import { AllureTest, LinkType, Severity } from 'allure-js-commons';
-import * as AllureConfigDoc from '../allure.config';
+import ReporterConfig from './config';
+
+const reporterConfig = ReporterConfig();
 
 export { Severity } from 'allure-js-commons';
 
@@ -50,10 +52,10 @@ export default class Metadata {
     // Labels only accept specific keys/names as valid, it will ignore all other labels
     // Other variabels have to be added as parameters or links.
     if (this.severity) {
-      test.addLabel(AllureConfigDoc.META.SEVERITY, this.severity);
+      test.addLabel(reporterConfig.LABEL.SEVERITY, this.severity);
     } else {
       // If no severity is given, set the default severity
-      test.addLabel(AllureConfigDoc.META.SEVERITY, AllureConfigDoc.DEFAULT.SEVERITY);
+      test.addLabel(reporterConfig.LABEL.SEVERITY, reporterConfig.META.SEVERITY);
     }
     if (this.description) {
       /* eslint-disable-next-line no-param-reassign */
@@ -61,8 +63,8 @@ export default class Metadata {
     }
     if (this.issue) {
       test.addLink(
-        `${AllureConfigDoc.ISSUE_URL}${this.issue}`,
-        `${AllureConfigDoc.ISSUE_LABEL}: ${this.issue}`,
+        `${reporterConfig.META.ISSUE_URL}${this.issue}`,
+        `${reporterConfig.LABEL.ISSUE}: ${this.issue}`,
         LinkType.ISSUE,
       );
     }
