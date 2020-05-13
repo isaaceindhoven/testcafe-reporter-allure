@@ -1,7 +1,7 @@
 /* eslint-disable no-console,@typescript-eslint/no-unused-vars */
 // Above eslint rules disabled for development
 import { AllureConfig } from 'allure-js-commons';
-import AllureReporter from './allure-reporter';
+import AllureReporter from './reporter/allure-reporter';
 
 module.exports = () => {
   return {

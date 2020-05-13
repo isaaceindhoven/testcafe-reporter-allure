@@ -1,5 +1,5 @@
 import { AllureConfig, AllureGroup, AllureRuntime, AllureTest, Stage, Status, StatusDetails } from 'allure-js-commons';
-import Config from './config';
+import Config from '../utils/config';
 import Metadata from './metadata';
 
 const reporterConfig = Config();

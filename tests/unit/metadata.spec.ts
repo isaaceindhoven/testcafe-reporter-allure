@@ -1,5 +1,5 @@
 import { AllureTest } from 'allure-js-commons/dist/src/AllureTest';
-import Metadata, { Severity } from '../../src/metadata';
+import Metadata, { Severity } from '../../src/reporter/metadata';
 import '../utils/jest-enum-matcher';
 // Mock the AllureTest class to be able to test all Metadata functions.
 // TODO: Change import to 'allure-js-commons', currently not possible because
