@@ -1,20 +1,20 @@
 import * as path from 'path';
 import * as rimraf from 'rimraf';
-import Config from './config';
+import loadConfig from './config';
 
-const reporterConfig = Config();
+const reporterConfig = loadConfig();
 
-function DeleteFolderContents(dataPath: string) {
+function deleteFolderContents(dataPath: string) {
   if (dataPath) {
     rimraf(`${dataPath}/*`, () => {});
   }
 }
 
-export default function CleanAllureFolders(): any {
+export default function cleanAllureFolders(): any {
   if (reporterConfig.CLEAN_RESULT_DIR) {
-    DeleteFolderContents(path.resolve(process.cwd(), reporterConfig.RESULT_DIR));
+    deleteFolderContents(path.resolve(process.cwd(), reporterConfig.RESULT_DIR));
   }
   if (reporterConfig.CLEAN_REPORT_DIR) {
-    DeleteFolderContents(path.resolve(process.cwd(), reporterConfig.REPORT_DIR));
+    deleteFolderContents(path.resolve(process.cwd(), reporterConfig.REPORT_DIR));
   }
 }

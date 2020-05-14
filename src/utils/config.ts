@@ -28,7 +28,7 @@ function loadCustomConfig(): object {
   return customConfig;
 }
 
-export default function Config(): any {
+export default function loadConfig(): any {
   const customConfig = loadCustomConfig();
   const mergedConfig: object = { ...defaultConfig, ...customConfig };
   return mergedConfig;

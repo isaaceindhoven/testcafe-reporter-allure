@@ -1,8 +1,8 @@
 /* eslint-disable class-methods-use-this,array-callback-return */
 import { AllureTest, LinkType, Severity } from 'allure-js-commons';
-import Config from '../utils/config';
+import loadConfig from '../utils/config';
 
-const reporterConfig = Config();
+const reporterConfig = loadConfig();
 
 export default class Metadata {
   severity: Severity;
