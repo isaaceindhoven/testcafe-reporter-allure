@@ -1,4 +1,4 @@
-import { createJsonReport, splitOnNewline } from '../utils/create-report';
+import { createJsonReport, splitOnNewline } from '../../utils/create-report';
 
 describe('TestCafe Allure reporter JSON output', () => {
   it('Should produce report', () => {

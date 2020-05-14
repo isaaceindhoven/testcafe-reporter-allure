@@ -35,20 +35,20 @@ jobs:
     - name: Run unit-tests
       run: 'npm run test:unit'
 
-  e2e-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 13.x]
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install dependencies
-      uses: bahmutov/npm-install@v1
-    - name: Build reporter for e2e-testing
-      run: 'npm run build:prod'
-    - name: Run e2e-tests
-      run: 'npm run test:e2e'
+  # e2e-test:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       node-version: [10.x, 12.x, 13.x]
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: Use Node.js ${{ matrix.node-version }}
+  #     uses: actions/setup-node@v1
+  #     with:
+  #       node-version: ${{ matrix.node-version }}
+  #   - name: Install dependencies
+  #     uses: bahmutov/npm-install@v1
+  #   - name: Build reporter for e2e-testing
+  #     run: 'npm run build:prod'
+  #   - name: Run e2e-tests
+  #     run: 'npm run test:e2e'

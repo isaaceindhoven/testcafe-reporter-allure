@@ -1,10 +1,10 @@
 import { Severity } from 'allure-js-commons';
 import { AllureTest } from 'allure-js-commons/dist/src/AllureTest';
-import Metadata from '../../src/reporter/metadata';
-import '../utils/jest-enum-matcher';
+import Metadata from '../../../src/reporter/metadata';
+import '../../utils/jest-enum-matcher';
 // Mock the AllureTest class to be able to test all Metadata functions.
 // TODO: Change import to 'allure-js-commons', currently not possible because
-// jest will then also mock Severity within Metadata.
+// jest will then also mock Severity.
 const mockAddLabel = jest.fn();
 const mockAddLink = jest.fn();
 const mockAddParameter = jest.fn();

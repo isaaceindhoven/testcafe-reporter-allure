@@ -1,6 +1,6 @@
 import { InMemoryAllureWriter, LinkType, Severity, Stage, Status } from 'allure-js-commons';
-import { createObjectReport } from '../utils/create-report';
-import '../utils/jest-enum-matcher';
+import { createObjectReport } from '../../utils/create-report';
+import '../../utils/jest-enum-matcher';
 
 describe('Test results', () => {
   it('Should contain valid statuses', () => {

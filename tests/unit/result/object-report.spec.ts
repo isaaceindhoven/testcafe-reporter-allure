@@ -1,5 +1,5 @@
 import { InMemoryAllureWriter } from 'allure-js-commons';
-import { createObjectReport } from '../utils/create-report';
+import { createObjectReport } from '../../utils/create-report';
 
 describe('TestCafe Allure reporter Object output', () => {
   it('Should contain 3 groups', () => {
