@@ -66,7 +66,7 @@ export default class AllureReporter {
     this.endTest(Status.PASSED);
   }
 
-  public endTestFailed(name: string, meta: object, error: Error) {
+  public endTestFailed(name: string, meta: object, error: Error): void {
     const currentTest = this.getCurrentTest();
     if (currentTest === null) {
       this.startTest(name, meta);

@@ -1,5 +1,8 @@
 import { createJsonReport, splitOnNewline } from '../../utils/create-report';
 
+// Avoid unittests deleting files by mocking the clean-folders function.
+jest.mock('../../../src/utils/clean-folders');
+
 describe('TestCafe Allure reporter JSON output', () => {
   it('Should produce report', () => {
     const report: string = createJsonReport();

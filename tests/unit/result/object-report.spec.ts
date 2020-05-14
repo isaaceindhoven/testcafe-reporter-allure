@@ -1,6 +1,9 @@
 import { InMemoryAllureWriter } from 'allure-js-commons';
 import { createObjectReport } from '../../utils/create-report';
 
+// Avoid unittests deleting files by mocking the clean-folders function.
+jest.mock('../../../src/utils/clean-folders');
+
 describe('TestCafe Allure reporter Object output', () => {
   it('Should contain 3 groups', () => {
     const report: InMemoryAllureWriter = createObjectReport();

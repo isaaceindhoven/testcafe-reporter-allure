@@ -2,6 +2,9 @@ import { InMemoryAllureWriter, LinkType, Severity, Stage, Status } from 'allure-
 import { createObjectReport } from '../../utils/create-report';
 import '../../utils/jest-enum-matcher';
 
+// Avoid unittests deleting files by mocking the clean-folders function.
+jest.mock('../../../src/utils/clean-folders');
+
 describe('Test results', () => {
   it('Should contain valid statuses', () => {
     const report: InMemoryAllureWriter = createObjectReport();
