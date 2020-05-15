@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this,array-callback-return */
-import { AllureTest, LinkType, Severity } from 'allure-js-commons';
+import { AllureTest, LabelName, LinkType, Severity } from 'allure-js-commons';
 import loadConfig from '../utils/config';
 
 const reporterConfig = loadConfig();
@@ -11,12 +11,24 @@ export default class Metadata {
 
   issue: string;
 
+  parent_suite: string;
+
+  suite: string;
+
+  sub_suite: string;
+
+  epic: string;
+
+  story: string;
+
+  feature: string;
+
   otherMeta: Map<string, string>;
 
-  constructor(meta?: any) {
+  constructor(meta?: any, test?: boolean) {
     this.otherMeta = new Map();
     if (meta) {
-      const { severity, description, issue, ...otherMeta } = meta;
+      const { severity, description, issue, suite, epic, story, feature, ...otherMeta } = meta;
 
       if (this.isValidEnumValue(severity, Severity)) {
         this.severity = severity;
@@ -26,6 +38,22 @@ export default class Metadata {
       }
       if (this.isString(issue)) {
         this.issue = issue;
+      }
+      if (this.isString(suite)) {
+        if (test) {
+          this.sub_suite = suite;
+        } else {
+          this.parent_suite = suite;
+        }
+      }
+      if (this.isString(epic)) {
+        this.epic = epic;
+      }
+      if (this.isString(story)) {
+        this.story = story;
+      }
+      if (this.isString(feature)) {
+        this.feature = feature;
       }
       if (otherMeta) {
         Object.keys(otherMeta).forEach((key) => {
@@ -49,16 +77,42 @@ export default class Metadata {
 
     // Labels only accept specific keys/names as valid, it will ignore all other labels
     // Other variabels have to be added as parameters or links.
+
+    // Only the first severity value is loaded.
     if (this.severity) {
-      test.addLabel(reporterConfig.LABEL.SEVERITY, this.severity);
+      test.addLabel(LabelName.SEVERITY, this.severity);
     } else {
       // If no severity is given, set the default severity
-      test.addLabel(reporterConfig.LABEL.SEVERITY, reporterConfig.META.SEVERITY);
+      test.addLabel(LabelName.SEVERITY, reporterConfig.META.SEVERITY);
     }
-    if (this.description) {
-      /* eslint-disable-next-line no-param-reassign */
-      test.description = this.description;
+
+    // Tests can be added to multiple suites at the same time.
+    // Suites support 3 different suite levels: Parent, Suite, Sub
+    // A test can have multiple of the same level suites but this will duplicate the test in the report
+    // If a test has 2 parents and 2 suites the result will be that the test is duplicated 4 times for each combination.
+    // Therefore it is advisable to only use suites to categorise them in single fixtures and not for custom configurations.
+    if (this.parent_suite) {
+      test.addLabel(LabelName.PARENT_SUITE, this.parent_suite);
     }
+    if (this.suite) {
+      test.addLabel(LabelName.SUITE, this.suite);
+    }
+    if (this.sub_suite) {
+      test.addLabel(LabelName.SUB_SUITE, this.sub_suite);
+    }
+
+    // BDD style notation, containing Epics, Features, and Stories can be added to the tests.
+    // These labels work the same way as the suites containing 3 levels. These are in order: Epic -> Feature -> Story
+    if (this.epic) {
+      test.addLabel(LabelName.EPIC, this.epic);
+    }
+    if (this.feature) {
+      test.addLabel(LabelName.FEATURE, this.feature);
+    }
+    if (this.story) {
+      test.addLabel(LabelName.STORY, this.story);
+    }
+
     if (this.issue) {
       test.addLink(
         `${reporterConfig.META.ISSUE_URL}${this.issue}`,
@@ -66,6 +120,12 @@ export default class Metadata {
         LinkType.ISSUE,
       );
     }
+
+    if (this.description) {
+      /* eslint-disable-next-line no-param-reassign */
+      test.description = this.description;
+    }
+
     Array.from(this.otherMeta.entries()).map((entry) => {
       test.addParameter(entry[0], entry[1]);
     });
@@ -81,6 +141,22 @@ export default class Metadata {
     }
     if (!this.issue && metadata.issue) {
       this.issue = metadata.issue;
+    }
+    // Parent_Suite and Suite are used from the merged metadata but Sub_Suite is not.
+    if (!this.parent_suite && metadata.parent_suite) {
+      this.parent_suite = metadata.parent_suite;
+    }
+    if (!this.suite && metadata.suite) {
+      this.suite = metadata.suite;
+    }
+    if (!this.epic && metadata.epic) {
+      this.epic = metadata.epic;
+    }
+    if (!this.story && metadata.story) {
+      this.story = metadata.story;
+    }
+    if (!this.feature && metadata.feature) {
+      this.feature = metadata.feature;
     }
     if (metadata.otherMeta.size > 0) {
       Array.from(metadata.otherMeta.entries()).map((entry) => {

@@ -29,6 +29,7 @@ export default class AllureReporter {
 
   public startGroup(name: string, meta: object): void {
     this.groupMetadata = new Metadata(meta);
+    this.groupMetadata.suite = name;
     const suite = this.runtime.startGroup(name);
     this.groups.push(suite);
   }
@@ -42,7 +43,7 @@ export default class AllureReporter {
   }
 
   public startTest(name: string, meta: object): void {
-    const currentMetadata = new Metadata(meta);
+    const currentMetadata = new Metadata(meta, true);
     const currentGroup = this.getCurrentGroup();
     if (currentGroup === null) {
       throw new Error('No active suite');

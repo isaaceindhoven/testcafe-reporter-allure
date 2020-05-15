@@ -11,7 +11,6 @@ const defaultConfig = {
     ISSUE_URL: 'https://jira.example.nl/browse/',
   },
   LABEL: {
-    SEVERITY: 'severity',
     ISSUE: 'JIRA Issue',
   },
 };

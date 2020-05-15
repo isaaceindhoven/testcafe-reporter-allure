@@ -1,12 +1,18 @@
 import { Severity } from 'allure-js-commons';
 import { Selector } from 'testcafe';
 
-fixture('TestCafé example test fixture 1').page('http://devexpress.github.io/testcafe/example');
+fixture('TestCafé example test fixture 1').page('http://devexpress.github.io/testcafe/example').meta({
+  epic: 'EpicTicket',
+  suite: 'FixtureGroup',
+});
 
 test.meta({
   severity: Severity.TRIVIAL,
   issue: 'TEST-ISSUE',
   description: 'An example discription',
+  feature: 'FeatureTicket',
+  story: 'StoryTicket',
+  suite: 'TestGroup',
   otherMeta: 'Example otherMeta parameter.',
 })('My first e2e test', async (t) => {
   await t
@@ -18,6 +24,7 @@ test.meta({
 
 test.meta({
   severity: Severity.NORMAL,
+  suite: 'TestGroup',
 })('My second e2e test', async (t) => {
   await t
     .typeText('#developer-name', 'John Smith')
@@ -28,6 +35,7 @@ test.meta({
 
 fixture('TestCafé example test fixture 2').page('http://devexpress.github.io/testcafe/example').meta({
   severity: Severity.CRITICAL,
+  suite: 'FixtureGroup',
 });
 
 test.meta({
