@@ -2,6 +2,7 @@
 // Above eslint rules disabled for development
 import { AllureConfig } from 'allure-js-commons';
 import AllureReporter from './reporter/allure-reporter';
+import cleanAllureFolders from './utils/clean-folders';
 
 module.exports = () => {
   return {
@@ -14,13 +15,13 @@ module.exports = () => {
 
     preloadConfig(allureConfig: AllureConfig) {
       this.allureConfig = allureConfig;
-      // this.write(`Config preloaded: ${this.allureConfig}`).newline();
     },
 
     async reportTaskStart(startTime: Date, userAgents: string[], testCount: number): Promise<void> {
       this.allureReporter = new AllureReporter(this.allureConfig);
-      // this.write(`Config loaded: ${this.allureConfig}`).newline();
-      // this.write('Task has been started').newline();
+
+      // Clean the previous allure results
+      await cleanAllureFolders();
     },
 
     async reportFixtureStart(name: string, path: string, meta: object): Promise<void> {
@@ -29,7 +30,6 @@ module.exports = () => {
         this.allureReporter.endGroup();
 
         this.allureReporter.startGroup(name, meta);
-        // this.write(`Fixture "${name}" has been started`).newline();
       } catch (error) {
         console.log(error);
       }
@@ -38,7 +38,6 @@ module.exports = () => {
     async reportTestStart(name: string, meta: object): Promise<void> {
       try {
         this.allureReporter.startTest(name, meta);
-        // this.write(`Test "${name}" has been started`).newline();
       } catch (error) {
         console.log(error);
       }
@@ -53,7 +52,6 @@ module.exports = () => {
         } else {
           this.allureReporter.endTestPassed(name, meta);
         }
-        // this.write(`Test "${name}" has been finished`).newline();
       } catch (error) {
         console.log(error);
       }
@@ -62,7 +60,7 @@ module.exports = () => {
     async reportTaskDone(endTime: Date, passed: number, warnings: string[], result: object): Promise<void> {
       try {
         this.allureReporter.endGroup();
-        // this.write('Task has been completed').newline();
+        this.allureReporter.setGlobals();
       } catch (error) {
         console.log(error);
       }

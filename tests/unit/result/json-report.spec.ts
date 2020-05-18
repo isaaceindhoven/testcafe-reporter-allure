@@ -8,12 +8,12 @@ describe('TestCafe Allure reporter JSON output', () => {
     const report: string = createJsonReport();
     expect(report).toBeDefined();
   });
-  it('Should contain 10 items (3 fixtures and 7 tests)', () => {
+  it('Should contain 10 items (3 fixtures, 7 tests, and 1 categories file)', () => {
     const report: string = createJsonReport();
     const splitReport: string[] = splitOnNewline(report);
     // splitReport.forEach(result => {
     //   console.log(result);
     // });
-    expect(splitReport.length).toEqual(10);
+    expect(splitReport.length).toEqual(11);
   });
 });

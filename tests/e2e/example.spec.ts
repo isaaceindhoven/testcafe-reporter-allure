@@ -65,3 +65,11 @@ test('My failing e2e test', async (t) => {
     .expect(Selector('#article-header').innerText)
     .eql('Thank you, Jane Smith!');
 });
+
+test.skip('My skipped e2e test', async (t) => {
+  await t
+    .typeText('#developer-name', 'John Smith')
+    .click('#submit-button')
+    .expect(Selector('#article-header').innerText)
+    .eql('Thank you, Jane Smith!');
+});

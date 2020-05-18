@@ -1,9 +1,18 @@
-import { AllureConfig, AllureGroup, AllureRuntime, AllureTest, Stage, Status, StatusDetails } from 'allure-js-commons';
-import cleanAllureFolders from '../utils/clean-folders';
-import loadConfig from '../utils/config';
+import {
+  AllureConfig,
+  AllureGroup,
+  AllureRuntime,
+  AllureTest,
+  Category,
+  Stage,
+  Status,
+  StatusDetails,
+} from 'allure-js-commons';
+import { loadCategoriesConfig, loadReporterConfig } from '../utils/config';
 import Metadata from './metadata';
 
-const reporterConfig = loadConfig();
+const reporterConfig = loadReporterConfig();
+const categoriesConfig: Category[] = loadCategoriesConfig();
 
 export default class AllureReporter {
   private groups: AllureGroup[] = [];
@@ -15,8 +24,6 @@ export default class AllureReporter {
   private groupMetadata: Metadata;
 
   constructor(allureConfig?: AllureConfig) {
-    cleanAllureFolders();
-
     let config: AllureConfig;
     if (!allureConfig) {
       config = new AllureConfig(reporterConfig.RESULT_DIR);
@@ -25,6 +32,13 @@ export default class AllureReporter {
     }
 
     this.runtime = new AllureRuntime(config);
+  }
+
+  public setGlobals(): void {
+    // Writing the globals has to be done after the first group has been written for a currently unknown reason.
+    // Best to call this function in reporterTaskEnd and to write it as the last thing.
+    this.runtime.writeCategoriesDefinitions(categoriesConfig);
+    // this.runtime.writeEnvironmentInfo();
   }
 
   public startGroup(name: string, meta: object): void {
