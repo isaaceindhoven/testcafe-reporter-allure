@@ -13,4 +13,8 @@ describe('TestCafe Allure reporter Object output', () => {
     const report: InMemoryAllureWriter = createObjectReport();
     expect(report.tests.length).toEqual(7);
   });
+  it('Should contain 1 categories definition', () => {
+    const report: InMemoryAllureWriter = createObjectReport();
+    expect(report.categories).toBeDefined();
+  });
 });

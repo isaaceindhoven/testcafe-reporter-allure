@@ -45,13 +45,7 @@ module.exports = () => {
 
     async reportTestDone(name: string, testRunInfo, meta: object): Promise<void> {
       try {
-        const hasErr = !!testRunInfo.errs.length;
-
-        if (hasErr) {
-          this.allureReporter.endTestFailed(name, meta, testRunInfo.errs[0]);
-        } else {
-          this.allureReporter.endTestPassed(name, meta);
-        }
+        this.allureReporter.endTest(name, testRunInfo, meta);
       } catch (error) {
         console.log(error);
       }

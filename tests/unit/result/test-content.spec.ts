@@ -33,6 +33,7 @@ describe('Test results', () => {
       expect(test.stop).toBeDefined();
 
       expect(test.status).toBeDefined();
+      expect(test.statusDetails).toBeDefined();
       expect(test.stage).toBeDefined();
     });
   });

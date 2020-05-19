@@ -1,14 +1,6 @@
-import {
-  AllureConfig,
-  AllureGroup,
-  AllureRuntime,
-  AllureTest,
-  Category,
-  Stage,
-  Status,
-  StatusDetails,
-} from 'allure-js-commons';
+import { AllureConfig, AllureGroup, AllureRuntime, AllureTest, Category, Stage, Status } from 'allure-js-commons';
 import { loadCategoriesConfig, loadReporterConfig } from '../utils/config';
+import addNewLine from '../utils/utils';
 import Metadata from './metadata';
 
 const reporterConfig = loadReporterConfig();
@@ -73,39 +65,59 @@ export default class AllureReporter {
     this.setCurrentTest(currentTest);
   }
 
-  public endTestPassed(name: string, meta: object): void {
+  public endTest(name: string, testRunInfo: any, meta: object): void {
     const currentTest = this.getCurrentTest();
+
+    // If no currenttest exists create a new one
     if (currentTest === null) {
       this.startTest(name, meta);
     }
-    this.endTest(Status.PASSED);
-  }
 
-  public endTestFailed(name: string, meta: object, error: Error): void {
-    const currentTest = this.getCurrentTest();
-    if (currentTest === null) {
-      this.startTest(name, meta);
+    const hasErrors = !!testRunInfo.errs && !!testRunInfo.errs.length;
+    const hasWarnings = !!testRunInfo.warnings && !!testRunInfo.warnings.length;
+    const isSkipped = testRunInfo.skipped;
+    let testMessages: string = null;
+    let testDetails: string = null;
+
+    if (isSkipped) {
+      currentTest.status = Status.SKIPPED;
+    } else if (hasErrors) {
+      currentTest.status = Status.FAILED;
+
+      testRunInfo.errs.forEach((error: any) => {
+        testMessages = addNewLine(testMessages, error.errMsg);
+
+        // TODO: Add detailed error stacktrace
+        // How to convert CallSiteRecord to stacktrace?
+        const callSite = error.callsite;
+        if (error.userAgent) {
+          testDetails = addNewLine(testDetails, `User Agent: ${error.userAgent}`);
+        }
+        if (error.userAgent) {
+          testDetails = addNewLine(testDetails, `File name: ${callSite.filename}`);
+        }
+        if (error.userAgent) {
+          testDetails = addNewLine(testDetails, `Line number:${callSite.lineNum}`);
+        }
+
+        // currentTest.detailsTrace = error.callsite;
+        // error.callsite.stackFrames.forEach(stackFrame => {
+        //   console.log(stackFrame.getFileName());
+        //   //console.log(stackFrame.toString());
+        // });
+      });
     } else {
-      const latestStatus = currentTest.status;
-      // if test already has a failed state, we should not overwrite it
-      if (latestStatus === Status.FAILED || latestStatus === Status.BROKEN) {
-        return;
-      }
-    }
-    const status = Status.FAILED;
-    this.endTest(status, { message: error.message, trace: error.stack });
-  }
-
-  private endTest(status: Status, details?: StatusDetails): void {
-    const currentTest = this.getCurrentTest();
-    if (currentTest === null) {
-      throw new Error('endTest while no test is running');
+      currentTest.status = Status.PASSED;
     }
 
-    if (details) {
-      currentTest.statusDetails = details;
+    if (hasWarnings) {
+      testRunInfo.warnings.forEach((warning: string) => {
+        testMessages = addNewLine(testMessages, warning);
+      });
     }
-    currentTest.status = status;
+
+    currentTest.detailsMessage = testMessages;
+    currentTest.detailsTrace = testDetails;
     currentTest.stage = Stage.FINISHED;
     currentTest.endTest();
   }
