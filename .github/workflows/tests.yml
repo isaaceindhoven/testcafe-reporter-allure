@@ -17,7 +17,7 @@ jobs:
     - name: Install dependencies
       uses: bahmutov/npm-install@v1
     - name: Install peer dependancies
-      uses: npm run install:peers
+      run: npm run install:peers
     - name: Run linting
       run: 'npm run test:lint'
 
@@ -35,7 +35,7 @@ jobs:
     - name: Install dependencies
       uses: bahmutov/npm-install@v1
     - name: Install peer dependancies
-      uses: npm run install:peers
+      run: npm run install:peers
     - name: Run unit-tests
       run: 'npm run test:unit'
 
@@ -53,7 +53,7 @@ jobs:
   #   - name: Install dependencies
   #     uses: bahmutov/npm-install@v1
   #   - name: Install peer dependancies
-  #     uses: npm run install:peers
+  #     run: npm run install:peers
   #   - name: Build reporter for e2e-testing
   #     run: 'npm run build:prod'
   #   - name: Run e2e-tests
