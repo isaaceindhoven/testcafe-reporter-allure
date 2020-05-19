@@ -49,7 +49,6 @@ export default class AllureReporter {
   }
 
   public startTest(name: string, meta: object): void {
-    const currentMetadata = new Metadata(meta, true);
     const currentGroup = this.getCurrentGroup();
     if (currentGroup === null) {
       throw new Error('No active suite');
@@ -60,6 +59,7 @@ export default class AllureReporter {
     currentTest.historyId = name;
     currentTest.stage = Stage.RUNNING;
 
+    const currentMetadata = new Metadata(meta, true);
     currentMetadata.addMetadataToTest(currentTest, this.groupMetadata);
 
     this.setCurrentTest(currentTest);
@@ -130,10 +130,12 @@ export default class AllureReporter {
   }
 
   private getCurrentTest(): AllureTest | null {
+    // TODO: Add parralel testing support
     return this.runningTest;
   }
 
   private setCurrentTest(test: AllureTest | null) {
+    // TODO: Add parralel testing support
     this.runningTest = test;
   }
 }

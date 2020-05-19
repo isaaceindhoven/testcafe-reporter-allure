@@ -1,104 +1,233 @@
-/* eslint-disable no-new, jest/no-commented-out-tests, jest/no-disabled-tests, jest/expect-expect  */
-import { AllureConfig, AllureRuntime } from 'allure-js-commons';
-import { InMemoryAllureWriter } from 'allure-js-commons/dist/src/writers';
+/* eslint-disable no-shadow */
+import { AllureConfig, AllureGroup, AllureRuntime, AllureTest, Severity, Stage } from 'allure-js-commons';
 import AllureReporter from '../../../src/reporter/allure-reporter';
-import cleanAllureFolders from '../../../src/utils/clean-folders';
+import Metadata from '../../../src/reporter/metadata';
+import { loadCategoriesConfig } from '../../../src/utils/config';
 
-const mockedAllureConfig = (AllureConfig as unknown) as jest.Mock<typeof AllureConfig>;
-const mockedAllureRuntime = (AllureRuntime as unknown) as jest.Mock<typeof AllureRuntime>;
-// const mockedAllureTest = AllureTest as unknown as jest.Mock<typeof AllureTest>;
-const mockedCleanAllureFolders = (cleanAllureFolders as unknown) as jest.Mock<typeof cleanAllureFolders>;
+const mockRuntimeStartGroup = jest.fn().mockImplementation((name) => name);
+const mockRuntimeEndGroup = jest.fn().mockImplementation((name) => name);
+const mockGroupEndGroup = jest.fn();
+const mockAllureTest: AllureTest = new AllureTest(null);
+const mockGroupName = 'groupName';
+const mockGroupStartTest = jest.fn().mockImplementation(() => {
+  return mockAllureTest;
+});
+const mockWriteCategoriesDefinitions = jest.fn();
+const mockReporterGetCurrentGroupExists = jest.fn().mockImplementation(() => {
+  return new AllureGroup(null);
+});
+const mockReporterGetCurrentGroupNull = jest.fn().mockImplementation(() => {
+  return null;
+});
+const mockReporterSetCurrentTest = jest.fn();
+const mockAddMetadataToTest = jest.fn();
 
-// Avoid unittests deleting files by mocking the clean-folders function.
-// jest.mock('../../../src/utils/clean-folders');
+jest.mock('allure-js-commons', () => {
+  const { Severity, Status, Stage } = jest.requireActual('allure-js-commons');
+  return {
+    Status,
+    Severity,
+    Stage,
+    AllureConfig: jest.fn(),
+    AllureRuntime: jest.fn().mockImplementation(() => {
+      return {
+        constructor: () => {},
+        startGroup: mockRuntimeStartGroup,
+        endGroup: mockRuntimeEndGroup,
+        writeCategoriesDefinitions: mockWriteCategoriesDefinitions,
+      };
+    }),
+    AllureGroup: jest.fn().mockImplementation(() => {
+      return {
+        name: mockGroupName,
+        constructor: () => {},
+        endGroup: mockGroupEndGroup,
+        startTest: mockGroupStartTest,
+      };
+    }),
+    AllureTest: jest.fn().mockImplementation(() => {
+      return {
+        constructor: () => {},
+        endTest: mockRuntimeStartGroup,
+      };
+    }),
+  };
+});
+jest.mock('../../../src/reporter/metadata', () => {
+  return {
+    default: jest.fn().mockImplementation(() => {
+      return {
+        severity: Severity.TRIVIAL,
+        constructor: () => {},
+        addMetadataToTest: mockAddMetadataToTest,
+      };
+    }),
+  };
+});
 
-// jest.mock('allure-js-commons');
-// const mockStartGroup = jest.fn();
-// const mockEndGroup = jest.fn();
-// // const mockEndTest = jest.fn();
-// jest.mock('allure-js-commons', () => {
-//   return {
-//     AllureConfig: jest.fn(),
-//     AllureRuntime: jest.fn().mockImplementation(() => {
-//       return {
-//         constructor: () => { },
-//         startGroup: mockStartGroup,
-//         endGroup: mockEndGroup,
-//       };
-//     }),
-//     // AllureTest: jest.fn().mockImplementation(() => {
-//     //   return {
-//     //     constructor: () => { },
-//     //     mockEndTest: mockStartGroup,
-//     //   };
-//     // }),
-//   };
-// });
-
-function generateTestReporter(): AllureReporter {
-  const writer = new InMemoryAllureWriter();
-  const allureConfig: AllureConfig = { resultsDir: 'test', writer };
-  const reporter: AllureReporter = new AllureReporter(allureConfig);
-  return reporter;
-}
-
-describe.skip('Allure reporter constructor', () => {
+describe('Allure reporter', () => {
   beforeEach(() => {
-    mockedAllureConfig.mockClear();
-    mockedAllureRuntime.mockClear();
-    mockedCleanAllureFolders.mockClear();
-    // mockedAllureTest.mockClear();
-
-    // mockStartGroup.mockClear();
-    // mockEndGroup.mockClear();
+    jest.clearAllMocks();
   });
 
-  it('Should instantiate an AllureRuntime', () => {
-    new AllureReporter();
+  it('Should instantiate an AllureRuntime if no custom config is given', () => {
+    const reporter: AllureReporter = new AllureReporter();
 
-    expect(cleanAllureFolders).toHaveBeenCalledTimes(1);
-    expect(AllureRuntime).toHaveBeenCalledTimes(1);
     expect(AllureConfig).toHaveBeenCalledTimes(1);
+    expect(AllureRuntime).toHaveBeenCalledTimes(1);
+
+    // @ts-ignore
+    expect(reporter.runtime).toBeDefined();
   });
   it('Should instantiate an AllureRuntime with a custom AllureConfig', () => {
-    const writer = new InMemoryAllureWriter();
-    const allureConfig: AllureConfig = { resultsDir: 'test', writer };
-    new AllureReporter(allureConfig);
+    const allureConfig: AllureConfig = { resultsDir: 'test' };
+    const reporter: AllureReporter = new AllureReporter(allureConfig);
 
-    expect(cleanAllureFolders).toHaveBeenCalledTimes(1);
     expect(AllureRuntime).toHaveBeenCalledTimes(1);
     expect(AllureRuntime).toBeCalledWith(allureConfig);
     expect(AllureConfig).not.toHaveBeenCalled();
-  });
-  it('Should throw error if test is started without a current group', () => {
-    const reporter: AllureReporter = generateTestReporter();
 
-    expect(() => {
-      reporter.startTest('test', {});
-    }).toThrow();
+    // @ts-ignore
+    expect(reporter.runtime).toBeDefined();
   });
-  it('Should call Runtime when using groups', () => {
-    const reporter: AllureReporter = generateTestReporter();
+  it('Should write globals to runtime', () => {
+    const reporter: AllureReporter = new AllureReporter();
+    const categories = loadCategoriesConfig();
+
+    reporter.setGlobals();
+
+    expect(mockWriteCategoriesDefinitions).toHaveBeenCalledTimes(1);
+    expect(mockWriteCategoriesDefinitions).toBeCalledWith(categories);
+  });
+  it('Should start group correctly', () => {
+    const reporter: AllureReporter = new AllureReporter();
     const groupName: string = 'testGroup';
-    const groupMeta: object = { testMeta: 'testMeta' };
+    const groupMeta: object = { severity: Severity.TRIVIAL };
 
     reporter.startGroup(groupName, groupMeta);
-    // reporter.endGroup();
 
-    // expect(mockStartGroup).toBeCalledWith(groupName);
+    expect(Metadata).toHaveBeenCalledTimes(1);
+    expect(Metadata).toBeCalledWith(groupMeta);
+    // @ts-ignore
+    expect(reporter.groupMetadata).toBeDefined();
+    // @ts-ignore
+    expect(reporter.groupMetadata.severity).toBe(groupMeta.severity);
+    // @ts-ignore
+    expect(reporter.groupMetadata.suite).toBe(groupName);
+    expect(mockRuntimeStartGroup).toBeCalledWith(groupName);
+    // @ts-ignore
+    expect(reporter.groups.length).toBe(1);
   });
-  // it('Should call Runtime when using tests, passed.', () => {
-  //   const reporter: AllureReporter = generateTestReporter();
-  //   const groupName: string = 'testGroup';
-  //   const groupMeta: object = { severity: 'Normal' };
-  //   const testName: string = 'testTest';
-  //   const testMeta: object = {};
+  it('Should end group correctly if one exists', () => {
+    const reporter: AllureReporter = new AllureReporter();
+    // @ts-ignore
+    reporter.getCurrentGroup = mockReporterGetCurrentGroupExists;
+    // @ts-ignore
+    reporter.groups.push({});
 
-  //   reporter.startGroup(groupName, groupMeta);
-  //   reporter.startTest(testName, testMeta);
-  //   reporter.endTestPassed(testName, testMeta);
-  //   reporter.endGroup();
+    // @ts-ignore
+    expect(reporter.groups.length).toBe(1);
 
-  //   expect(mockEndTest).toBeCalledTimes(1);
-  // });
+    reporter.endGroup();
+
+    expect(mockReporterGetCurrentGroupExists).toHaveBeenCalledTimes(1);
+    expect(mockGroupEndGroup).toHaveBeenCalledTimes(1);
+    // @ts-ignore
+    expect(reporter.groups.length).toBe(0);
+  });
+  it('Should not end group if none exist', () => {
+    const reporter: AllureReporter = new AllureReporter();
+    // @ts-ignore
+    reporter.getCurrentGroup = mockReporterGetCurrentGroupNull;
+    // @ts-ignore
+    reporter.groups.push({});
+
+    // @ts-ignore
+    expect(reporter.groups.length).toBe(1);
+
+    reporter.endGroup();
+
+    expect(mockReporterGetCurrentGroupNull).toHaveBeenCalledTimes(1);
+    expect(mockGroupEndGroup).toHaveBeenCalledTimes(0);
+    // @ts-ignore
+    expect(reporter.groups.length).toBe(1);
+  });
+  it('Should start test if a group exists', () => {
+    const testName: string = 'testname';
+    const testMeta: object = { severity: Severity.TRIVIAL };
+    const reporter: AllureReporter = new AllureReporter();
+    // @ts-ignore
+    reporter.getCurrentGroup = mockReporterGetCurrentGroupExists;
+    // @ts-ignore
+    reporter.setCurrentTest = mockReporterSetCurrentTest;
+
+    reporter.startTest(testName, testMeta);
+
+    expect(mockReporterGetCurrentGroupExists).toHaveBeenCalledTimes(1);
+    expect(mockGroupStartTest).toHaveBeenCalledTimes(1);
+    expect(mockGroupStartTest).toBeCalledWith(testName);
+    expect(Metadata).toHaveBeenCalledTimes(1);
+    expect(Metadata).toBeCalledWith(testMeta, true);
+    expect(mockAddMetadataToTest).toHaveBeenCalledTimes(1);
+    expect(mockReporterSetCurrentTest).toHaveBeenCalledTimes(1);
+
+    expect(mockAllureTest.fullName).toBe(`${mockGroupName} : ${testName}`);
+    expect(mockAllureTest.historyId).toBe(testName);
+    expect(mockAllureTest.stage).toBe(Stage.RUNNING);
+  });
+  it('Should not start test if no group exists', () => {
+    const testName: string = 'testname';
+    const testMeta: object = { severity: Severity.TRIVIAL };
+    const reporter: AllureReporter = new AllureReporter();
+    // @ts-ignore
+    reporter.getCurrentGroup = mockReporterGetCurrentGroupNull;
+
+    expect(() => {
+      reporter.startTest(testName, testMeta);
+    }).toThrow();
+
+    expect(mockGroupStartTest).not.toHaveBeenCalled();
+  });
+  it('Should get current group', () => {
+    const reporter: AllureReporter = new AllureReporter();
+    const otherGroup: AllureGroup = new AllureGroup(null);
+    const expectedGroup: AllureGroup = new AllureGroup(null);
+    // @ts-ignore
+    reporter.groups = [otherGroup, expectedGroup];
+
+    // @ts-ignore
+    const actualGroup = reporter.getCurrentGroup();
+
+    expect(actualGroup).toBe(expectedGroup);
+    expect(actualGroup).not.toBe(otherGroup);
+  });
+  it('Should return null if no groups available', () => {
+    const reporter: AllureReporter = new AllureReporter();
+
+    // @ts-ignore
+    const actualGroup = reporter.getCurrentGroup();
+
+    expect(actualGroup).toBe(null);
+  });
+  it('Should set current test', () => {
+    const reporter: AllureReporter = new AllureReporter();
+    const test: AllureTest = new AllureTest(null);
+    // @ts-ignore
+    reporter.setCurrentTest(test);
+
+    // @ts-ignore
+    expect(reporter.runningTest).toBe(test);
+  });
+  it('Should get current test', () => {
+    const reporter: AllureReporter = new AllureReporter();
+    const expectedTest: AllureTest = new AllureTest(null);
+    // @ts-ignore
+    reporter.runningTest = expectedTest;
+
+    // @ts-ignore
+    const actualTest = reporter.getCurrentTest();
+
+    // @ts-ignore
+    expect(expectedTest).toBe(actualTest);
+  });
 });
