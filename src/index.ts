@@ -1,4 +1,4 @@
-/* eslint-disable no-console,@typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // Above eslint rules disabled for development
 import { AllureConfig } from 'allure-js-commons';
 import AllureReporter from './reporter/allure-reporter';
@@ -19,45 +19,27 @@ module.exports = () => {
 
     async reportTaskStart(startTime: Date, userAgents: string[], testCount: number): Promise<void> {
       this.allureReporter = new AllureReporter(this.allureConfig);
-
       // Clean the previous allure results
       await cleanAllureFolders();
     },
 
     async reportFixtureStart(name: string, path: string, meta: object): Promise<void> {
-      try {
-        // End the previous group because testcafe does not trigger the reporter when a fixture ends.
-        this.allureReporter.endGroup();
-
-        this.allureReporter.startGroup(name, meta);
-      } catch (error) {
-        console.log(error);
-      }
+      // End the previous group because testcafe does not trigger the reporter when a fixture ends.
+      this.allureReporter.endGroup();
+      this.allureReporter.startGroup(name, meta);
     },
 
     async reportTestStart(name: string, meta: object): Promise<void> {
-      try {
-        this.allureReporter.startTest(name, meta);
-      } catch (error) {
-        console.log(error);
-      }
+      this.allureReporter.startTest(name, meta);
     },
 
-    async reportTestDone(name: string, testRunInfo, meta: object): Promise<void> {
-      try {
-        this.allureReporter.endTest(name, testRunInfo, meta);
-      } catch (error) {
-        console.log(error);
-      }
+    async reportTestDone(name: string, testRunInfo: any, meta: object): Promise<void> {
+      this.allureReporter.endTest(name, testRunInfo, meta);
     },
 
     async reportTaskDone(endTime: Date, passed: number, warnings: string[], result: object): Promise<void> {
-      try {
-        this.allureReporter.endGroup();
-        this.allureReporter.setGlobals();
-      } catch (error) {
-        console.log(error);
-      }
+      this.allureReporter.endGroup();
+      this.allureReporter.setGlobals();
     },
   };
 };

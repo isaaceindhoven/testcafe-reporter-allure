@@ -66,11 +66,12 @@ export default class AllureReporter {
   }
 
   public endTest(name: string, testRunInfo: any, meta: object): void {
-    const currentTest = this.getCurrentTest();
+    let currentTest = this.getCurrentTest();
 
     // If no currenttest exists create a new one
     if (currentTest === null) {
       this.startTest(name, meta);
+      currentTest = this.getCurrentTest();
     }
 
     const hasErrors = !!testRunInfo.errs && !!testRunInfo.errs.length;
@@ -85,7 +86,9 @@ export default class AllureReporter {
       currentTest.status = Status.FAILED;
 
       testRunInfo.errs.forEach((error: any) => {
-        testMessages = addNewLine(testMessages, error.errMsg);
+        if (error.errMsg) {
+          testMessages = addNewLine(testMessages, error.errMsg);
+        }
 
         // TODO: Add detailed error stacktrace
         // How to convert CallSiteRecord to stacktrace?
@@ -93,11 +96,13 @@ export default class AllureReporter {
         if (error.userAgent) {
           testDetails = addNewLine(testDetails, `User Agent: ${error.userAgent}`);
         }
-        if (error.userAgent) {
-          testDetails = addNewLine(testDetails, `File name: ${callSite.filename}`);
-        }
-        if (error.userAgent) {
-          testDetails = addNewLine(testDetails, `Line number:${callSite.lineNum}`);
+        if (callSite) {
+          if (callSite.filename) {
+            testDetails = addNewLine(testDetails, `File name: ${callSite.filename}`);
+          }
+          if (callSite.lineNum) {
+            testDetails = addNewLine(testDetails, `Line number: ${callSite.lineNum}`);
+          }
         }
 
         // currentTest.detailsTrace = error.callsite;

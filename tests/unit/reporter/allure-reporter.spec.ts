@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-import { AllureConfig, AllureGroup, AllureRuntime, AllureTest, Severity, Stage } from 'allure-js-commons';
+import { AllureConfig, AllureGroup, AllureRuntime, AllureTest, Severity, Stage, Status } from 'allure-js-commons';
 import AllureReporter from '../../../src/reporter/allure-reporter';
 import Metadata from '../../../src/reporter/metadata';
 import { loadCategoriesConfig } from '../../../src/utils/config';
@@ -20,6 +20,18 @@ const mockReporterGetCurrentGroupNull = jest.fn().mockImplementation(() => {
   return null;
 });
 const mockReporterSetCurrentTest = jest.fn();
+const mockReporterGetCurrentTestExists = jest.fn().mockImplementation(() => {
+  return mockAllureTest;
+});
+const mockReporterGetCurrentTestNull = jest
+  .fn()
+  .mockImplementationOnce(() => {
+    return null;
+  })
+  .mockImplementationOnce(() => {
+    return mockAllureTest;
+  });
+const mockReporterStartTest = jest.fn();
 const mockAddMetadataToTest = jest.fn();
 
 jest.mock('allure-js-commons', () => {
@@ -187,6 +199,134 @@ describe('Allure reporter', () => {
     }).toThrow();
 
     expect(mockGroupStartTest).not.toHaveBeenCalled();
+  });
+  it('Should end passing test', () => {
+    const testName: string = 'testname';
+    const testMeta: object = { severity: Severity.TRIVIAL };
+    const testRunInfo: any = {};
+    const reporter: AllureReporter = new AllureReporter();
+    // @ts-ignore
+    reporter.getCurrentTest = mockReporterGetCurrentTestExists;
+
+    reporter.endTest(testName, testRunInfo, testMeta);
+
+    expect(mockReporterGetCurrentTestExists).toBeCalledTimes(1);
+    expect(mockAllureTest.status).toBe(Status.PASSED);
+    expect(mockAllureTest.detailsMessage).toBe(null);
+    expect(mockAllureTest.detailsTrace).toBe(null);
+    expect(mockAllureTest.stage).toBe(Stage.FINISHED);
+  });
+  it('Should end skipped test', () => {
+    const testName: string = 'testname';
+    const testMeta: object = { severity: Severity.TRIVIAL };
+    const testRunInfo: any = { skipped: true };
+    const reporter: AllureReporter = new AllureReporter();
+    // @ts-ignore
+    reporter.getCurrentTest = mockReporterGetCurrentTestExists;
+
+    reporter.endTest(testName, testRunInfo, testMeta);
+
+    expect(mockReporterGetCurrentTestExists).toBeCalledTimes(1);
+    expect(mockAllureTest.status).toBe(Status.SKIPPED);
+    expect(mockAllureTest.detailsMessage).toBe(null);
+    expect(mockAllureTest.detailsTrace).toBe(null);
+    expect(mockAllureTest.stage).toBe(Stage.FINISHED);
+  });
+  it('Should add warnings to ended test', () => {
+    const testName: string = 'testname';
+    const testMeta: object = { severity: Severity.TRIVIAL };
+    const testWarnings: string[] = ['warning1', 'warning2'];
+    const testRunInfo: any = { warnings: testWarnings };
+    const reporter: AllureReporter = new AllureReporter();
+    // @ts-ignore
+    reporter.getCurrentTest = mockReporterGetCurrentTestExists;
+
+    reporter.endTest(testName, testRunInfo, testMeta);
+
+    expect(mockReporterGetCurrentTestExists).toBeCalledTimes(1);
+    expect(mockAllureTest.status).toBe(Status.PASSED);
+    expect(mockAllureTest.detailsMessage).toBe('warning1\nwarning2');
+    expect(mockAllureTest.detailsTrace).toBe(null);
+    expect(mockAllureTest.stage).toBe(Stage.FINISHED);
+  });
+  it('Should add errors to ended test', () => {
+    const testName: string = 'testname';
+    const testMeta: object = { severity: Severity.TRIVIAL };
+    const testError: any = {
+      callsite: {
+        filename: 'testFilename',
+        lineNum: 'testLineNum',
+      },
+      userAgent: 'testUserAgent',
+      errMsg: 'testErrorMessage',
+    };
+    const testErrors: any[] = [testError];
+    const testRunInfo: any = { errs: testErrors };
+    const reporter: AllureReporter = new AllureReporter();
+    // @ts-ignore
+    reporter.getCurrentTest = mockReporterGetCurrentTestExists;
+
+    reporter.endTest(testName, testRunInfo, testMeta);
+
+    expect(mockReporterGetCurrentTestExists).toBeCalledTimes(1);
+    expect(mockAllureTest.status).toBe(Status.FAILED);
+    expect(mockAllureTest.detailsMessage).toBe(testError.errMsg);
+    expect(mockAllureTest.detailsTrace).toBe(
+      `User Agent: ${testError.userAgent}\nFile name: ${testError.callsite.filename}\nLine number: ${testError.callsite.lineNum}`,
+    );
+    expect(mockAllureTest.stage).toBe(Stage.FINISHED);
+  });
+  it('Should not add empty errors to ended test', () => {
+    const testName: string = 'testname';
+    const testMeta: object = { severity: Severity.TRIVIAL };
+    const testError: any = { callsite: {} };
+    const testErrors: any[] = [testError];
+    const testRunInfo: any = { errs: testErrors };
+    const reporter: AllureReporter = new AllureReporter();
+    // @ts-ignore
+    reporter.getCurrentTest = mockReporterGetCurrentTestExists;
+
+    reporter.endTest(testName, testRunInfo, testMeta);
+
+    expect(mockReporterGetCurrentTestExists).toBeCalledTimes(1);
+    expect(mockAllureTest.status).toBe(Status.FAILED);
+    expect(mockAllureTest.detailsMessage).toBe(null);
+    expect(mockAllureTest.detailsTrace).toBe(null);
+    expect(mockAllureTest.stage).toBe(Stage.FINISHED);
+  });
+  it('Should not add empty callsite errors to ended test', () => {
+    const testName: string = 'testname';
+    const testMeta: object = { severity: Severity.TRIVIAL };
+    const testError: any = {};
+    const testErrors: any[] = [testError];
+    const testRunInfo: any = { errs: testErrors };
+    const reporter: AllureReporter = new AllureReporter();
+    // @ts-ignore
+    reporter.getCurrentTest = mockReporterGetCurrentTestExists;
+
+    reporter.endTest(testName, testRunInfo, testMeta);
+
+    expect(mockReporterGetCurrentTestExists).toBeCalledTimes(1);
+    expect(mockAllureTest.status).toBe(Status.FAILED);
+    expect(mockAllureTest.detailsMessage).toBe(null);
+    expect(mockAllureTest.detailsTrace).toBe(null);
+    expect(mockAllureTest.stage).toBe(Stage.FINISHED);
+  });
+  it('Should start new test if non-existing test is ended', () => {
+    const testName: string = 'testname';
+    const testMeta: object = { severity: Severity.TRIVIAL };
+    const testRunInfo: any = {};
+    const reporter: AllureReporter = new AllureReporter();
+    // @ts-ignore
+    reporter.getCurrentTest = mockReporterGetCurrentTestNull;
+    // @ts-ignore
+    reporter.startTest = mockReporterStartTest;
+
+    reporter.endTest(testName, testRunInfo, testMeta);
+
+    expect(mockReporterGetCurrentTestNull).toBeCalledTimes(2);
+    expect(mockReporterStartTest).toBeCalledTimes(1);
+    expect(mockReporterStartTest).toBeCalledWith(testName, testMeta);
   });
   it('Should get current group', () => {
     const reporter: AllureReporter = new AllureReporter();

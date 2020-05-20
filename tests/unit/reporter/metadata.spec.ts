@@ -146,7 +146,7 @@ describe('Metadata validation', () => {
 
     expect(metadata.otherMeta.size).toBe(2);
   });
-  it('Should ignore an invalid  otherMeta', () => {
+  it('Should ignore an invalid otherMeta', () => {
     const test: string = 'test';
     const test2: number = 1;
     const meta = { test, test2 };
@@ -159,9 +159,7 @@ describe('Metadata validation', () => {
 
 describe('Metadata merging', () => {
   beforeEach(() => {
-    mockAddLabel.mockClear();
-    mockAddLink.mockClear();
-    mockAddParameter.mockClear();
+    jest.clearAllMocks();
   });
 
   it('Should give priority to test than group metadata', () => {
@@ -188,6 +186,7 @@ describe('Metadata merging', () => {
       suite: 'Group Suite',
     };
     const groupMetaData: Metadata = new Metadata(groupMeta);
+    localMetaData.suite = 'Local Suite';
 
     localMetaData.addMetadataToTest(test, groupMetaData);
 
@@ -201,10 +200,11 @@ describe('Metadata merging', () => {
 
     // Suite is dependant on if it is a test or group suite and should be present within both.
     expect(localMetaData.sub_suite).toBe(localMeta.suite);
+    expect(localMetaData.suite).toBe('Local Suite');
     expect(localMetaData.parent_suite).toBe(groupMeta.suite);
 
     expect(mockAddParameter).toHaveBeenCalledTimes(1);
-    expect(mockAddLabel).toHaveBeenCalledTimes(6);
+    expect(mockAddLabel).toHaveBeenCalledTimes(7);
     expect(mockAddLink).toHaveBeenCalledTimes(1);
   });
   it('Should use group metadata if local is missing them', () => {
@@ -221,6 +221,7 @@ describe('Metadata merging', () => {
       suite: 'Group Suite',
     };
     const groupMetaData: Metadata = new Metadata(groupMeta);
+    groupMetaData.suite = 'Group Suite';
 
     localMetaData.addMetadataToTest(test, groupMetaData);
 
@@ -234,10 +235,11 @@ describe('Metadata merging', () => {
 
     // Suite is dependant on if it is a test or group suite and sub_suite should be empty if no local suite is given.
     expect(localMetaData.sub_suite).not.toBeDefined();
+    expect(localMetaData.suite).toBe('Group Suite');
     expect(localMetaData.parent_suite).toBe(groupMeta.suite);
 
     expect(mockAddParameter).toHaveBeenCalledTimes(1);
-    expect(mockAddLabel).toHaveBeenCalledTimes(5); // One less than above test because sub_suite is not defined
+    expect(mockAddLabel).toHaveBeenCalledTimes(6); // One less than above test because sub_suite is not defined
     expect(mockAddLink).toHaveBeenCalledTimes(1);
   });
   it('Should only add metadata if it is defined', () => {

@@ -55,13 +55,11 @@ export default class Metadata {
       if (this.isString(feature)) {
         this.feature = feature;
       }
-      if (otherMeta) {
-        Object.keys(otherMeta).forEach((key) => {
-          if (this.isString(otherMeta[key])) {
-            this.otherMeta.set(key, otherMeta[key]);
-          }
-        });
-      }
+      Object.keys(otherMeta).forEach((key) => {
+        if (this.isString(otherMeta[key])) {
+          this.otherMeta.set(key, otherMeta[key]);
+        }
+      });
     }
   }
 
