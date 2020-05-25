@@ -124,6 +124,9 @@ export default class AllureReporter {
     if (testRunInfo.unstable) {
       currentMetadata.setFlaky();
     }
+    if (currentMetadata.flaky) {
+      testMessages = addNewLine(testDetails, 'Flaky Test');
+    }
     currentMetadata.addMetadataToTest(currentTest, this.groupMetadata);
 
     currentTest.detailsMessage = testMessages;

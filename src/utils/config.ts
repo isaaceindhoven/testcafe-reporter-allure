@@ -38,6 +38,11 @@ const defaultCategoriesConfig: Category[] = [
     matchedStatuses: [Status.PASSED],
     messageRegex: '.*Warning.*',
   },
+  {
+    name: 'Flaky tests',
+    matchedStatuses: [Status.PASSED, Status.FAILED],
+    messageRegex: '.*Flaky.*',
+  },
 ];
 
 function loadCustomConfig(configFile: string): object {
