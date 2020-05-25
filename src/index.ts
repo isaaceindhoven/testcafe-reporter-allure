@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // Above eslint rules disabled for development
 import { AllureConfig } from 'allure-js-commons';
+import { TestRunInfo } from './models';
 import AllureReporter from './reporter/allure-reporter';
 import cleanAllureFolders from './utils/clean-folders';
 
@@ -33,7 +34,7 @@ module.exports = () => {
       this.allureReporter.startTest(name, meta);
     },
 
-    async reportTestDone(name: string, testRunInfo: any, meta: object): Promise<void> {
+    async reportTestDone(name: string, testRunInfo: TestRunInfo, meta: object): Promise<void> {
       this.allureReporter.endTest(name, testRunInfo, meta);
     },
 

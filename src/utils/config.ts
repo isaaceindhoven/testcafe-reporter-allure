@@ -5,17 +5,27 @@ import * as path from 'path';
 const defaultReporterConfig = {
   REPORTER_CONFIG_FILE: './allure.config.js',
   CATEGORIES_CONFIG_FILE: './allure-categories.config.js',
+
   RESULT_DIR: './allure/allure-results',
   REPORT_DIR: './allure/allure-report',
+  SCREENSHOT_DIR: './allure/screenshots',
+
   CLEAN_RESULT_DIR: true,
   CLEAN_REPORT_DIR: true,
+  CLEAN_SCREENSHOT_DIR: true,
+
+  ENABLE_SCREENSHOTS: true,
+  ENABLE_QUARANTINE: false,
+
   META: {
     SEVERITY: 'Normal',
     ISSUE_URL: 'https://jira.example.nl/browse/',
   },
   LABEL: {
     ISSUE: 'JIRA Issue',
-    FLAKY: 'Flaky',
+    FLAKY: 'Flaky test',
+    SCREENSHOT_MANUAL: 'Screenshot taken manually',
+    SCREENSHOT_ON_FAIL: 'Screenshot taken on fail',
   },
 };
 

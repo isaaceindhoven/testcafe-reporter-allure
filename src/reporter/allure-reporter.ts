@@ -1,5 +1,15 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { AllureConfig, AllureGroup, AllureRuntime, AllureTest, Category, Stage, Status } from 'allure-js-commons';
+/* eslint-disable @typescript-eslint/no-unused-vars,class-methods-use-this */
+import {
+  AllureConfig,
+  AllureGroup,
+  AllureRuntime,
+  AllureTest,
+  Category,
+  ContentType,
+  Stage,
+  Status,
+} from 'allure-js-commons';
+import { Screenshot, TestRunInfo } from '../models';
 import { loadCategoriesConfig, loadReporterConfig } from '../utils/config';
 import addNewLine from '../utils/utils';
 import Metadata from './metadata';
@@ -63,10 +73,10 @@ export default class AllureReporter {
     this.setCurrentTest(currentTest);
   }
 
-  public endTest(name: string, testRunInfo: any, meta: object): void {
+  public endTest(name: string, testRunInfo: TestRunInfo, meta: object): void {
     let currentTest = this.getCurrentTest();
 
-    // If no currenttest exists create a new one
+    // If no currentTest exists create a new one
     if (currentTest === null) {
       this.startTest(name, meta);
       currentTest = this.getCurrentTest();
@@ -120,12 +130,14 @@ export default class AllureReporter {
       });
     }
 
+    this.addScreenshotAttachments(currentTest, testRunInfo);
+
     const currentMetadata = new Metadata(meta, true);
     if (testRunInfo.unstable) {
       currentMetadata.setFlaky();
     }
     if (currentMetadata.flaky) {
-      testMessages = addNewLine(testDetails, 'Flaky Test');
+      testMessages = addNewLine(testMessages, reporterConfig.LABEL.FLAKY);
     }
     currentMetadata.addMetadataToTest(currentTest, this.groupMetadata);
 
@@ -133,6 +145,22 @@ export default class AllureReporter {
     currentTest.detailsTrace = testDetails;
     currentTest.stage = Stage.FINISHED;
     currentTest.endTest();
+  }
+
+  private addScreenshotAttachments(test: AllureTest, testRunInfo: TestRunInfo): void {
+    if (testRunInfo.screenshots) {
+      testRunInfo.screenshots.forEach((screenshot: Screenshot) => {
+        if (screenshot.screenshotPath) {
+          let screenshotName: string;
+          if (screenshot.takenOnFail) {
+            screenshotName = reporterConfig.LABEL.SCREENSHOT_ON_FAIL;
+          } else {
+            screenshotName = reporterConfig.LABEL.SCREENSHOT_MANUAL;
+          }
+          test.addAttachment(screenshotName, ContentType.PNG, screenshot.screenshotPath);
+        }
+      });
+    }
   }
 
   private getCurrentGroup(): AllureGroup | null {
