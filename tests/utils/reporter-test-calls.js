@@ -36,6 +36,7 @@ module.exports = [
         unstable: true,
         screenshotPath: '/screenshots/1445437598847',
       },
+      { severity: 'blocker', issue: 'TEST-ISSUE' },
     ],
   },
   {
@@ -73,6 +74,7 @@ module.exports = [
         unstable: false,
         screenshotPath: '/screenshots/1445437598847',
       },
+      { severity: 'CRITICAL' },
     ],
   },
   {
@@ -93,7 +95,7 @@ module.exports = [
   },
   {
     method: 'reportFixtureStart',
-    args: ['Second fixture', './fixture2.js'],
+    args: ['Second fixture', './fixture2.js', { severity: 'MINOR' }],
   },
   {
     method: 'reportTestStart',

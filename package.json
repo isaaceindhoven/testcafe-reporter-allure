@@ -25,21 +25,33 @@
     "test:lint": "eslint --ext .js,.ts --ignore-pattern !.* --ignore-path .gitignore .",
     "test:lint:fix": "eslint --ext .js,.ts --ignore-pattern !.* --ignore-path .gitignore . --fix",
     "test:unit": "jest",
+    "test:unit:watch": "jest --config=jest.config.js --watch",
     "test:e2e": "node tests/runner.js",
+    "test:e2e:build": "npm run build:prod && node tests/runner.js",
+    "test:e2e:build:allure": "npm run build:prod && node tests/runner.js && npm run allure",
+    "allure": "allure generate ./allure/allure-results --clean -o ./allure/allure-report && allure open ./allure/allure-report",
     "version": "node -v",
     "browsers": "testcafe --list-browsers",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "install:peers": "npm-install-peers"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {},
+  "peerDependencies": {
+    "allure-js-commons": "^2.0.0-beta.6"
+  },
+  "dependencies": {
+    "merge-anything": "^3.0.3",
+    "rimraf": "^3.0.2"
+  },
   "devDependencies": {
     "@types/jest": "^25.2.1",
     "@typescript-eslint/eslint-plugin": "^2.28.0",
     "@typescript-eslint/parser": "^2.28.0",
+    "allure-commandline": "^2.13.0",
     "callsite-record": "^4.1.3",
     "commitizen": "^4.0.4",
     "cz-conventional-changelog": "^3.1.0",
@@ -53,10 +65,11 @@
     "jest": "^25.3.0",
     "lint-staged": "^10.1.3",
     "normalize-newline": "^3.0.0",
+    "npm-install-peers": "^1.2.1",
     "prettier": "^2.0.4",
     "semantic-release": "^17.0.4",
     "testcafe": "^1.8.4",
-    "ts-jest": "^25.3.1",
+    "ts-jest": "^25.5.1",
     "typescript": "^3.8.3"
   }
 }
