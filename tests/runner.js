@@ -15,7 +15,7 @@ createTestCafe()
       .browsers('firefox:headless')
       .reporter(isaacReporter)
       .tsConfigPath('tsconfig.test.json')
-      .run();
+      .run({ quarantineMode: true });
   })
   .then((failed) => {
     testcafe.close();

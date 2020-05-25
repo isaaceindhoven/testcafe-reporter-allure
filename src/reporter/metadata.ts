@@ -23,12 +23,14 @@ export default class Metadata {
 
   feature: string;
 
+  flaky: boolean = false;
+
   otherMeta: Map<string, string>;
 
   constructor(meta?: any, test?: boolean) {
     this.otherMeta = new Map();
     if (meta) {
-      const { severity, description, issue, suite, epic, story, feature, ...otherMeta } = meta;
+      const { severity, description, issue, suite, epic, story, feature, flaky, ...otherMeta } = meta;
 
       if (this.isValidEnumValue(severity, Severity)) {
         this.severity = severity;
@@ -54,6 +56,9 @@ export default class Metadata {
       }
       if (this.isString(feature)) {
         this.feature = feature;
+      }
+      if (this.isBoolean(flaky)) {
+        this.flaky = flaky;
       }
       Object.keys(otherMeta).forEach((key) => {
         if (this.isString(otherMeta[key])) {
@@ -124,6 +129,13 @@ export default class Metadata {
       test.description = this.description;
     }
 
+    // Flaky is a boolean, only add to test if flaky is true.
+    if (this.flaky) {
+      // TODO: Add flaky correctly to allure instead of as a parameter
+      // However currenly allure-js-commons does not seem to support flaky tests.
+      test.addParameter(reporterConfig.LABEL.FLAKY, this.flaky.toString());
+    }
+
     Array.from(this.otherMeta.entries()).map((entry) => {
       test.addParameter(entry[0], entry[1]);
     });
@@ -156,6 +168,9 @@ export default class Metadata {
     if (!this.feature && metadata.feature) {
       this.feature = metadata.feature;
     }
+    if (metadata.flaky) {
+      this.flaky = metadata.flaky;
+    }
     if (metadata.otherMeta.size > 0) {
       Array.from(metadata.otherMeta.entries()).map((entry) => {
         if (!this.otherMeta.has(entry[0])) {
@@ -163,6 +178,10 @@ export default class Metadata {
         }
       });
     }
+  }
+
+  public setFlaky() {
+    this.flaky = true;
   }
 
   private isValidEnumValue(value: string, validEnum: { [s: string]: string }): boolean {
@@ -177,5 +196,9 @@ export default class Metadata {
       return false;
     }
     return typeof value === 'string';
+  }
+
+  private isBoolean(value: any): boolean {
+    return typeof value === 'boolean';
   }
 }

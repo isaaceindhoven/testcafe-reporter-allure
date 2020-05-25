@@ -14,6 +14,7 @@ const defaultReporterConfig = {
   },
   LABEL: {
     ISSUE: 'JIRA Issue',
+    FLAKY: 'Flaky',
   },
 };
 

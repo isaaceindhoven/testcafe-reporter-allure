@@ -178,9 +178,6 @@ describe('Allure reporter', () => {
     expect(mockReporterGetCurrentGroupExists).toHaveBeenCalledTimes(1);
     expect(mockGroupStartTest).toHaveBeenCalledTimes(1);
     expect(mockGroupStartTest).toBeCalledWith(testName);
-    expect(Metadata).toHaveBeenCalledTimes(1);
-    expect(Metadata).toBeCalledWith(testMeta, true);
-    expect(mockAddMetadataToTest).toHaveBeenCalledTimes(1);
     expect(mockReporterSetCurrentTest).toHaveBeenCalledTimes(1);
 
     expect(mockAllureTest.fullName).toBe(`${mockGroupName} : ${testName}`);
@@ -210,6 +207,9 @@ describe('Allure reporter', () => {
 
     reporter.endTest(testName, testRunInfo, testMeta);
 
+    expect(Metadata).toHaveBeenCalledTimes(1);
+    expect(Metadata).toBeCalledWith(testMeta, true);
+    expect(mockAddMetadataToTest).toHaveBeenCalledTimes(1);
     expect(mockReporterGetCurrentTestExists).toBeCalledTimes(1);
     expect(mockAllureTest.status).toBe(Status.PASSED);
     expect(mockAllureTest.detailsMessage).toBe(null);

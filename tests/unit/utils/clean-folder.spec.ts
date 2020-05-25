@@ -6,7 +6,11 @@ jest.mock('rimraf');
 
 const mockResolve = jest.fn(); // .mockImplementation((...pathSegments: string[]) => console.log(pathSegments));
 jest.mock('path', () => {
-  return { resolve: mockResolve };
+  return {
+    default: jest.fn().mockImplementation(() => {
+      return { resolve: mockResolve };
+    }),
+  };
 });
 
 // const mockConfig = jest
@@ -34,8 +38,8 @@ describe.skip('Folder Cleanup', () => {
     // mockResolve.mockClear();
     // mockConfig.mockClear();
   });
-  it('Should contain valid statuses', () => {
-    cleanAllureFolders();
+  it('Should contain valid statuses', async () => {
+    await cleanAllureFolders();
     // expect(mockConfig).toBeCalledTimes(1);
     expect(mockResolve).toBeCalledTimes(2);
   });

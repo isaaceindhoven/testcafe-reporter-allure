@@ -73,3 +73,17 @@ test.skip('My skipped e2e test', async (t) => {
     .expect(Selector('#article-header').innerText)
     .eql('Thank you, Jane Smith!');
 });
+
+test('My actual flaky e2e test', async (t) => {
+  const random: number = Math.random();
+  await t.expect(random).gte(0.5);
+});
+test.meta({
+  flaky: true,
+})('My manual flaky e2e test', async (t) => {
+  await t
+    .typeText('#developer-name', 'John Smith')
+    .click('#submit-button')
+    .expect(Selector('#article-header').innerText)
+    .eql('Thank you, John Smith!');
+});

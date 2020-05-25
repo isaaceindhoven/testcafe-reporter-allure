@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { AllureConfig, AllureGroup, AllureRuntime, AllureTest, Category, Stage, Status } from 'allure-js-commons';
 import { loadCategoriesConfig, loadReporterConfig } from '../utils/config';
 import addNewLine from '../utils/utils';
@@ -59,9 +60,6 @@ export default class AllureReporter {
     currentTest.historyId = name;
     currentTest.stage = Stage.RUNNING;
 
-    const currentMetadata = new Metadata(meta, true);
-    currentMetadata.addMetadataToTest(currentTest, this.groupMetadata);
-
     this.setCurrentTest(currentTest);
   }
 
@@ -77,6 +75,7 @@ export default class AllureReporter {
     const hasErrors = !!testRunInfo.errs && !!testRunInfo.errs.length;
     const hasWarnings = !!testRunInfo.warnings && !!testRunInfo.warnings.length;
     const isSkipped = testRunInfo.skipped;
+
     let testMessages: string = null;
     let testDetails: string = null;
 
@@ -120,6 +119,12 @@ export default class AllureReporter {
         testMessages = addNewLine(testMessages, warning);
       });
     }
+
+    const currentMetadata = new Metadata(meta, true);
+    if (testRunInfo.unstable) {
+      currentMetadata.setFlaky();
+    }
+    currentMetadata.addMetadataToTest(currentTest, this.groupMetadata);
 
     currentTest.detailsMessage = testMessages;
     currentTest.detailsTrace = testDetails;

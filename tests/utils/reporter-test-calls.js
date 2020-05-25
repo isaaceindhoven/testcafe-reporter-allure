@@ -24,7 +24,7 @@ module.exports = [
   },
   {
     method: 'reportTestStart',
-    args: ['First test in first fixture', { severity: 'blocker', issue: 'TEST-ISSUE' }],
+    args: ['First test in first fixture'],
   },
   {
     method: 'reportTestDone',
@@ -36,11 +36,12 @@ module.exports = [
         unstable: true,
         screenshotPath: '/screenshots/1445437598847',
       },
+      { severity: 'blocker', issue: 'TEST-ISSUE' },
     ],
   },
   {
     method: 'reportTestStart',
-    args: ['Second test in first fixture', { severity: 'CRITICAL' }],
+    args: ['Second test in first fixture'],
   },
   {
     method: 'reportTestDone',
@@ -73,6 +74,7 @@ module.exports = [
         unstable: false,
         screenshotPath: '/screenshots/1445437598847',
       },
+      { severity: 'CRITICAL' },
     ],
   },
   {
