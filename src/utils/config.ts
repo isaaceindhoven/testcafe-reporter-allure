@@ -1,4 +1,5 @@
 import { Category, Status } from 'allure-js-commons';
+import { merge } from 'merge-anything';
 import * as path from 'path';
 
 const defaultReporterConfig = {
@@ -42,7 +43,7 @@ const defaultCategoriesConfig: Category[] = [
 function loadCustomConfig(configFile: string): object {
   let customConfig: object = null;
   try {
-    // The presents of this config module is not guarenteed therefore this approach is needed.
+    // The presence of this config module is not guarenteed therefore this approach is needed.
     /* eslint-disable-next-line import/no-dynamic-require,global-require */
     customConfig = require(path.resolve(process.cwd(), configFile));
   } catch (error) {
@@ -53,7 +54,7 @@ function loadCustomConfig(configFile: string): object {
 
 export function loadReporterConfig(): any {
   const customConfig = loadCustomConfig(defaultReporterConfig.REPORTER_CONFIG_FILE);
-  const mergedConfig: object = { ...defaultReporterConfig, ...customConfig };
+  const mergedConfig: object = merge(defaultReporterConfig, customConfig);
   return mergedConfig;
 }
 

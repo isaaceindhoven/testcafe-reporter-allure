@@ -44,6 +44,7 @@
     "allure-js-commons": "^2.0.0-beta.6"
   },
   "dependencies": {
+    "merge-anything": "^3.0.3",
     "rimraf": "^3.0.2"
   },
   "devDependencies": {
