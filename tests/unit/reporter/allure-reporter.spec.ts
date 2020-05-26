@@ -18,7 +18,6 @@ const mockGroupStartTest = jest.fn().mockImplementation(() => {
   return mockAllureTest;
 });
 const mockGroupEndGroup = jest.fn();
-const mockReporterWriteCategoriesDefinitions = jest.fn();
 const mockReporterGetCurrentGroupExists = jest.fn().mockImplementation(() => {
   return new AllureGroup(null);
 });
@@ -41,6 +40,7 @@ const mockReporterStartTest = jest.fn();
 const mockReporterAddScreenshotAttachments = jest.fn();
 const mockRuntimeStartGroup = jest.fn().mockImplementation((name) => name);
 const mockRuntimeEndGroup = jest.fn().mockImplementation((name) => name);
+const mockRuntimeWriteCategoriesDefinitions = jest.fn();
 const mockAddMetadataToTest = jest.fn();
 const mockTestAddAttachment = jest.fn();
 const mockTestEndTest = jest.fn();
@@ -61,7 +61,7 @@ jest.mock('allure-js-commons', () => {
         constructor: () => {},
         startGroup: mockRuntimeStartGroup,
         endGroup: mockRuntimeEndGroup,
-        writeCategoriesDefinitions: mockReporterWriteCategoriesDefinitions,
+        writeCategoriesDefinitions: mockRuntimeWriteCategoriesDefinitions,
       };
     }),
     AllureGroup: jest.fn().mockImplementation(() => {
@@ -124,8 +124,8 @@ describe('Allure reporter', () => {
 
     reporter.setGlobals();
 
-    expect(mockReporterWriteCategoriesDefinitions).toHaveBeenCalledTimes(1);
-    expect(mockReporterWriteCategoriesDefinitions).toBeCalledWith(categories);
+    expect(mockRuntimeWriteCategoriesDefinitions).toHaveBeenCalledTimes(1);
+    expect(mockRuntimeWriteCategoriesDefinitions).toBeCalledWith(categories);
   });
   it('Should start group correctly', () => {
     const reporter: AllureReporter = new AllureReporter();
