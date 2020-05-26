@@ -17,4 +17,7 @@ export default async function cleanAllureFolders(): Promise<void> {
   if (reporterConfig.CLEAN_REPORT_DIR) {
     await deleteFolderContents(path.resolve(process.cwd(), reporterConfig.REPORT_DIR));
   }
+  if (reporterConfig.CLEAN_SCREENSHOT_DIR) {
+    await deleteFolderContents(path.resolve(process.cwd(), reporterConfig.SCREENSHOT_DIR));
+  }
 }

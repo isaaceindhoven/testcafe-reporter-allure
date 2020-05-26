@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 const createTestCafe = require('testcafe');
 /* eslint-disable-next-line import/no-unresolved */
-const isaacReporter = require('../dist/index.js');
+const isaacReporter = require('../dist/index');
+/* eslint-disable-next-line import/no-unresolved */
+const reporterConfig = require('../dist/utils/config').loadReporterConfig();
 
 let testcafe = null;
 
@@ -15,7 +17,14 @@ createTestCafe()
       .browsers('firefox:headless')
       .reporter(isaacReporter)
       .tsConfigPath('tsconfig.test.json')
-      .run({ quarantineMode: true });
+      .screenshots({
+        path: reporterConfig.SCREENSHOT_DIR,
+        takeOnFails: true,
+      })
+      .run({
+        quarantineMode: reporterConfig.ENABLE_QUARANTINE,
+        disableScreenshots: !reporterConfig.ENABLE_SCREENSHOTS,
+      });
   })
   .then((failed) => {
     testcafe.close();

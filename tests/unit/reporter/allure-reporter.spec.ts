@@ -1,18 +1,23 @@
-/* eslint-disable no-shadow */
-import { AllureConfig, AllureGroup, AllureRuntime, AllureTest, Severity, Stage, Status } from 'allure-js-commons';
+/* eslint-disable no-shadow,@typescript-eslint/no-use-before-define */
+import {
+  AllureConfig,
+  AllureGroup,
+  AllureRuntime,
+  AllureTest,
+  ContentType,
+  Severity,
+  Stage,
+  Status,
+} from 'allure-js-commons';
+import { Screenshot, TestRunInfo } from '../../../src/models';
 import AllureReporter from '../../../src/reporter/allure-reporter';
 import Metadata from '../../../src/reporter/metadata';
 import { loadCategoriesConfig } from '../../../src/utils/config';
 
-const mockRuntimeStartGroup = jest.fn().mockImplementation((name) => name);
-const mockRuntimeEndGroup = jest.fn().mockImplementation((name) => name);
-const mockGroupEndGroup = jest.fn();
-const mockAllureTest: AllureTest = new AllureTest(null);
-const mockGroupName = 'groupName';
 const mockGroupStartTest = jest.fn().mockImplementation(() => {
   return mockAllureTest;
 });
-const mockWriteCategoriesDefinitions = jest.fn();
+const mockGroupEndGroup = jest.fn();
 const mockReporterGetCurrentGroupExists = jest.fn().mockImplementation(() => {
   return new AllureGroup(null);
 });
@@ -32,11 +37,21 @@ const mockReporterGetCurrentTestNull = jest
     return mockAllureTest;
   });
 const mockReporterStartTest = jest.fn();
+const mockReporterAddScreenshotAttachments = jest.fn();
+const mockRuntimeStartGroup = jest.fn().mockImplementation((name) => name);
+const mockRuntimeEndGroup = jest.fn().mockImplementation((name) => name);
+const mockRuntimeWriteCategoriesDefinitions = jest.fn();
 const mockAddMetadataToTest = jest.fn();
+const mockTestAddAttachment = jest.fn();
+const mockTestEndTest = jest.fn();
+
+const mockGroupName = 'groupName';
+const mockAllureTest: AllureTest = new AllureTest(null);
 
 jest.mock('allure-js-commons', () => {
-  const { Severity, Status, Stage } = jest.requireActual('allure-js-commons');
+  const { Severity, Status, Stage, ContentType } = jest.requireActual('allure-js-commons');
   return {
+    ContentType,
     Status,
     Severity,
     Stage,
@@ -46,7 +61,7 @@ jest.mock('allure-js-commons', () => {
         constructor: () => {},
         startGroup: mockRuntimeStartGroup,
         endGroup: mockRuntimeEndGroup,
-        writeCategoriesDefinitions: mockWriteCategoriesDefinitions,
+        writeCategoriesDefinitions: mockRuntimeWriteCategoriesDefinitions,
       };
     }),
     AllureGroup: jest.fn().mockImplementation(() => {
@@ -60,7 +75,8 @@ jest.mock('allure-js-commons', () => {
     AllureTest: jest.fn().mockImplementation(() => {
       return {
         constructor: () => {},
-        endTest: mockRuntimeStartGroup,
+        endTest: mockTestEndTest,
+        addAttachment: mockTestAddAttachment,
       };
     }),
   };
@@ -108,8 +124,8 @@ describe('Allure reporter', () => {
 
     reporter.setGlobals();
 
-    expect(mockWriteCategoriesDefinitions).toHaveBeenCalledTimes(1);
-    expect(mockWriteCategoriesDefinitions).toBeCalledWith(categories);
+    expect(mockRuntimeWriteCategoriesDefinitions).toHaveBeenCalledTimes(1);
+    expect(mockRuntimeWriteCategoriesDefinitions).toBeCalledWith(categories);
   });
   it('Should start group correctly', () => {
     const reporter: AllureReporter = new AllureReporter();
@@ -200,10 +216,12 @@ describe('Allure reporter', () => {
   it('Should end passing test', () => {
     const testName: string = 'testname';
     const testMeta: object = { severity: Severity.TRIVIAL };
-    const testRunInfo: any = {};
+    const testRunInfo: TestRunInfo = {};
     const reporter: AllureReporter = new AllureReporter();
     // @ts-ignore
     reporter.getCurrentTest = mockReporterGetCurrentTestExists;
+    // @ts-ignore
+    reporter.addScreenshotAttachments = mockReporterAddScreenshotAttachments;
 
     reporter.endTest(testName, testRunInfo, testMeta);
 
@@ -211,6 +229,7 @@ describe('Allure reporter', () => {
     expect(Metadata).toBeCalledWith(testMeta, true);
     expect(mockAddMetadataToTest).toHaveBeenCalledTimes(1);
     expect(mockReporterGetCurrentTestExists).toBeCalledTimes(1);
+    expect(mockReporterAddScreenshotAttachments).toBeCalledTimes(1);
     expect(mockAllureTest.status).toBe(Status.PASSED);
     expect(mockAllureTest.detailsMessage).toBe(null);
     expect(mockAllureTest.detailsTrace).toBe(null);
@@ -219,7 +238,7 @@ describe('Allure reporter', () => {
   it('Should end skipped test', () => {
     const testName: string = 'testname';
     const testMeta: object = { severity: Severity.TRIVIAL };
-    const testRunInfo: any = { skipped: true };
+    const testRunInfo: TestRunInfo = { skipped: true };
     const reporter: AllureReporter = new AllureReporter();
     // @ts-ignore
     reporter.getCurrentTest = mockReporterGetCurrentTestExists;
@@ -236,7 +255,7 @@ describe('Allure reporter', () => {
     const testName: string = 'testname';
     const testMeta: object = { severity: Severity.TRIVIAL };
     const testWarnings: string[] = ['warning1', 'warning2'];
-    const testRunInfo: any = { warnings: testWarnings };
+    const testRunInfo: TestRunInfo = { warnings: testWarnings };
     const reporter: AllureReporter = new AllureReporter();
     // @ts-ignore
     reporter.getCurrentTest = mockReporterGetCurrentTestExists;
@@ -261,7 +280,7 @@ describe('Allure reporter', () => {
       errMsg: 'testErrorMessage',
     };
     const testErrors: any[] = [testError];
-    const testRunInfo: any = { errs: testErrors };
+    const testRunInfo: TestRunInfo = { errs: testErrors };
     const reporter: AllureReporter = new AllureReporter();
     // @ts-ignore
     reporter.getCurrentTest = mockReporterGetCurrentTestExists;
@@ -281,7 +300,7 @@ describe('Allure reporter', () => {
     const testMeta: object = { severity: Severity.TRIVIAL };
     const testError: any = { callsite: {} };
     const testErrors: any[] = [testError];
-    const testRunInfo: any = { errs: testErrors };
+    const testRunInfo: TestRunInfo = { errs: testErrors };
     const reporter: AllureReporter = new AllureReporter();
     // @ts-ignore
     reporter.getCurrentTest = mockReporterGetCurrentTestExists;
@@ -299,7 +318,7 @@ describe('Allure reporter', () => {
     const testMeta: object = { severity: Severity.TRIVIAL };
     const testError: any = {};
     const testErrors: any[] = [testError];
-    const testRunInfo: any = { errs: testErrors };
+    const testRunInfo: TestRunInfo = { errs: testErrors };
     const reporter: AllureReporter = new AllureReporter();
     // @ts-ignore
     reporter.getCurrentTest = mockReporterGetCurrentTestExists;
@@ -312,10 +331,31 @@ describe('Allure reporter', () => {
     expect(mockAllureTest.detailsTrace).toBe(null);
     expect(mockAllureTest.stage).toBe(Stage.FINISHED);
   });
+  it('Should add screenshots to an ended test', () => {
+    const testScreenshotManual: Screenshot = { screenshotPath: 'testPathOnManual', takenOnFail: false };
+    const testScreenshotOnFail: Screenshot = { screenshotPath: 'testPathOnFail', takenOnFail: true };
+    const testScreenshots: Screenshot[] = [testScreenshotManual, testScreenshotOnFail];
+    const testRunInfo: TestRunInfo = { screenshots: testScreenshots };
+    const reporter: AllureReporter = new AllureReporter();
+    // @ts-ignore
+    reporter.addScreenshotAttachments(mockAllureTest, testRunInfo);
+
+    expect(mockTestAddAttachment).toBeCalledTimes(2);
+    expect(mockTestAddAttachment).toBeCalledWith(
+      'Screenshot taken manually',
+      ContentType.PNG,
+      testScreenshotManual.screenshotPath,
+    );
+    expect(mockTestAddAttachment).toBeCalledWith(
+      'Screenshot taken on fail',
+      ContentType.PNG,
+      testScreenshotOnFail.screenshotPath,
+    );
+  });
   it('Should start new test if non-existing test is ended', () => {
     const testName: string = 'testname';
     const testMeta: object = { severity: Severity.TRIVIAL };
-    const testRunInfo: any = {};
+    const testRunInfo: TestRunInfo = {};
     const reporter: AllureReporter = new AllureReporter();
     // @ts-ignore
     reporter.getCurrentTest = mockReporterGetCurrentTestNull;
