@@ -1,5 +1,6 @@
 import { Severity } from 'allure-js-commons';
 import { Selector } from 'testcafe';
+import step from './step';
 
 fixture('TestCafé example test fixture 1').page('http://devexpress.github.io/testcafe/example').meta({
   epic: 'EpicTicket',
@@ -15,13 +16,8 @@ test.meta({
   suite: 'TestGroup',
   otherMeta: 'Example otherMeta parameter.',
 })('My first e2e test', async (t) => {
-  await t
-    .typeText('#developer-name', 'John Smith')
-    .takeScreenshot()
-    .click('#submit-button')
-    .expect(Selector('#article-header').innerText)
-    .eql('Thank you, John Smith!')
-    .takeScreenshot();
+  await step(t.typeText('#developer-name', 'John Smith'));
+  await step(t.click('#submit-button').expect(Selector('#article-header').innerText).eql('Thank you, John Smith!'));
 });
 
 test.meta({
