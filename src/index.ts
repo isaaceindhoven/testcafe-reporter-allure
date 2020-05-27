@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // Above eslint rules disabled for development
 import { AllureConfig } from 'allure-js-commons';
-import { TestRunInfo } from './models';
 import AllureReporter from './reporter/allure-reporter';
+import { TestRunInfo } from './testcafe/models';
 import cleanAllureFolders from './utils/clean-folders';
 
 module.exports = () => {
@@ -12,6 +12,10 @@ module.exports = () => {
 
     getReporter() {
       return this;
+    },
+
+    getAllureReporter() {
+      return this.allureReporter;
     },
 
     preloadConfig(allureConfig: AllureConfig) {

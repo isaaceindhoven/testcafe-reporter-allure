@@ -1,3 +1,17 @@
+export {};
+declare global {
+  interface TestController {
+    testRun: TestRun;
+  }
+  interface TestRun {
+    test: Test;
+    opts: object;
+  }
+  interface Test {
+    meta: object;
+  }
+}
+
 // https://devexpress.github.io/testcafe/documentation/reference/plugin-api/reporter.html#screenshots-object
 export interface Screenshot {
   screenshotPath?: string;

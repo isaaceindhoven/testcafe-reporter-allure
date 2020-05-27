@@ -9,9 +9,9 @@ import {
   Stage,
   Status,
 } from 'allure-js-commons';
-import { Screenshot, TestRunInfo } from '../../../src/models';
 import AllureReporter from '../../../src/reporter/allure-reporter';
 import Metadata from '../../../src/reporter/metadata';
+import { Screenshot, TestRunInfo } from '../../../src/testcafe/models';
 import { loadCategoriesConfig } from '../../../src/utils/config';
 
 const mockGroupStartTest = jest.fn().mockImplementation(() => {

@@ -9,7 +9,7 @@ import {
   Stage,
   Status,
 } from 'allure-js-commons';
-import { Screenshot, TestRunInfo } from '../models';
+import { Screenshot, TestRunInfo } from '../testcafe/models';
 import { loadCategoriesConfig, loadReporterConfig } from '../utils/config';
 import addNewLine from '../utils/utils';
 import Metadata from './metadata';
@@ -74,6 +74,8 @@ export default class AllureReporter {
   }
 
   public endTest(name: string, testRunInfo: TestRunInfo, meta: object): void {
+    // StepContainer.getStep().then((value: string) => { console.log(value) }, (value: string) => { console.log(value) });
+
     let currentTest = this.getCurrentTest();
 
     // If no currentTest exists create a new one
@@ -145,6 +147,17 @@ export default class AllureReporter {
     currentTest.detailsTrace = testDetails;
     currentTest.stage = Stage.FINISHED;
     currentTest.endTest();
+  }
+
+  public addStep(step: string): void {
+    const currentTest = this.getCurrentTest();
+
+    // If no currentTest exists create a new one
+    if (currentTest === null) {
+      throw new Error('No active test');
+    }
+
+    currentTest.detailsTrace = addNewLine(currentTest.detailsTrace, step);
   }
 
   private addScreenshotAttachments(test: AllureTest, testRunInfo: TestRunInfo): void {
