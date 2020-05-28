@@ -1,5 +1,6 @@
 /* eslint-disable class-methods-use-this,array-callback-return */
 import { AllureTest, LabelName, LinkType, Severity } from 'allure-js-commons';
+import { TestStep } from '../testcafe/step';
 import { loadReporterConfig } from '../utils/config';
 
 const reporterConfig = loadReporterConfig();
@@ -25,12 +26,14 @@ export default class Metadata {
 
   flaky: boolean = false;
 
+  steps: TestStep[];
+
   otherMeta: Map<string, string>;
 
   constructor(meta?: any, test?: boolean) {
     this.otherMeta = new Map();
     if (meta) {
-      const { severity, description, issue, suite, epic, story, feature, flaky, ...otherMeta } = meta;
+      const { severity, description, issue, suite, epic, story, feature, flaky, steps, ...otherMeta } = meta;
 
       if (this.isValidEnumValue(severity, Severity)) {
         this.severity = severity;
@@ -59,6 +62,9 @@ export default class Metadata {
       }
       if (this.isBoolean(flaky)) {
         this.flaky = flaky;
+      }
+      if (steps) {
+        this.steps = steps;
       }
       Object.keys(otherMeta).forEach((key) => {
         if (this.isString(otherMeta[key])) {
@@ -182,6 +188,13 @@ export default class Metadata {
 
   public setFlaky() {
     this.flaky = true;
+  }
+
+  public getSteps(): TestStep[] | null {
+    if (this.steps) {
+      return this.steps;
+    }
+    return null;
   }
 
   private isValidEnumValue(value: string, validEnum: { [s: string]: string }): boolean {

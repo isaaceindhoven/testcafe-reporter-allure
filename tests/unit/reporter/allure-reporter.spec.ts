@@ -42,6 +42,7 @@ const mockRuntimeStartGroup = jest.fn().mockImplementation((name) => name);
 const mockRuntimeEndGroup = jest.fn().mockImplementation((name) => name);
 const mockRuntimeWriteCategoriesDefinitions = jest.fn();
 const mockAddMetadataToTest = jest.fn();
+const mockGetSteps = jest.fn();
 const mockTestAddAttachment = jest.fn();
 const mockTestEndTest = jest.fn();
 
@@ -88,6 +89,7 @@ jest.mock('../../../src/reporter/metadata', () => {
         severity: Severity.TRIVIAL,
         constructor: () => {},
         addMetadataToTest: mockAddMetadataToTest,
+        getSteps: mockGetSteps,
       };
     }),
   };

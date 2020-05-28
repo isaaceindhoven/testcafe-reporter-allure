@@ -2,28 +2,31 @@ import { Severity } from 'allure-js-commons';
 import { Selector } from 'testcafe';
 import step from '../../src/testcafe/step';
 
-fixture('TestCafé example test fixture 1').page('http://devexpress.github.io/testcafe/example').meta({
-  epic: 'EpicTicket',
-  suite: 'FixtureGroup',
+fixture('TestCafé Example Fixture 1').page('http://devexpress.github.io/testcafe/example').meta({
+  epic: 'Example Epic Ticket',
+  suite: 'Example Fixture Group',
 });
 
 test.meta({
   severity: Severity.TRIVIAL,
   issue: 'TEST-ISSUE',
   description: 'An example discription',
-  feature: 'FeatureTicket',
-  story: 'StoryTicket',
-  suite: 'TestGroup',
+  feature: 'Example Feature Ticket',
+  story: 'Example Story Ticket',
+  suite: 'Main Example Group',
   otherMeta: 'Example otherMeta parameter.',
-})('My first e2e test', async (t) => {
-  await step(t, t.typeText('#developer-name', 'John Smith'));
-  await step(t, t.click('#submit-button').expect(Selector('#article-header').innerText).eql('Thank you, John Smith!'));
+})('Example test with all metadata', async (t) => {
+  await step('Add developer name to form', t, t.typeText('#developer-name', 'John Smith'));
+  await step(
+    'Submit form and check result',
+    t,
+    t.click('#submit-button').expect(Selector('#article-header').innerText).eql('Thank you, John Smith!'),
+  );
 });
 
 test.meta({
-  severity: Severity.NORMAL,
-  suite: 'TestGroup',
-})('My second e2e test', async (t) => {
+  suite: 'Main Example Group',
+})('Example test with minimal metadata', async (t) => {
   await t
     .typeText('#developer-name', 'John Smith')
     .click('#submit-button')
@@ -31,14 +34,66 @@ test.meta({
     .eql('Thank you, John Smith!');
 });
 
-fixture('TestCafé example test fixture 2').page('http://devexpress.github.io/testcafe/example').meta({
+test
+  .meta({
+    suite: 'Main Example Group',
+  })
+  .skip('Example skipped test', async (t) => {
+    await t
+      .typeText('#developer-name', 'John Smith')
+      .click('#submit-button')
+      .expect(Selector('#article-header').innerText)
+      .eql('Thank you, Jane Smith!');
+  });
+
+test.meta({
+  suite: 'Failing Test Example Group',
+})('Example failing e2e test without steps', async (t) => {
+  await t
+    .typeText('#developer-name', 'John Smith')
+    .click('#submit-button')
+    .expect(Selector('#article-header').innerText)
+    .eql('Thank you, Jane Smith!');
+});
+
+test.meta({
+  suite: 'Failing Test Example Group',
+})('Example failing e2e test with steps', async (t) => {
+  await step('Add developer name to form', t, t.typeText('#developer-name', 'John Smith'));
+  await step(
+    'Submit form and check result',
+    t,
+    t.click('#submit-button').expect(Selector('#article-header').innerText).eql('Thank you, Jane Smith!'),
+  );
+});
+
+test.meta({
+  suite: 'Flaky Test Example Group',
+  description: 'Does, however, require that TestCafé runs in Quarantine mode.',
+})('Actual flaky test example', async (t) => {
+  const random: number = Math.random();
+  await t.expect(random).gte(0.5);
+});
+
+test.meta({
+  suite: 'Flaky Test Example Group',
+  flaky: true,
+})('Manual flaky test example', async (t) => {
+  await t
+    .typeText('#developer-name', 'John Smith')
+    .click('#submit-button')
+    .expect(Selector('#article-header').innerText)
+    .eql('Thank you, John Smith!');
+});
+
+fixture('TestCafé Example Fixture 2').page('http://devexpress.github.io/testcafe/example').meta({
   severity: Severity.CRITICAL,
-  suite: 'FixtureGroup',
+  suite: 'Example Fixture Group',
 });
 
 test.meta({
   severity: Severity.MINOR,
-})('My third e2e test', async (t) => {
+})('Example severity metadata override MINOR', async (t) => {
   await t
     .typeText('#developer-name', 'John Smith')
     .click('#submit-button')
@@ -48,37 +103,7 @@ test.meta({
 
 test.meta({
   severity: Severity.BLOCKER,
-})('My fourth e2e test', async (t) => {
-  await t
-    .typeText('#developer-name', 'John Smith')
-    .click('#submit-button')
-    .expect(Selector('#article-header').innerText)
-    .eql('Thank you, John Smith!');
-});
-
-test('My failing e2e test', async (t) => {
-  await t
-    .typeText('#developer-name', 'John Smith')
-    .click('#submit-button')
-    .expect(Selector('#article-header').innerText)
-    .eql('Thank you, Jane Smith!');
-});
-
-test.skip('My skipped e2e test', async (t) => {
-  await t
-    .typeText('#developer-name', 'John Smith')
-    .click('#submit-button')
-    .expect(Selector('#article-header').innerText)
-    .eql('Thank you, Jane Smith!');
-});
-
-test('My actual flaky e2e test', async (t) => {
-  const random: number = Math.random();
-  await t.expect(random).gte(0.5);
-});
-test.meta({
-  flaky: true,
-})('My manual flaky e2e test', async (t) => {
+})('Example severity metadata override BLOCKER', async (t) => {
   await t
     .typeText('#developer-name', 'John Smith')
     .click('#submit-button')
