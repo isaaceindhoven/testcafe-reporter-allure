@@ -1,4 +1,4 @@
-/* eslint-disable class-methods-use-this */
+/* eslint-disable class-methods-use-this,no-param-reassign */
 import { loadReporterConfig } from '../utils/config';
 
 const reporterConfig = loadReporterConfig();
@@ -10,27 +10,35 @@ export class TestStep {
 
   constructor(name: string) {
     this.screenshotAmount = 0;
-    this.name = name;
-  }
 
-  registerScreenshot(): void {
-    this.screenshotAmount += 1;
-  }
-
-  addStepToTest(test: TestController): void {
-    const meta: any = this.getMeta(test);
-    if (meta) {
-      if (!meta.steps) {
-        meta.steps = [];
-      }
-      meta.steps.push(this);
+    if (name) {
+      this.name = name;
+    } else {
+      this.name = reporterConfig.LABEL.DEFAULT_STEP_NAME;
     }
   }
 
-  // Steps could be added to the metadata of the test.
+  public registerScreenshot(): void {
+    this.screenshotAmount += 1;
+  }
+
+  public addStepToTest(test: TestController): void {
+    // Steps can be added to the metadata of the test for persistance.
+    const meta: any = this.getMeta(test);
+    if (!meta.steps) {
+      meta.steps = [];
+    }
+    meta.steps.push(this);
+  }
+
   private getMeta(testController: TestController): any {
     // @ts-ignore
-    return testController.testRun.test.meta;
+    let { meta } = testController.testRun.test;
+    if (!meta) {
+      meta = {};
+      testController.testRun.test.meta = meta;
+    }
+    return meta;
   }
 
   // // Returns a new copy of the reporter thus may not be able to be used.
