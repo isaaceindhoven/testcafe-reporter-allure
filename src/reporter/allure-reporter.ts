@@ -145,36 +145,7 @@ export default class AllureReporter {
     // If steps exist handle them, if not add screenshots to base of the test.
     const testSteps: TestStep[] = currentMetadata.getSteps();
     if (testSteps) {
-      const testStepAmount: number = testSteps.length;
-      const testStepLastIndex: number = testStepAmount - 1;
-      let screenshotIndex: number = 0;
-
-      for (let i = 0; i < testStepAmount; i += 1) {
-        const step: TestStep = testSteps[i];
-        const testStep: AllureStep = currentTest.startStep(step.name);
-
-        if (step.screenshotAmount && step.screenshotAmount > 0) {
-          for (let j = 0; j < step.screenshotAmount; j += 1) {
-            const screenshot: Screenshot = testRunInfo.screenshots[screenshotIndex];
-
-            this.addScreenshotAttachment(testStep, screenshot);
-
-            screenshotIndex += 1;
-          }
-        }
-
-        // Steps do not record the state they finished because this data is not available from TestCafé.
-        // If a step is not last it can be assumed that the step was successfull because otherwise the test would of stopped earlier.
-        // If a step is last the status from the test itself should be copied.
-        if (i === testStepLastIndex) {
-          testStep.status = currentTest.status;
-        } else {
-          testStep.status = Status.PASSED;
-        }
-
-        testStep.stage = Stage.FINISHED;
-        testStep.endStep();
-      }
+      this.addStepsWithAttachments(currentTest, testRunInfo, testSteps);
     } else {
       this.addScreenshotAttachments(currentTest, testRunInfo);
     }
@@ -183,6 +154,39 @@ export default class AllureReporter {
     currentTest.detailsTrace = testDetails;
     currentTest.stage = Stage.FINISHED;
     currentTest.endTest();
+  }
+
+  private addStepsWithAttachments(test: AllureTest, testRunInfo: TestRunInfo, steps: TestStep[]) {
+    const stepAmount: number = steps.length;
+    const stepLastIndex: number = stepAmount - 1;
+    let screenshotIndex: number = 0;
+
+    for (let i = 0; i < stepAmount; i += 1) {
+      const step: TestStep = steps[i];
+      const testStep: AllureStep = test.startStep(step.name);
+
+      if (step.screenshotAmount && step.screenshotAmount > 0) {
+        for (let j = 0; j < step.screenshotAmount; j += 1) {
+          const screenshot: Screenshot = testRunInfo.screenshots[screenshotIndex];
+
+          this.addScreenshotAttachment(testStep, screenshot);
+
+          screenshotIndex += 1;
+        }
+      }
+
+      // Steps do not record the state they finished because this data is not available from TestCafé.
+      // If a step is not last it can be assumed that the step was successfull because otherwise the test would of stopped earlier.
+      // If a step is last the status from the test itself should be copied.
+      if (i === stepLastIndex) {
+        testStep.status = test.status;
+      } else {
+        testStep.status = Status.PASSED;
+      }
+
+      testStep.stage = Stage.FINISHED;
+      testStep.endStep();
+    }
   }
 
   private addScreenshotAttachments(test: AllureTest, testRunInfo: TestRunInfo): void {
