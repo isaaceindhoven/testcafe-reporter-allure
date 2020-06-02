@@ -1,4 +1,5 @@
 export {};
+// https://github.com/DevExpress/testcafe/issues/2826#issuecomment-524377039
 declare global {
   interface TestController {
     testRun: TestRun;

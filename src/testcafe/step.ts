@@ -33,7 +33,6 @@ export class TestStep {
 
   // Using the Testcontroller type might cause an error because of a confict with TestCafé's TestController
   private getMeta(testController: any): any {
-    // @ts-ignore
     let { meta } = testController.testRun.test;
     if (!meta) {
       meta = {};

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-// Above eslint rules disabled for development
+// Above eslint rules are disabled for development
 import { AllureConfig } from 'allure-js-commons';
 import AllureReporter from './reporter/allure-reporter';
 import { TestRunInfo } from './testcafe/models';
@@ -11,12 +11,9 @@ module.exports = () => {
     allureReporter: null,
     allureConfig: null,
 
+    /* Used to get the reporter for unittesting itself. */
     getReporter() {
       return this;
-    },
-
-    getAllureReporter() {
-      return this.allureReporter;
     },
 
     preloadConfig(allureConfig: AllureConfig) {

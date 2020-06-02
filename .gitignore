@@ -17,3 +17,4 @@ node_modules/*
 dist/*
 coverage/*
 allure/*
+allure.config.js

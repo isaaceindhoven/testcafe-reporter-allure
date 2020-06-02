@@ -2,7 +2,7 @@ import { Severity } from 'allure-js-commons';
 import { Selector } from 'testcafe';
 import step from '../../src/testcafe/step';
 
-fixture('TestCafé Example Fixture 1').page('http://devexpress.github.io/testcafe/example').meta({
+fixture('TestCafé Example Fixture - Main').page('http://devexpress.github.io/testcafe/example').meta({
   epic: 'Example Epic Ticket',
   suite: 'Example Fixture Group',
 });
@@ -67,12 +67,23 @@ test.meta({
   );
 });
 
+fixture('TestCafé Example Fixture - Flaky Tests')
+  .page('http://devexpress.github.io/testcafe/example')
+  .meta({
+    suite: 'Example Fixture Group',
+  })
+  .before(async (ctx) => {
+    ctx.flakyVariable = 0;
+  });
+
 test.meta({
   suite: 'Flaky Test Example Group',
-  description: 'Does, however, require that TestCafé runs in Quarantine mode.',
-})('Actual flaky test example', async (t) => {
-  const random: number = Math.random();
-  await t.expect(random).gte(0.5);
+  description:
+    'Does, however, require that TestCafé runs in Quarantine mode, will fail on the first two attempts and succeed on the third.',
+})('Actual flaky test example', async (t: TestController) => {
+  // eslint-disable-next-line no-param-reassign
+  t.fixtureCtx.flakyVariable += 1;
+  await t.expect(t.fixtureCtx.flakyVariable).eql(2);
 });
 
 test.meta({
@@ -86,7 +97,7 @@ test.meta({
     .eql('Thank you, John Smith!');
 });
 
-fixture('TestCafé Example Fixture 2').page('http://devexpress.github.io/testcafe/example').meta({
+fixture('TestCafé Example Fixture - Meta Overrides').page('http://devexpress.github.io/testcafe/example').meta({
   severity: Severity.CRITICAL,
   suite: 'Example Fixture Group',
 });
