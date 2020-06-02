@@ -3,6 +3,7 @@ import {
   AllureConfig,
   AllureGroup,
   AllureRuntime,
+  AllureStep,
   AllureTest,
   ContentType,
   Severity,
@@ -12,6 +13,7 @@ import {
 import AllureReporter from '../../../src/reporter/allure-reporter';
 import Metadata from '../../../src/reporter/metadata';
 import { Screenshot, TestRunInfo } from '../../../src/testcafe/models';
+import { TestStep } from '../../../src/testcafe/step';
 import { loadCategoriesConfig } from '../../../src/utils/config';
 
 const mockGroupStartTest = jest.fn().mockImplementation(() => {
@@ -38,16 +40,33 @@ const mockReporterGetCurrentTestNull = jest
   });
 const mockReporterStartTest = jest.fn();
 const mockReporterAddScreenshotAttachments = jest.fn();
+const mockReporterAddStepsWithAttachments = jest.fn();
+const mockReporterAddScreenshotAttachment = jest.fn();
 const mockRuntimeStartGroup = jest.fn().mockImplementation((name) => name);
 const mockRuntimeEndGroup = jest.fn().mockImplementation((name) => name);
 const mockRuntimeWriteCategoriesDefinitions = jest.fn();
 const mockAddMetadataToTest = jest.fn();
-const mockGetSteps = jest.fn();
+
+const mockGetSteps = jest
+  .fn()
+  .mockImplementationOnce(() => {
+    return null;
+  })
+  .mockImplementationOnce(() => {
+    return [mockTestStep];
+  });
 const mockTestAddAttachment = jest.fn();
 const mockTestEndTest = jest.fn();
 
-const mockGroupName = 'groupName';
+const mockTestStartStep = jest.fn().mockImplementation(() => {
+  return mockAllureStep;
+});
+const mockStepEndStep = jest.fn();
+
+const mockGroupName: string = 'groupName';
 const mockAllureTest: AllureTest = new AllureTest(null);
+const mockAllureStep: AllureStep = new AllureStep(null);
+const mockTestStep: TestStep = new TestStep('testStep');
 
 jest.mock('allure-js-commons', () => {
   const { Severity, Status, Stage, ContentType } = jest.requireActual('allure-js-commons');
@@ -78,6 +97,14 @@ jest.mock('allure-js-commons', () => {
         constructor: () => {},
         endTest: mockTestEndTest,
         addAttachment: mockTestAddAttachment,
+        startStep: mockTestStartStep,
+      };
+    }),
+    AllureStep: jest.fn().mockImplementation(() => {
+      return {
+        status: null,
+        constructor: () => {},
+        endStep: mockStepEndStep,
       };
     }),
   };
@@ -90,6 +117,17 @@ jest.mock('../../../src/reporter/metadata', () => {
         constructor: () => {},
         addMetadataToTest: mockAddMetadataToTest,
         getSteps: mockGetSteps,
+      };
+    }),
+  };
+});
+jest.mock('../../../src/testcafe/step', () => {
+  return {
+    TestStep: jest.fn().mockImplementation(() => {
+      return {
+        name: 'testStep',
+        screenshotAmount: 1,
+        constructor: () => {},
       };
     }),
   };
@@ -215,7 +253,7 @@ describe('Allure reporter', () => {
 
     expect(mockGroupStartTest).not.toHaveBeenCalled();
   });
-  it('Should end passing test', () => {
+  it('Should end passing test with no steps', () => {
     const testName: string = 'testname';
     const testMeta: object = { severity: Severity.TRIVIAL };
     const testRunInfo: TestRunInfo = {};
@@ -227,15 +265,43 @@ describe('Allure reporter', () => {
 
     reporter.endTest(testName, testRunInfo, testMeta);
 
+    expect(mockReporterGetCurrentTestExists).toBeCalledTimes(1);
     expect(Metadata).toHaveBeenCalledTimes(1);
     expect(Metadata).toBeCalledWith(testMeta, true);
     expect(mockAddMetadataToTest).toHaveBeenCalledTimes(1);
-    expect(mockReporterGetCurrentTestExists).toBeCalledTimes(1);
+    expect(mockGetSteps).toBeCalledTimes(1);
     expect(mockReporterAddScreenshotAttachments).toBeCalledTimes(1);
+
     expect(mockAllureTest.status).toBe(Status.PASSED);
     expect(mockAllureTest.detailsMessage).toBe(null);
     expect(mockAllureTest.detailsTrace).toBe(null);
     expect(mockAllureTest.stage).toBe(Stage.FINISHED);
+    expect(mockTestEndTest).toBeCalledTimes(1);
+  });
+  it('Should end passing test with steps', () => {
+    const testName: string = 'testname';
+    const testMeta: object = { severity: Severity.TRIVIAL };
+    const testRunInfo: TestRunInfo = {};
+    const reporter: AllureReporter = new AllureReporter();
+    // @ts-ignore
+    reporter.getCurrentTest = mockReporterGetCurrentTestExists;
+    // @ts-ignore
+    reporter.addStepsWithAttachments = mockReporterAddStepsWithAttachments;
+
+    reporter.endTest(testName, testRunInfo, testMeta);
+
+    expect(mockReporterGetCurrentTestExists).toBeCalledTimes(1);
+    expect(Metadata).toHaveBeenCalledTimes(1);
+    expect(Metadata).toBeCalledWith(testMeta, true);
+    expect(mockAddMetadataToTest).toHaveBeenCalledTimes(1);
+    expect(mockGetSteps).toBeCalledTimes(1);
+    expect(mockReporterAddStepsWithAttachments).toBeCalledTimes(1);
+
+    expect(mockAllureTest.status).toBe(Status.PASSED);
+    expect(mockAllureTest.detailsMessage).toBe(null);
+    expect(mockAllureTest.detailsTrace).toBe(null);
+    expect(mockAllureTest.stage).toBe(Stage.FINISHED);
+    expect(mockTestEndTest).toBeCalledTimes(1);
   });
   it('Should end skipped test', () => {
     const testName: string = 'testname';
@@ -252,6 +318,7 @@ describe('Allure reporter', () => {
     expect(mockAllureTest.detailsMessage).toBe(null);
     expect(mockAllureTest.detailsTrace).toBe(null);
     expect(mockAllureTest.stage).toBe(Stage.FINISHED);
+    expect(mockTestEndTest).toBeCalledTimes(1);
   });
   it('Should add warnings to ended test', () => {
     const testName: string = 'testname';
@@ -269,6 +336,7 @@ describe('Allure reporter', () => {
     expect(mockAllureTest.detailsMessage).toBe('warning1\nwarning2');
     expect(mockAllureTest.detailsTrace).toBe(null);
     expect(mockAllureTest.stage).toBe(Stage.FINISHED);
+    expect(mockTestEndTest).toBeCalledTimes(1);
   });
   it('Should add errors to ended test', () => {
     const testName: string = 'testname';
@@ -296,6 +364,7 @@ describe('Allure reporter', () => {
       `User Agent: ${testError.userAgent}\nFile name: ${testError.callsite.filename}\nLine number: ${testError.callsite.lineNum}`,
     );
     expect(mockAllureTest.stage).toBe(Stage.FINISHED);
+    expect(mockTestEndTest).toBeCalledTimes(1);
   });
   it('Should not add empty errors to ended test', () => {
     const testName: string = 'testname';
@@ -314,6 +383,7 @@ describe('Allure reporter', () => {
     expect(mockAllureTest.detailsMessage).toBe(null);
     expect(mockAllureTest.detailsTrace).toBe(null);
     expect(mockAllureTest.stage).toBe(Stage.FINISHED);
+    expect(mockTestEndTest).toBeCalledTimes(1);
   });
   it('Should not add empty callsite errors to ended test', () => {
     const testName: string = 'testname';
@@ -332,8 +402,9 @@ describe('Allure reporter', () => {
     expect(mockAllureTest.detailsMessage).toBe(null);
     expect(mockAllureTest.detailsTrace).toBe(null);
     expect(mockAllureTest.stage).toBe(Stage.FINISHED);
+    expect(mockTestEndTest).toBeCalledTimes(1);
   });
-  it('Should add screenshots to an ended test', () => {
+  it('Should add screenshots to an ended test without steps', () => {
     const testScreenshotManual: Screenshot = { screenshotPath: 'testPathOnManual', takenOnFail: false };
     const testScreenshotOnFail: Screenshot = { screenshotPath: 'testPathOnFail', takenOnFail: true };
     const testScreenshots: Screenshot[] = [testScreenshotManual, testScreenshotOnFail];
@@ -354,6 +425,58 @@ describe('Allure reporter', () => {
       testScreenshotOnFail.screenshotPath,
     );
   });
+  it('Should add screenshots to an ended test with steps', () => {
+    const testScreenshotManual: Screenshot = { screenshotPath: 'testPathOnManual', takenOnFail: false };
+    const testScreenshotOnFail: Screenshot = { screenshotPath: 'testPathOnFail', takenOnFail: true };
+    const testScreenshots: Screenshot[] = [testScreenshotManual, testScreenshotOnFail];
+    const testStepSuccess: TestStep = new TestStep('testStepSuccesfull');
+    const testStepFailed: TestStep = new TestStep('testStepFailed');
+    const testSteps: TestStep[] = [testStepSuccess, testStepFailed];
+    const testRunInfo: TestRunInfo = { screenshots: testScreenshots };
+    const reporter: AllureReporter = new AllureReporter();
+
+    // @ts-ignore
+    reporter.addScreenshotAttachment = mockReporterAddScreenshotAttachment;
+
+    // @ts-ignore
+    reporter.addStepsWithAttachments(mockAllureTest, testRunInfo, testSteps);
+
+    expect(mockTestStartStep).toBeCalledTimes(2);
+    expect(mockTestStartStep).toBeCalledWith(testStepSuccess.name);
+    expect(mockTestStartStep).toBeCalledWith(testStepFailed.name);
+
+    expect(mockReporterAddScreenshotAttachment).toBeCalledTimes(2);
+  });
+  it('Should not add screenshots to steps if testStep screenshotAmount is not > 0', () => {
+    const testScreenshotManual: Screenshot = { screenshotPath: 'testPathOnManual', takenOnFail: false };
+    const testScreenshots: Screenshot[] = [testScreenshotManual];
+    const testStepSuccess: TestStep = new TestStep('testStepSuccesfull');
+    testStepSuccess.screenshotAmount = 0;
+    const testSteps: TestStep[] = [testStepSuccess];
+    const testRunInfo: TestRunInfo = { screenshots: testScreenshots };
+    const reporter: AllureReporter = new AllureReporter();
+
+    // @ts-ignore
+    reporter.addScreenshotAttachment = mockReporterAddScreenshotAttachment;
+
+    // @ts-ignore
+    reporter.addStepsWithAttachments(mockAllureTest, testRunInfo, testSteps);
+
+    expect(mockTestStartStep).toBeCalledTimes(1);
+    expect(mockTestStartStep).toBeCalledWith(testStepSuccess.name);
+
+    expect(mockReporterAddScreenshotAttachment).not.toBeCalled();
+  });
+  it('Should not add screenshot if path is null', () => {
+    const testScreenshotManual: Screenshot = { screenshotPath: null, takenOnFail: false };
+    const reporter: AllureReporter = new AllureReporter();
+
+    // @ts-ignore
+    reporter.addScreenshotAttachment(mockAllureTest, testScreenshotManual);
+
+    expect(mockTestAddAttachment).not.toBeCalled();
+  });
+
   it('Should start new test if non-existing test is ended', () => {
     const testName: string = 'testname';
     const testMeta: object = { severity: Severity.TRIVIAL };

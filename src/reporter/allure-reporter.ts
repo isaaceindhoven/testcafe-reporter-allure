@@ -162,14 +162,14 @@ export default class AllureReporter {
     let screenshotIndex: number = 0;
 
     for (let i = 0; i < stepAmount; i += 1) {
-      const step: TestStep = steps[i];
-      const testStep: AllureStep = test.startStep(step.name);
+      const testStep: TestStep = steps[i];
+      const allureStep: AllureStep = test.startStep(testStep.name);
 
-      if (step.screenshotAmount && step.screenshotAmount > 0) {
-        for (let j = 0; j < step.screenshotAmount; j += 1) {
+      if (testStep.screenshotAmount && testStep.screenshotAmount > 0) {
+        for (let j = 0; j < testStep.screenshotAmount; j += 1) {
           const screenshot: Screenshot = testRunInfo.screenshots[screenshotIndex];
 
-          this.addScreenshotAttachment(testStep, screenshot);
+          this.addScreenshotAttachment(allureStep, screenshot);
 
           screenshotIndex += 1;
         }
@@ -179,13 +179,13 @@ export default class AllureReporter {
       // If a step is not last it can be assumed that the step was successfull because otherwise the test would of stopped earlier.
       // If a step is last the status from the test itself should be copied.
       if (i === stepLastIndex) {
-        testStep.status = test.status;
+        allureStep.status = test.status;
       } else {
-        testStep.status = Status.PASSED;
+        allureStep.status = Status.PASSED;
       }
 
-      testStep.stage = Stage.FINISHED;
-      testStep.endStep();
+      allureStep.stage = Stage.FINISHED;
+      allureStep.endStep();
     }
   }
 
