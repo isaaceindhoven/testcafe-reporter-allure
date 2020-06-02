@@ -30,7 +30,7 @@ describe('TestStep', () => {
     const stepName = 'TestStep';
     const step: TestStep = new TestStep(stepName);
     const expectedMeta: any = {};
-    const testcontroller = { testRun: { test: { meta: expectedMeta }, opts: {} } };
+    const testcontroller = { testRun: { test: { meta: expectedMeta } } };
 
     // @ts-ignore
     const actualMeta = step.getMeta(testcontroller);
@@ -40,7 +40,7 @@ describe('TestStep', () => {
   it('Should create a new meta if none exists', () => {
     const stepName = 'TestStep';
     const step: TestStep = new TestStep(stepName);
-    const testcontroller = { testRun: { test: { meta: null }, opts: {} } };
+    const testcontroller = { testRun: { test: { meta: null } } };
 
     // @ts-ignore
     const actualMeta = step.getMeta(testcontroller);
@@ -51,7 +51,7 @@ describe('TestStep', () => {
   it('Should add step to a test', () => {
     const stepName = 'TestStep';
     const step: TestStep = new TestStep(stepName);
-    const testcontroller = { testRun: { test: { meta: null }, opts: {} } };
+    const testcontroller = { testRun: { test: { meta: null } } };
 
     // @ts-ignore
     step.addStepToTest(testcontroller);
@@ -65,7 +65,7 @@ describe('TestStep', () => {
     const step: TestStep = new TestStep(stepName);
     const secondStepName = 'TestStep';
     const secondStep: TestStep = new TestStep(secondStepName);
-    const testcontroller = { testRun: { test: { meta: null }, opts: {} } };
+    const testcontroller = { testRun: { test: { meta: null } } };
 
     // @ts-ignore
     step.addStepToTest(testcontroller);

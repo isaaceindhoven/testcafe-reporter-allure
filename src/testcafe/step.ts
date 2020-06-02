@@ -40,12 +40,6 @@ export class TestStep {
     }
     return meta;
   }
-
-  // // Returns a new copy of the reporter thus may not be able to be used.
-  // private getReporter(testController: TestController): AllureReporter {
-  //   // @ts-ignore
-  //   return testController.testRun.opts.reporter[0].name().getAllureReporter();
-  // }
 }
 
 /* The TestController loses its parameters when returned as a TestControllerPromise. 
