@@ -1,5 +1,5 @@
 {
-  "name": "testcafe-reporter-isaac",
+  "name": "testcafe-reporter-allure",
   "version": "0.0.0-develop",
   "author": "ISAAC E-commerce Solutions BV",
   "license": "MIT",
@@ -12,12 +12,12 @@
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/isaaceindhoven/testcafe-reporter-isaac.git"
+    "url": "git+https://github.com/isaaceindhoven/testcafe-reporter-allure.git"
   },
   "bugs": {
-    "url": "https://github.com/isaaceindhoven/testcafe-reporter-isaac/issues"
+    "url": "https://github.com/isaaceindhoven/testcafe-reporter-allure/issues"
   },
-  "homepage": "https://github.com/isaaceindhoven/testcafe-reporter-isaac#readme",
+  "homepage": "https://github.com/isaaceindhoven/testcafe-reporter-allure#readme",
   "scripts": {
     "build:prod": "tsc --project tsconfig.prod.json",
     "build:test": "tsc --project tsconfig.test.json",
