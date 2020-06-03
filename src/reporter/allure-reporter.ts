@@ -3,13 +3,16 @@ import {
   AllureConfig,
   AllureGroup,
   AllureRuntime,
+  AllureStep,
   AllureTest,
   Category,
   ContentType,
+  ExecutableItemWrapper,
   Stage,
   Status,
 } from 'allure-js-commons';
-import { Screenshot, TestRunInfo } from '../models';
+import { Screenshot, TestRunInfo } from '../testcafe/models';
+import { TestStep } from '../testcafe/step';
 import { loadCategoriesConfig, loadReporterConfig } from '../utils/config';
 import addNewLine from '../utils/utils';
 import Metadata from './metadata';
@@ -130,8 +133,6 @@ export default class AllureReporter {
       });
     }
 
-    this.addScreenshotAttachments(currentTest, testRunInfo);
-
     const currentMetadata = new Metadata(meta, true);
     if (testRunInfo.unstable) {
       currentMetadata.setFlaky();
@@ -141,25 +142,75 @@ export default class AllureReporter {
     }
     currentMetadata.addMetadataToTest(currentTest, this.groupMetadata);
 
+    // If steps exist handle them, if not add screenshots to base of the test.
+    const testSteps: TestStep[] = currentMetadata.getSteps();
+    if (testSteps) {
+      this.addStepsWithAttachments(currentTest, testRunInfo, testSteps);
+    } else {
+      this.addScreenshotAttachments(currentTest, testRunInfo);
+    }
+
     currentTest.detailsMessage = testMessages;
     currentTest.detailsTrace = testDetails;
     currentTest.stage = Stage.FINISHED;
     currentTest.endTest();
   }
 
+  /* To add the screenshots to the correct test steps they have to be loaded from testRunInfo.screenshots.
+  Because of how the screenshots are registered within TestCafé the only data the TestStep has via the metadata is the amount
+  of screenshots taken an no reference to which screeshot was taken.
+  However because both the screenshots and the TestSteps are saved chronologically it can be determined what screenshots are part
+  each TestStep by keeping an index of the current screenshot and the number of screenshots taken per TestStep and looping through them. */
+  private addStepsWithAttachments(test: AllureTest, testRunInfo: TestRunInfo, steps: TestStep[]) {
+    const stepAmount: number = steps.length;
+    const stepLastIndex: number = stepAmount - 1;
+    let screenshotIndex: number = 0;
+
+    for (let i = 0; i < stepAmount; i += 1) {
+      const testStep: TestStep = steps[i];
+      const allureStep: AllureStep = test.startStep(testStep.name);
+
+      if (testStep.screenshotAmount && testStep.screenshotAmount > 0) {
+        for (let j = 0; j < testStep.screenshotAmount; j += 1) {
+          const screenshot: Screenshot = testRunInfo.screenshots[screenshotIndex];
+
+          this.addScreenshotAttachment(allureStep, screenshot);
+
+          screenshotIndex += 1;
+        }
+      }
+
+      // Steps do not record the state they finished because this data is not available from TestCafé.
+      // If a step is not last it can be assumed that the step was successfull because otherwise the test would of stopped earlier.
+      // If a step is last the status from the test itself should be copied.
+      if (i === stepLastIndex) {
+        allureStep.status = test.status;
+      } else {
+        allureStep.status = Status.PASSED;
+      }
+
+      allureStep.stage = Stage.FINISHED;
+      allureStep.endStep();
+    }
+  }
+
   private addScreenshotAttachments(test: AllureTest, testRunInfo: TestRunInfo): void {
     if (testRunInfo.screenshots) {
       testRunInfo.screenshots.forEach((screenshot: Screenshot) => {
-        if (screenshot.screenshotPath) {
-          let screenshotName: string;
-          if (screenshot.takenOnFail) {
-            screenshotName = reporterConfig.LABEL.SCREENSHOT_ON_FAIL;
-          } else {
-            screenshotName = reporterConfig.LABEL.SCREENSHOT_MANUAL;
-          }
-          test.addAttachment(screenshotName, ContentType.PNG, screenshot.screenshotPath);
-        }
+        this.addScreenshotAttachment(test, screenshot);
       });
+    }
+  }
+
+  private addScreenshotAttachment(test: ExecutableItemWrapper, screenshot: Screenshot): void {
+    if (screenshot.screenshotPath) {
+      let screenshotName: string;
+      if (screenshot.takenOnFail) {
+        screenshotName = reporterConfig.LABEL.SCREENSHOT_ON_FAIL;
+      } else {
+        screenshotName = reporterConfig.LABEL.SCREENSHOT_MANUAL;
+      }
+      test.addAttachment(screenshotName, ContentType.PNG, screenshot.screenshotPath);
     }
   }
 
