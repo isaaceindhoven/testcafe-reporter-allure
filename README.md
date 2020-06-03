@@ -1,1 +1,1 @@
-# testcafe-reporter-isaac
+# testcafe-reporter-allure
