@@ -3,6 +3,7 @@
         "module": "commonjs",
         "outDir": "dist",
         "downlevelIteration": true,
+        "moduleResolution": "Node",
         "typeRoots": [
             "node_modules/@types",
             "src/types"
