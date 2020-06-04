@@ -1,6 +1,5 @@
-import { Severity } from 'allure-js-commons';
 import { Selector } from 'testcafe';
-import step from '../../src/testcafe/step';
+import { Severity, step } from '../../src';
 
 fixture('TestCafé Example Fixture - Main').page('http://devexpress.github.io/testcafe/example').meta({
   epic: 'Example Epic Ticket',

@@ -22,7 +22,11 @@ This package is namespaced, therefore the following command can be used to insta
 
 To convert the Allure-Results into an Allure-Report the [Allure Commandline](https://www.npmjs.com/package/allure-commandline) is needed. This package can be installed with the following command:
 
-`npm install --save-dev allure-commandline` 
+`npm install --save-dev allure-commandline`
+
+Quick install of all dependancies:
+
+`npm install --save-dev allure-commandline testcafe testcafe-reporter-allure@npm:@isaaceindhoven/testcafe-reporter-allure`
 
 ## Using the reporter
 
