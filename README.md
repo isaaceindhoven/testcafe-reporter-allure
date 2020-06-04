@@ -53,6 +53,9 @@ After the Allure-Results are generated, the Allure-Report can be built:
 
 ## Features
 ### Metadata
+
+![Example of the metadata code shown below.](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/package-distribution/.github/images/Metadata.PNG)
+
 Metadata can be added to a test by using the `meta()` function. The metadata can be added to both the `test` and the `fixture`.
 
 Metadata added to a `fixture` will be inherited by all tests coupled to that fixture to avoid having to declare metadata that is the same for all tests within the fixture multiple times. 
@@ -82,6 +85,9 @@ test.meta({
 | Othermeta  | It is also possible to add custom metadata to a `test`. These will be added as parameters to the Allure Report. These parameters do __NOT__ have to be named otherMeta but do require to be a key-value pair of two strings. For example adding a color parameter to a test: `color: 'black'` will result in `color: black` be added to the final Allure Report.  |
 
 ### Test Steps
+
+![Example of the step code shown below.](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/package-distribution/.github/images/TestSteps.PNG)
+
 With this reporter test-steps can be defined to split a TestCafé `test` into multiple steps. The step function expects three variables: The step name, the TestController, and the actions taken within the step as a TestControllerPromise.
 
 These steps will show up as test-steps within the Allure-Report and will include a screenshot of the page state at the end of the step. This can be used to visually follow along with what the test does within each step and get a quick overview where a test might be failing.
