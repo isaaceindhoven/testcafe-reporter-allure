@@ -4,6 +4,15 @@ This project is an [Allure](http://allure.qatools.ru/) reporter plugin for [Test
 
 The inspiration for this project was its namesake, [testcafe-reporter-allure](http://allure.qatools.ru/), made by azohra-core, making use of the 2.0.0 version of the [allure-js-commons](https://github.com/allure-framework/allure-js/tree/master/packages/allure-js-commons) package.
 
+## Contents
+- [Installation](#installation)
+- [Using the reporter](#using-the-reporter)
+- [Features](#features)
+  - [Metadata](#metadata)
+  - [Test Steps](#test-steps)
+- [Configuration](#configuration)
+- [License](#license)
+
 ## Installation
 
 This package is namespaced, therefore the following command can be used to install the reporter in a way that TestCafé can detect it. 
@@ -54,7 +63,7 @@ After the Allure-Results are generated, the Allure-Report can be built:
 ## Features
 ### Metadata
 
-![Example of the metadata code shown below.](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/package-distribution/.github/images/Metadata.PNG)
+![Example of the metadata code shown below.](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/package-distribution/.github/images/metadata.PNG)
 
 Metadata can be added to a test by using the `meta()` function. The metadata can be added to both the `test` and the `fixture`.
 
@@ -86,7 +95,7 @@ test.meta({
 
 ### Test Steps
 
-![Example of the step code shown below.](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/package-distribution/.github/images/TestSteps.PNG)
+![Example of the step code shown below.](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/package-distribution/.github/images/test-steps.PNG)
 
 With this reporter test-steps can be defined to split a TestCafé `test` into multiple steps. The step function expects three variables: The step name, the TestController, and the actions taken within the step as a TestControllerPromise.
 
@@ -168,5 +177,5 @@ module.export = [
 ];
 ```
 
-# License
+## License
 [MIT](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/package-distribution/LICENSE) © ISAAC E-commerce Solutions BV
