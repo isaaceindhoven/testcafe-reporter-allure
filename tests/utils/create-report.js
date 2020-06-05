@@ -2,7 +2,7 @@
 const normalizeNewline = require('normalize-newline');
 const { embeddingUtils } = require('testcafe');
 const { InMemoryAllureWriter } = require('allure-js-commons/dist/src/writers');
-const pluginFactory = require('../../src').default;
+const pluginFactory = require('../../src');
 const { AllureTestWriter } = require('../../src/writers/allure-writer');
 const reporterTestCalls = require('./reporter-test-calls');
 

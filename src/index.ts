@@ -12,7 +12,7 @@ const reporterConfig = loadReporterConfig();
 
 export { step, reporterConfig, Severity };
 
-export default function () {
+function allureReporterPlugin() {
   return {
     allureReporter: null,
     allureConfig: null,
@@ -63,5 +63,8 @@ export default function () {
   };
 }
 
+// export default allureReporterPlugin;
+module.exports = allureReporterPlugin;
+module.exports.Severity = Severity;
 module.exports.step = step;
 module.exports.reporterConfig = reporterConfig;

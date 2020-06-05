@@ -1,11 +1,14 @@
 /* eslint-disable no-console */
 const createTestCafe = require('testcafe');
 /* eslint-disable-next-line import/no-unresolved */
-const isaacReporter = require('../dist/index').default;
+const isaacReporter = require('../dist/index');
 /* eslint-disable-next-line import/no-unresolved */
 const { reporterConfig } = require('../dist/index');
 
 let testcafe = null;
+
+console.log(isaacReporter);
+console.log(reporterConfig);
 
 createTestCafe()
   .then((tc) => {
