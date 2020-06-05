@@ -1,5 +1,5 @@
 import { Selector } from 'testcafe';
-import { Severity, step } from '../../src';
+import { Severity, step } from '../../src/utils';
 
 fixture('TestCafé Example Fixture - Main').page('http://devexpress.github.io/testcafe/example').meta({
   epic: 'Example Epic Ticket',

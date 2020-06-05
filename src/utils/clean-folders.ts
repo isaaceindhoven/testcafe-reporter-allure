@@ -1,5 +1,5 @@
 import * as path from 'path';
-import * as rimraf from 'rimraf';
+import rimraf from 'rimraf';
 import { loadReporterConfig } from './config';
 
 const reporterConfig = loadReporterConfig();

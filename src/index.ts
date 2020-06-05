@@ -1,18 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // Above eslint rules are disabled for development
-import { AllureConfig, Severity } from 'allure-js-commons';
+import { AllureConfig } from 'allure-js-commons';
 import AllureReporter from './reporter/allure-reporter';
 import { TestRunInfo } from './testcafe/models';
-import step from './testcafe/step';
+
 import cleanAllureFolders from './utils/clean-folders';
-import { loadReporterConfig } from './utils/config';
+
 import log from './utils/logger';
 
-const reporterConfig = loadReporterConfig();
-
-export { step, reporterConfig, Severity };
-
-function allureReporterPlugin() {
+export default function () {
   return {
     allureReporter: null,
     allureConfig: null,
@@ -62,9 +58,3 @@ function allureReporterPlugin() {
     },
   };
 }
-
-// export default allureReporterPlugin;
-module.exports = allureReporterPlugin;
-module.exports.Severity = Severity;
-module.exports.step = step;
-module.exports.reporterConfig = reporterConfig;

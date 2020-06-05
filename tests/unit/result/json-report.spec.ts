@@ -11,9 +11,11 @@ describe('TestCafe Allure reporter JSON output', () => {
   it('Should contain 10 items (3 fixtures, 7 tests, and 1 categories file)', () => {
     const report: string = createJsonReport();
     const splitReport: string[] = splitOnNewline(report);
-    // splitReport.forEach(result => {
-    //   console.log(result);
-    // });
-    expect(splitReport.length).toEqual(11);
+    // 3 fixture logs
+    // 7 start test logs
+    // 7 end test logs
+    // 7 test reports
+    // 1 categories file
+    expect(splitReport.length).toEqual(30);
   });
 });
