@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
 const createTestCafe = require('testcafe');
 /* eslint-disable-next-line import/no-unresolved */
-const isaacReporter = require('../dist');
+const allureReporter = require('../dist');
 /* eslint-disable-next-line import/no-unresolved */
 const { reporterConfig } = require('../dist/utils');
 
 let testcafe = null;
 
-console.log(isaacReporter);
+console.log(allureReporter);
 console.log(reporterConfig);
 
 createTestCafe()
@@ -18,7 +18,7 @@ createTestCafe()
     return runner
       .src(['tests/e2e/*.ts'])
       .browsers('firefox:headless')
-      .reporter(isaacReporter)
+      .reporter(allureReporter)
       .tsConfigPath('tsconfig.test.json')
       .screenshots({
         path: reporterConfig.SCREENSHOT_DIR,

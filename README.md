@@ -50,13 +50,13 @@ testCafe
 or
 
 ```
-const isaacReporter = require('testcafe-reporter-allure');
+const allureReporter = require('testcafe-reporter-allure');
 
 testCafe
     .createRunner()
     .src(['tests/e2e/*.ts'])
     .browsers('firefox')
-    .reporter(isaacReporter)
+    .reporter(allureReporter)
     .run();
 ```
 
