@@ -6,7 +6,7 @@ This is an example project with a base implementation for the [testcafe-reporter
 
 To install the nessesary dependancies run:
 
-`npm install --save-dev allure-commandline testcafe testcafe-reporter-allure@npm:@isaaceindhoven/testcafe-reporter-allure`
+`npm install --save-dev allure-commandline testcafe testcafe-reporter-allure@npm:@isaac.frontend/testcafe-reporter-allure`
 
 The example project can be run via the testcafe API or CLI: 
 

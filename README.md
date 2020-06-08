@@ -18,7 +18,7 @@ The inspiration for this project was its namesake, [testcafe-reporter-allure](ht
 This package is namespaced. Therefore the following command can be used to install the reporter in a way that TestCafé can detect it. 
 ([Related ISSUE](https://github.com/DevExpress/testcafe/issues/4692))
 
-`npm install --save-dev testcafe-reporter-allure@npm:@isaaceindhoven/testcafe-reporter-allure`
+`npm install --save-dev testcafe-reporter-allure@npm:@isaac.frontend/testcafe-reporter-allure`
 
 The [Allure Commandline](https://www.npmjs.com/package/allure-commandline) is needed to convert the Allure-Results into an Allure-Report. This package can be installed with the following command:
 
@@ -26,7 +26,7 @@ The [Allure Commandline](https://www.npmjs.com/package/allure-commandline) is ne
 
 Quick install of all dependencies:
 
-`npm install --save-dev allure-commandline testcafe testcafe-reporter-allure@npm:@isaaceindhoven/testcafe-reporter-allure`
+`npm install --save-dev allure-commandline testcafe testcafe-reporter-allure@npm:@isaac.frontend/testcafe-reporter-allure`
 
 ## Using the reporter
 
