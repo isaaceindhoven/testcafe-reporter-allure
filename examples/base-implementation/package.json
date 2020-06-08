@@ -1,6 +1,6 @@
 {
   "name": "testcafe-reporter-allure-example",
-  "version": "0.0.0-develop",
+  "version": "0.1.0",
   "author": "ISAAC E-commerce Solutions BV",
   "license": "MIT",
   "description": "An example implementation of the testcafe-reporter-allure",
