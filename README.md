@@ -2,7 +2,7 @@
 
 This project is an [Allure](http://allure.qatools.ru/) reporter plugin for [TestCafé](https://devexpress.github.io/testcafe/).
 
-The inspiration for this project was its namesake, [testcafe-reporter-allure](http://allure.qatools.ru/), made by azohra-core, making use of the 2.0.0 version of the [allure-js-commons](https://github.com/allure-framework/allure-js/tree/master/packages/allure-js-commons) package.
+The inspiration for this project was its namesake, [testcafe-reporter-allure](https://www.npmjs.com/package/testcafe-reporter-allure), made by azohra-core, making use of the 2.0.0 version of the [allure-js-commons](https://github.com/allure-framework/allure-js/tree/master/packages/allure-js-commons) package.
 
 ## Contents
 - [Installation](#installation)
@@ -33,6 +33,8 @@ Quick install of all dependencies:
 The reporter can then be loaded in two separate ways:
 
 When using TestCafé via the command line, the reporter can be specified by using the `--reporter` option.
+
+(Note: The cli option is currently not supported)
 
 `testcafe chrome 'path/to/test/file.js' --reporter allure`
 

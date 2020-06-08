@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "outDir": "dist",
+        "downlevelIteration": true,
+        "moduleResolution": "Node",
+        "allowJs": true,
+        "typeRoots": [
+            "node_modules/@types",
+            "src/types"
+        ]
+    },
+    "include": [
+        "**/*.ts"
+    ]
+}
