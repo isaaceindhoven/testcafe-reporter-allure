@@ -67,7 +67,7 @@ After the Allure-Results are generated, the Allure-Report can be built:
 ## Features
 ### Metadata
 
-![Example of the metadata code shown below.](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/package-distribution/.github/images/metadata.PNG)
+![Example of the metadata code shown below.](https://raw.githubusercontent.com/isaaceindhoven/testcafe-reporter-allure/master/.github/images/metadata.PNG)
 
 Metadata can be added to a test by using the `meta()` function. The metadata can be added to both the `test` and the `fixture`.
 
@@ -99,7 +99,7 @@ test.meta({
 
 ### Test Steps
 
-![Example of the step code shown below.](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/package-distribution/.github/images/test-steps.PNG)
+![Example of the step code shown below.](https://raw.githubusercontent.com/isaaceindhoven/testcafe-reporter-allure/master/.github/images/test-steps.PNG)
 
 With this reporter, test-steps can be defined to split a TestCafé `test` into multiple steps. The step function expects three variables: The step name, the TestController, and the actions taken within the step as a TestControllerPromise.
 
@@ -182,4 +182,4 @@ module.export = [
 ```
 
 ## License
-[MIT](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/package-distribution/LICENSE) © ISAAC E-commerce Solutions BV
+[MIT](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/master/LICENSE) © ISAAC E-commerce Solutions BV
