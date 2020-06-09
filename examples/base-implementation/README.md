@@ -8,9 +8,7 @@ To install the nessesary dependancies run:
 
 `npm install --save-dev allure-commandline testcafe testcafe-reporter-allure@npm:@isaac.frontend/testcafe-reporter-allure`
 
-The example project can be run via the testcafe API or CLI: 
-
-(Note: The cli option is currently not supported)
+The example project can be run via the testcafe API or CLI:
 
 `npm run test:e2e:api` or `npm run test:e2e:cli`
 

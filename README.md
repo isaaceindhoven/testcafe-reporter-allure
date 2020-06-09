@@ -34,9 +34,7 @@ The reporter can then be loaded in two separate ways:
 
 When using TestCafé via the command line, the reporter can be specified by using the `--reporter` option.
 
-(Note: The cli option is currently not supported)
-
-`testcafe chrome 'path/to/test/file.js' --reporter allure`
+`testcafe chrome 'path/to/test/file.js' --reporter allure --screenshots path=allure/screenshots,takeOnFails=true`
 
 When using TestCafé via the API, the reporter can be specified by either passing the reporter name or the reporter object in the `reporter()` method within the `runner.js` file.
 
