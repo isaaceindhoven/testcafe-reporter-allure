@@ -1,0 +1,101 @@
+pipeline {
+  agent any
+
+  options {
+    buildDiscarder(logRotator(artifactDaysToKeepStr: '30', artifactNumToKeepStr: '15', daysToKeepStr: '150', numToKeepStr: '15'))
+    disableConcurrentBuilds()
+    ansiColor('xterm')
+    timeout(time: 15, unit: 'MINUTES')
+  }
+
+  environment {
+    NPM_CONFIG_PREFIX=".npm"
+    NPM_CONFIG_CACHE="npm_cache"
+  }
+
+  stages {
+
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
+
+    stage('install') {
+      agent {
+        docker {
+          image 'node:10.16.3'
+          reuseNode true
+        }
+      }
+
+      steps {
+        sh """
+          rm -rf allure
+          npm ci
+        """
+      }
+    }
+
+    stage('build') {
+      agent {
+        docker {
+          image 'node:10.16.3'
+          reuseNode true
+        }
+      }
+
+      steps {
+        sh """
+          npm --version
+          npm run build
+        """
+      }
+    }
+
+    stage('test:e2e') {
+      agent {
+        docker {
+          image 'circleci/node:10.16.3-browsers'
+          reuseNode true
+        }
+      }
+      stages {
+        stage('test:e2e:run:Chrome') {
+          environment {
+            TESTCAFE_BROWSER = "chrome:headless"
+          }
+          steps {
+            sh """
+              cd examples/base-implementation
+              npm run test:e2e:ci
+            """
+          }
+        }
+      }
+    }
+
+    stage('test:reports') {
+      steps {
+        script {
+          allure([
+            commandline: 'allure-2.x',
+            includeProperties: false,
+            jdk: '',
+            results: [[path: 'allure/allure-results']]
+          ])
+        }
+      }
+    }
+  }
+
+  post {
+    changed {
+      emailext(
+        subject: "${currentBuild.currentResult}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+        body: '${JELLY_SCRIPT, template="html"}',
+        recipientProviders: [developers(), culprits(), requestor()]
+      )
+    }
+  }
+}
