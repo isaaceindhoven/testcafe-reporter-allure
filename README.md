@@ -11,6 +11,7 @@ The inspiration for this project was its namesake, [testcafe-reporter-allure](ht
   - [Metadata](#metadata)
   - [Test Steps](#test-steps)
 - [Configuration](#configuration)
+- [Contributing](#contributing)
 - [License](#license)
 
 ## Installation
@@ -180,6 +181,12 @@ module.export = [
   },
 ];
 ```
+
+## Contributing
+
+There are multiple ways you can help improve this package: Reporting bug, suggesting features, and contributing code implementing said features and bug requests.
+
+More information can be found in [CONTRIBUTING](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/master/CONTRIBUTING.md).
 
 ## License
 [MIT](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/master/LICENSE) © ISAAC E-commerce Solutions BV
