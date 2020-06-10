@@ -3,10 +3,12 @@
 import { AllureConfig } from 'allure-js-commons';
 import AllureReporter from './reporter/allure-reporter';
 import { TestRunInfo } from './testcafe/models';
+
 import cleanAllureFolders from './utils/clean-folders';
+
 import log from './utils/logger';
 
-module.exports = () => {
+export default function () {
   return {
     allureReporter: null,
     allureConfig: null,
@@ -55,4 +57,4 @@ module.exports = () => {
       this.allureReporter.setGlobals();
     },
   };
-};
+}

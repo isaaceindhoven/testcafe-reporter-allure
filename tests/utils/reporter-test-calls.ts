@@ -1,7 +1,8 @@
+import testCallsite from './test-callsite';
+
 const { TestRunErrorFormattableAdapter } = require('testcafe').embeddingUtils;
 const { UncaughtErrorOnPage } = require('testcafe').embeddingUtils.testRunErrors;
 const { ActionElementNotFoundError } = require('testcafe').embeddingUtils.testRunErrors;
-const testCallsite = require('./test-callsite');
 
 function makeErrors(errDescrs) {
   return errDescrs.map((descr) => {
@@ -9,7 +10,7 @@ function makeErrors(errDescrs) {
   });
 }
 
-module.exports = [
+export default [
   {
     method: 'reportTaskStart',
     args: [

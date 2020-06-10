@@ -13,8 +13,12 @@
 .history
 
 # End of https://www.gitignore.io/api/visualstudiocode
-node_modules/*
+node_modules
 dist/*
 coverage/*
 allure/*
 allure.config.js
+
+examples/base-implementation/allure/*
+
+*.tgz

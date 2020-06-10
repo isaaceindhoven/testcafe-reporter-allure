@@ -1,9 +1,9 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console,import/no-extraneous-dependencies */
 const createTestCafe = require('testcafe');
 /* eslint-disable-next-line import/no-unresolved */
-const allureReporter = require('../dist');
+const allureReporter = require('testcafe-reporter-allure');
 /* eslint-disable-next-line import/no-unresolved */
-const { reporterConfig } = require('../dist/utils');
+const { reporterConfig } = require('testcafe-reporter-allure/dist/utils');
 
 let testcafe = null;
 
@@ -16,7 +16,7 @@ createTestCafe()
       .src(['tests/e2e/*.ts'])
       .browsers('firefox:headless')
       .reporter(allureReporter)
-      .tsConfigPath('tsconfig.test.json')
+      .tsConfigPath('tsconfig.json')
       .screenshots({
         path: reporterConfig.SCREENSHOT_DIR,
         takeOnFails: true,
