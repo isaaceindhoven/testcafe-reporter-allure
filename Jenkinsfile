@@ -33,7 +33,6 @@ pipeline {
           cd examples/base-implementation
           rm -rf allure
           npm ci
-          npm run list:browsers
         """
       }
     }
@@ -46,13 +45,14 @@ pipeline {
         }
       }
       stages {
-        stage('test:e2e:run:chrome') {
+          stage('test:e2e:run:chrome') {
           environment {
-            TESTCAFE_BROWSER = "chrome:headless"
+            TESTCAFE_BROWSER = "chrome:headless --no-sandbox"
           }
           steps {
             sh """
               cd examples/base-implementation
+              npm run list:browsers
               npm run test:e2e:api
             """
           }
