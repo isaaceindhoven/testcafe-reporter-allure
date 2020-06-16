@@ -14,8 +14,7 @@ pipeline {
   }
 
   stages {
-
-    stage('Checkout') {
+    stage('checkout') {
       steps {
         checkout scm
       }
@@ -31,24 +30,10 @@ pipeline {
 
       steps {
         sh """
+          cd examples/base-implementation
           rm -rf allure
           npm ci
-        """
-      }
-    }
-
-    stage('build') {
-      agent {
-        docker {
-          image 'node:10.16.3'
-          reuseNode true
-        }
-      }
-
-      steps {
-        sh """
-          npm --version
-          npm run build
+          npm run list:browsers
         """
       }
     }
@@ -61,14 +46,14 @@ pipeline {
         }
       }
       stages {
-        stage('test:e2e:run:Chrome') {
+        stage('test:e2e:run:chrome') {
           environment {
             TESTCAFE_BROWSER = "chrome:headless"
           }
           steps {
             sh """
               cd examples/base-implementation
-              npm run test:e2e:ci
+              npm run test:e2e:api
             """
           }
         }
@@ -82,20 +67,20 @@ pipeline {
             commandline: 'allure-2.x',
             includeProperties: false,
             jdk: '',
-            results: [[path: 'allure/allure-results']]
+            results: [[path: 'examples/base-implementation/allure/allure-results']]
           ])
         }
       }
     }
   }
 
-  post {
-    changed {
-      emailext(
-        subject: "${currentBuild.currentResult}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-        body: '${JELLY_SCRIPT, template="html"}',
-        recipientProviders: [developers(), culprits(), requestor()]
-      )
-    }
-  }
+  // post {
+  //   changed {
+  //     emailext(
+  //       subject: "${currentBuild.currentResult}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+  //       body: '${JELLY_SCRIPT, template="html"}',
+  //       recipientProviders: [developers(), culprits(), requestor()]
+  //     )
+  //   }
+  // }
 }

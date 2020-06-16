@@ -16,7 +16,8 @@
   "scripts": {
     "test:e2e:api": "node tests/runner.js",
     "test:e2e:cli": "testcafe firefox tests/e2e/example.spec.ts --reporter allure --screenshots path=allure/screenshots,takeOnFails=true",
-    "allure": "allure generate ./allure/allure-results --clean -o ./allure/allure-report && allure open ./allure/allure-report"
+    "allure": "allure generate ./allure/allure-results --clean -o ./allure/allure-report && allure open ./allure/allure-report",
+    "list:browsers": "testcafe --list-browsers"
   },
   "devDependencies": {
     "allure-commandline": "^2.13.0",
