@@ -1,4 +1,4 @@
-// Example Jenkinsfile
+// Development Jenkinsfile
 pipeline {
   agent any
 
@@ -30,8 +30,9 @@ pipeline {
       }
       steps {
         sh """
-          rm -rf allure
-          npm ci
+            cd examples/base-implementation
+            rm -rf allure
+            npm ci
         """
       }
     }
@@ -52,7 +53,8 @@ pipeline {
           }
           steps {
             sh """
-              npm run test:e2e:api
+                cd examples/base-implementation
+                npm run test:e2e:api
             """
           }
         }
@@ -66,20 +68,20 @@ pipeline {
             commandline: 'allure-2.x',
             includeProperties: false,
             jdk: '',
-            results: [[path: 'allure/allure-results']]
+            results: [[path: 'examples/base-implementation/allure/allure-results']]
           ])
         }
       }
     }
   }
 
-  post {
-    changed {
-      emailext(
-        subject: "${currentBuild.currentResult}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-        body: '${JELLY_SCRIPT, template="html"}',
-        recipientProviders: [developers(), culprits(), requestor()]
-      )
-    }
-  }
+  // post {
+  //   changed {
+  //     emailext(
+  //       subject: "${currentBuild.currentResult}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+  //       body: '${JELLY_SCRIPT, template="html"}',
+  //       recipientProviders: [developers(), culprits(), requestor()]
+  //     )
+  //   }
+  // }
 }
