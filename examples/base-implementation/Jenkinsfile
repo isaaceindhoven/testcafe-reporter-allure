@@ -27,10 +27,8 @@ pipeline {
           reuseNode true
         }
       }
-
       steps {
         sh """
-          cd examples/base-implementation
           rm -rf allure
           npm ci
         """
@@ -47,12 +45,12 @@ pipeline {
       stages {
           stage('test:e2e:run:chrome') {
           environment {
+            // https://github.com/DevExpress/testcafe/issues/1133#issuecomment-350775990
+            // Chrome needs the --no-sandbox flag to run the tests in a docker container 
             TESTCAFE_BROWSER = "chrome:headless --no-sandbox"
           }
           steps {
             sh """
-              cd examples/base-implementation
-              npm run list:browsers
               npm run test:e2e:api
             """
           }
@@ -67,7 +65,7 @@ pipeline {
             commandline: 'allure-2.x',
             includeProperties: false,
             jdk: '',
-            results: [[path: 'examples/base-implementation/allure/allure-results']]
+            results: [[path: 'allure/allure-results']]
           ])
         }
       }
