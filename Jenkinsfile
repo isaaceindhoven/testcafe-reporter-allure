@@ -75,13 +75,13 @@ pipeline {
     }
   }
 
-  // post {
-  //   changed {
-  //     emailext(
-  //       subject: "${currentBuild.currentResult}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-  //       body: '${JELLY_SCRIPT, template="html"}',
-  //       recipientProviders: [developers(), culprits(), requestor()]
-  //     )
-  //   }
-  // }
+  post {
+    changed {
+      emailext(
+        subject: "${currentBuild.currentResult}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+        body: '${JELLY_SCRIPT, template="html"}',
+        recipientProviders: [developers(), culprits(), requestor()]
+      )
+    }
+  }
 }
