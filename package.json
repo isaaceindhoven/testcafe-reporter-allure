@@ -1,6 +1,6 @@
 {
   "name": "@isaac.frontend/testcafe-reporter-allure",
-  "version": "0.1.2",
+  "version": "0.0.0-development",
   "author": "ISAAC E-commerce Solutions BV",
   "license": "MIT",
   "description": "An Allure reporter plugin for TestCafé. Used to generate test reports for e2e-tests.",
@@ -12,7 +12,7 @@
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/isaaceindhoven/testcafe-reporter-allure.git"
+    "url": "https://github.com/isaaceindhoven/testcafe-reporter-allure.git"
   },
   "bugs": {
     "url": "https://github.com/isaaceindhoven/testcafe-reporter-allure/issues"
@@ -71,7 +71,7 @@
     "prettier": "^2.0.4",
     "rollup": "^2.13.1",
     "rollup-plugin-typescript2": "^0.27.1",
-    "semantic-release": "^17.0.4",
+    "semantic-release": "^17.0.8",
     "testcafe": "^1.8.4",
     "ts-jest": "^25.5.1",
     "typescript": "^3.9.5"
