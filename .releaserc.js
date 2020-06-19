@@ -1,4 +1,7 @@
 module.exports = {
+  branches: ['master', 'feature/semantic-release'],
+  ci: false,
+  dryRun: true,
   plugins: [
     // https://github.com/semantic-release/commit-analyzer/
     [
@@ -29,6 +32,7 @@ module.exports = {
     [
       '@semantic-release/changelog',
       {
+        changelogFile: 'CHANGELOG.md',
         changelogTitle:
           '# Changelog\n\nAll notable changes to this project will be documented in this file. See\n[Conventional Commits](https://conventionalcommits.org) for commit guidelines.',
       },
@@ -37,8 +41,11 @@ module.exports = {
     // https://github.com/semantic-release/npm
     '@semantic-release/npm',
 
+    // https://github.com/semantic-release/github
+    '@semantic-release/github',
+
     // https://github.com/semantic-release/git
-    '@semantic-release/git',
+    // '@semantic-release/git',
 
     // ["@semantic-release/release-notes-generator", {
     //   "preset": "angular",
@@ -47,7 +54,4 @@ module.exports = {
     //   }
     // }]
   ],
-  branches: ['master', 'feature/semantic-release'],
-  ci: false,
-  dryRun: true,
 };
