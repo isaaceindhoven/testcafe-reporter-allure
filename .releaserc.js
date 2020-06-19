@@ -24,7 +24,24 @@ module.exports = {
     ],
 
     // https://github.com/semantic-release/release-notes-generator
-    '@semantic-release/release-notes-generator',
+    [
+      '@semantic-release/release-notes-generator',
+      {
+        preset: 'conventionalcommits',
+        presetConfig: {
+          types: [
+            { type: 'feat', section: 'Features' },
+            { type: 'fix', section: 'Bug Fixes' },
+            { type: 'chore', section: 'Chores', hidden: false },
+            { type: 'docs', section: 'Documentation', hidden: false },
+            { type: 'style', section: 'Styles', hidden: false },
+            { type: 'refactor', section: 'Refactors', hidden: false },
+            { type: 'perf', section: 'Performance', hidden: false },
+            { type: 'test', section: 'Tests', hidden: false },
+          ],
+        },
+      },
+    ],
 
     // https://github.com/semantic-release/changelog
     // Must be called before npm and git plugins
