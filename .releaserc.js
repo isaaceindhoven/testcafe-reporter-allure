@@ -58,17 +58,16 @@ module.exports = {
     // https://github.com/semantic-release/npm
     '@semantic-release/npm',
 
+    // https://github.com/semantic-release/git
+    [
+      '@semantic-release/git',
+      {
+        message: 'chore(release): v<%= nextRelease.version %>',
+        assets: ['CHANGELOG.md', 'package.json', 'package-lock.json'],
+      },
+    ],
+
     // https://github.com/semantic-release/github
     '@semantic-release/github',
-
-    // https://github.com/semantic-release/git
-    // '@semantic-release/git',
-
-    // ["@semantic-release/release-notes-generator", {
-    //   "preset": "angular",
-    //   "writerOpts": {
-    //     "commitsSort": ["subject", "scope"]
-    //   }
-    // }]
   ],
 };
