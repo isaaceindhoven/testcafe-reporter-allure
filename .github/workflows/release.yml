@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-      - semantic-release
+      - feature/semantic-release
 
 jobs:
   release:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Build
         run: npm run build
-        
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
