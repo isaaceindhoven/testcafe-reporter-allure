@@ -1,5 +1,5 @@
 module.exports = {
-  branches: ['master', 'feature/semantic-release'],
+  branches: ['master'],
   ci: true,
   dryRun: false,
   plugins: [
@@ -56,7 +56,7 @@ module.exports = {
     ],
 
     // https://github.com/semantic-release/npm
-    // '@semantic-release/npm',
+    '@semantic-release/npm',
 
     // https://github.com/semantic-release/git
     [
