@@ -1,6 +1,6 @@
 {
   "name": "@isaac.frontend/testcafe-reporter-allure",
-  "version": "0.0.0-development",
+  "version": "0.1.2",
   "author": "ISAAC E-commerce Solutions BV",
   "license": "MIT",
   "description": "An Allure reporter plugin for TestCafé. Used to generate test reports for e2e-tests.",
