@@ -4,8 +4,15 @@
     "group:allNonMajor",
     ":semanticCommitTypeAll(chore)"
   ],
-  "automerge": true,
-  "schedule": [
-    "before 3am on Monday"
+  "packageRules": [
+    {
+      "path": [
+        "package.json"
+      ],
+      "automerge": true,
+      "schedule": [
+        "before 3am on Monday"
+      ]
+    }
   ]
 }
