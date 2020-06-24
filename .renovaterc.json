@@ -6,7 +6,7 @@
   ],
   "packageRules": [
     {
-      "path": [
+      "paths": [
         "package.json"
       ],
       "automerge": true,
