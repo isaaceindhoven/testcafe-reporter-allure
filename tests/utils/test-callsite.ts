@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 const createCallsiteRecord = require('callsite-record');
 
 export default function () {
