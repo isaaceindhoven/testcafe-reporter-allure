@@ -21,6 +21,7 @@ createTestCafe()
         path: reporterConfig.SCREENSHOT_DIR,
         takeOnFails: true,
       })
+      .concurrency(reporterConfig.CONCURRENCY)
       .run({
         quarantineMode: reporterConfig.ENABLE_QUARANTINE,
         disableScreenshots: !reporterConfig.ENABLE_SCREENSHOTS,

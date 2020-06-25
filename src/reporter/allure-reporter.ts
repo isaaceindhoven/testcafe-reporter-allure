@@ -21,13 +21,18 @@ const reporterConfig = loadReporterConfig();
 const categoriesConfig: Category[] = loadCategoriesConfig();
 
 export default class AllureReporter {
-  private groups: AllureGroup[] = [];
-
-  private runningTest: AllureTest | null = null;
-
   private runtime: AllureRuntime = null;
 
+  // TestCafé does not run the groups concurrently when running the tests concurrently and will end the tests sequentially based on their group/fixture.
+  // This allows for only a single group and group meta to be stored at once.
+  // Running saving them in the same way as the tests is also not possible because TestCafé does not call the reporter when a group has ended it is,
+  // therefore, not possible to end the groups based on their name.
+  private group: AllureGroup = null;
+
   private groupMetadata: Metadata;
+
+  // To differentiate between the running tests when running concurrently they are stored using their name as the unique key.
+  private tests: { [name: string]: AllureTest } = {};
 
   constructor(allureConfig?: AllureConfig) {
     let config: AllureConfig;
@@ -50,20 +55,18 @@ export default class AllureReporter {
   public startGroup(name: string, meta: object): void {
     this.groupMetadata = new Metadata(meta);
     this.groupMetadata.suite = name;
-    const suite = this.runtime.startGroup(name);
-    this.groups.push(suite);
+    this.group = this.runtime.startGroup(name);
   }
 
   public endGroup(): void {
-    const currentGroup = this.getCurrentGroup();
+    const currentGroup = this.group;
     if (currentGroup !== null) {
       currentGroup.endGroup();
-      this.groups.pop();
     }
   }
 
   public startTest(name: string, meta: object): void {
-    const currentGroup = this.getCurrentGroup();
+    const currentGroup = this.group;
     if (currentGroup === null) {
       throw new Error('No active suite');
     }
@@ -73,16 +76,16 @@ export default class AllureReporter {
     currentTest.historyId = name;
     currentTest.stage = Stage.RUNNING;
 
-    this.setCurrentTest(currentTest);
+    this.setCurrentTest(name, currentTest);
   }
 
   public endTest(name: string, testRunInfo: TestRunInfo, meta: object): void {
-    let currentTest = this.getCurrentTest();
+    let currentTest = this.getCurrentTest(name);
 
     // If no currentTest exists create a new one
     if (currentTest === null) {
       this.startTest(name, meta);
-      currentTest = this.getCurrentTest();
+      currentTest = this.getCurrentTest(name);
     }
 
     const hasErrors = !!testRunInfo.errs && !!testRunInfo.errs.length;
@@ -214,20 +217,16 @@ export default class AllureReporter {
     }
   }
 
-  private getCurrentGroup(): AllureGroup | null {
-    if (this.groups.length === 0) {
-      return null;
+  private getCurrentTest(name: string): AllureTest | null {
+    if (name) {
+      return this.tests[name.toString()];
     }
-    return this.groups[this.groups.length - 1];
+    return null;
   }
 
-  private getCurrentTest(): AllureTest | null {
-    // TODO: Add parralel testing support
-    return this.runningTest;
-  }
-
-  private setCurrentTest(test: AllureTest | null) {
-    // TODO: Add parralel testing support
-    this.runningTest = test;
+  private setCurrentTest(name: string, test: AllureTest): void {
+    if (name && test) {
+      this.tests[name] = test;
+    }
   }
 }
