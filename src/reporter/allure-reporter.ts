@@ -25,8 +25,7 @@ export default class AllureReporter {
 
   // TestCafé does not run the groups concurrently when running the tests concurrently and will end the tests sequentially based on their group/fixture.
   // This allows for only a single group and group meta to be stored at once.
-  // Running saving them in the same way as the tests is also not possible because TestCafé does not call the reporter when a group has ended it is,
-  // therefore, not possible to end the groups based on their name.
+  // Saving them in the same way as the tests is also not possible because TestCafé does not call the reporter when a group has ended it is, therefore, not possible to end the groups based on their name.
   private group: AllureGroup = null;
 
   private groupMetadata: Metadata;

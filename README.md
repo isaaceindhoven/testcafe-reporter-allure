@@ -140,6 +140,7 @@ module.export = {
   ENABLE_SCREENSHOTS: true,
   ENABLE_QUARANTINE: false,
   ENABLE_LOGGING: false,
+  CONCURRENCY: 1,
 
   META: {
     SEVERITY: 'Normal',
