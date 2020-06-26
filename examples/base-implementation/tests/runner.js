@@ -11,10 +11,13 @@ createTestCafe()
   .then((tc) => {
     testcafe = tc;
     const runner = testcafe.createRunner();
+    const browser = process.env.TESTCAFE_BROWSER || 'chrome:headless';
+
+    console.log(`Using browser: ${browser}`);
 
     return runner
       .src(['tests/e2e/*.ts'])
-      .browsers('firefox:headless')
+      .browsers(browser)
       .reporter(allureReporter)
       .tsConfigPath('tsconfig.json')
       .screenshots({

@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "config:base",
+    "group:allNonMajor",
+    ":semanticCommitTypeAll(chore)"
+  ],
+  "packageRules": [
+    {
+      "paths": [
+        "package.json"
+      ],
+      "automerge": true,
+      "schedule": [
+        "before 3am on Monday"
+      ]
+    }
+  ]
+}

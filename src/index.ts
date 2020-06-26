@@ -1,11 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars,func-names */
 // Above eslint rules are disabled for development
 import { AllureConfig } from 'allure-js-commons';
 import AllureReporter from './reporter/allure-reporter';
 import { TestRunInfo } from './testcafe/models';
-
 import cleanAllureFolders from './utils/clean-folders';
-
 import log from './utils/logger';
 
 export default function () {
