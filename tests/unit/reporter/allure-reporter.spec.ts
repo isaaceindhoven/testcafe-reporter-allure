@@ -40,6 +40,10 @@ const mockRuntimeStartGroup = jest.fn().mockImplementation((name) => name);
 const mockRuntimeEndGroup = jest.fn().mockImplementation((name) => name);
 const mockRuntimeWriteCategoriesDefinitions = jest.fn();
 const mockAddMetadataToTest = jest.fn();
+const mockTestStepMergeOnSameName = jest.fn();
+const mockMergeSteps = jest.fn().mockImplementation((steps) => {
+  return steps;
+});
 
 const mockGetSteps = jest
   .fn()
@@ -121,6 +125,7 @@ jest.mock('../../../src/testcafe/step', () => {
       return {
         name: 'testStep',
         screenshotAmount: 1,
+        mergeOnSameName: mockTestStepMergeOnSameName,
         constructor: () => {},
       };
     }),
@@ -407,6 +412,8 @@ describe('Allure reporter', () => {
     const reporter: AllureReporter = new AllureReporter();
 
     // @ts-ignore
+    reporter.mergeSteps = mockMergeSteps;
+    // @ts-ignore
     reporter.addScreenshotAttachment = mockReporterAddScreenshotAttachment;
 
     // @ts-ignore
@@ -416,6 +423,7 @@ describe('Allure reporter', () => {
     expect(mockTestStartStep).toBeCalledWith(testStepSuccess.name);
     expect(mockTestStartStep).toBeCalledWith(testStepFailed.name);
 
+    expect(mockMergeSteps).toBeCalledTimes(1);
     expect(mockReporterAddScreenshotAttachment).toBeCalledTimes(2);
   });
   it('Should not add screenshots to steps if testStep screenshotAmount is not > 0', () => {
@@ -428,6 +436,8 @@ describe('Allure reporter', () => {
     const reporter: AllureReporter = new AllureReporter();
 
     // @ts-ignore
+    reporter.mergeSteps = mockMergeSteps;
+    // @ts-ignore
     reporter.addScreenshotAttachment = mockReporterAddScreenshotAttachment;
 
     // @ts-ignore
@@ -436,6 +446,7 @@ describe('Allure reporter', () => {
     expect(mockTestStartStep).toBeCalledTimes(1);
     expect(mockTestStartStep).toBeCalledWith(testStepSuccess.name);
 
+    expect(mockMergeSteps).toBeCalledTimes(1);
     expect(mockReporterAddScreenshotAttachment).not.toBeCalled();
   });
   it('Should not add screenshot if path is null', () => {

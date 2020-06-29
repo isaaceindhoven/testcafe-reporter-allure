@@ -28,7 +28,7 @@ const defaultReporterConfig = {
     FLAKY: 'Flaky test',
     SCREENSHOT_MANUAL: 'Screenshot taken manually',
     SCREENSHOT_ON_FAIL: 'Screenshot taken on fail',
-    DEFAULT_STEP_NAME: 'Test step',
+    DEFAULT_STEP_NAME: 'Test Step',
   },
 };
 

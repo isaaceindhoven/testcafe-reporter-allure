@@ -8,8 +8,12 @@ export class TestStep {
 
   public name: string;
 
-  constructor(name: string) {
-    this.screenshotAmount = 0;
+  constructor(name: string, screenshotAmount?: number) {
+    if (screenshotAmount) {
+      this.screenshotAmount = screenshotAmount;
+    } else {
+      this.screenshotAmount = 0;
+    }
 
     if (name) {
       this.name = name;
@@ -20,6 +24,14 @@ export class TestStep {
 
   public registerScreenshot(): void {
     this.screenshotAmount += 1;
+  }
+
+  public mergeOnSameName(testStep: TestStep): boolean {
+    if (this.name === testStep.name) {
+      this.screenshotAmount += testStep.screenshotAmount;
+      return true;
+    }
+    return false;
   }
 
   public addStepToTest(test: TestController): void {

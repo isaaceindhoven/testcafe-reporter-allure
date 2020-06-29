@@ -23,6 +23,8 @@ const categoriesConfig: Category[] = loadCategoriesConfig();
 export default class AllureReporter {
   private runtime: AllureRuntime = null;
 
+  private userAgents: string[] = null;
+
   // TestCafé does not run the groups concurrently when running the tests concurrently and will end the tests sequentially based on their group/fixture.
   // This allows for only a single group and group meta to be stored at once.
   // Saving them in the same way as the tests is also not possible because TestCafé does not call the reporter when a group has ended it is, therefore, not possible to end the groups based on their name.
@@ -33,7 +35,7 @@ export default class AllureReporter {
   // To differentiate between the running tests when running concurrently they are stored using their name as the unique key.
   private tests: { [name: string]: AllureTest } = {};
 
-  constructor(allureConfig?: AllureConfig) {
+  constructor(allureConfig?: AllureConfig, userAgents?: string[]) {
     let config: AllureConfig;
     if (!allureConfig) {
       config = new AllureConfig(reporterConfig.RESULT_DIR);
@@ -41,6 +43,7 @@ export default class AllureReporter {
       config = allureConfig;
     }
 
+    this.userAgents = userAgents;
     this.runtime = new AllureRuntime(config);
   }
 
@@ -48,7 +51,9 @@ export default class AllureReporter {
     // Writing the globals has to be done after the first group has been written for a currently unknown reason.
     // Best to call this function in reporterTaskEnd and to write it as the last thing.
     this.runtime.writeCategoriesDefinitions(categoriesConfig);
-    // this.runtime.writeEnvironmentInfo();
+    if (this.userAgents) {
+      this.runtime.writeEnvironmentInfo({ browsers: this.userAgents.toString() });
+    }
   }
 
   public startGroup(name: string, meta: object): void {
@@ -164,12 +169,14 @@ export default class AllureReporter {
   However because both the screenshots and the TestSteps are saved chronologically it can be determined what screenshots are part
   each TestStep by keeping an index of the current screenshot and the number of screenshots taken per TestStep and looping through them. */
   private addStepsWithAttachments(test: AllureTest, testRunInfo: TestRunInfo, steps: TestStep[]) {
-    const stepAmount: number = steps.length;
+    const mergedSteps = this.mergeSteps(steps);
+
+    const stepAmount: number = mergedSteps.length;
     const stepLastIndex: number = stepAmount - 1;
     let screenshotIndex: number = 0;
 
     for (let i = 0; i < stepAmount; i += 1) {
-      const testStep: TestStep = steps[i];
+      const testStep: TestStep = mergedSteps[i];
       const allureStep: AllureStep = test.startStep(testStep.name);
 
       if (testStep.screenshotAmount && testStep.screenshotAmount > 0) {
@@ -182,9 +189,9 @@ export default class AllureReporter {
         }
       }
 
-      // Steps do not record the state they finished because this data is not available from TestCafé.
-      // If a step is not last it can be assumed that the step was successfull because otherwise the test would of stopped earlier.
-      // If a step is last the status from the test itself should be copied.
+      /* Steps do not record the state they finished because this data is not available from TestCafé.
+      If a step is not last it can be assumed that the step was successfull because otherwise the test would of stopped earlier.
+      If a step is last the status from the test itself should be copied. */
       if (i === stepLastIndex) {
         allureStep.status = test.status;
       } else {
@@ -194,6 +201,23 @@ export default class AllureReporter {
       allureStep.stage = Stage.FINISHED;
       allureStep.endStep();
     }
+  }
+
+  /* Merge the steps together based on their name. */
+  private mergeSteps(steps: TestStep[]): TestStep[] {
+    const mergedSteps: TestStep[] = [];
+    steps.forEach((step) => {
+      // If the step exist merge the steps.
+      // If not add the step to the mergedStep list.
+      let stepExists: boolean = false;
+      mergedSteps.forEach((mergedStep) => {
+        stepExists = mergedStep.mergeOnSameName(step);
+      });
+      if (!stepExists) {
+        mergedSteps.push(new TestStep(step.name, step.screenshotAmount));
+      }
+    });
+    return mergedSteps;
   }
 
   private addScreenshotAttachments(test: AllureTest, testRunInfo: TestRunInfo): void {
@@ -212,6 +236,12 @@ export default class AllureReporter {
       } else {
         screenshotName = reporterConfig.LABEL.SCREENSHOT_MANUAL;
       }
+
+      // Add the useragent data to the screenshots to differentiate between browsers within the tests.
+      if (this.userAgents && this.userAgents.length > 1) {
+        screenshotName = `${screenshotName} - ${screenshot.userAgent}`;
+      }
+
       test.addAttachment(screenshotName, ContentType.PNG, screenshot.screenshotPath);
     }
   }

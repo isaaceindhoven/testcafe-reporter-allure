@@ -23,7 +23,7 @@ export default function () {
     async reportTaskStart(startTime: Date, userAgents: string[], testCount: number): Promise<void> {
       log(this, 'Starting Task');
 
-      this.allureReporter = new AllureReporter(this.allureConfig);
+      this.allureReporter = new AllureReporter(this.allureConfig, userAgents);
       // Clean the previous allure results
       await cleanAllureFolders();
     },
