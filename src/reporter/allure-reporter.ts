@@ -11,7 +11,7 @@ import {
   Stage,
   Status,
 } from 'allure-js-commons';
-import { Screenshot, TestRunInfo } from '../testcafe/models';
+import { ErrorObject, Screenshot, TestRunInfo } from '../testcafe/models';
 import { TestStep } from '../testcafe/step';
 import { loadCategoriesConfig, loadReporterConfig } from '../utils/config';
 import addNewLine from '../utils/utils';
@@ -104,7 +104,9 @@ export default class AllureReporter {
     } else if (hasErrors) {
       currentTest.status = Status.FAILED;
 
-      testRunInfo.errs.forEach((error: any) => {
+      const mergedErrors = this.mergeErrors(testRunInfo.errs);
+
+      mergedErrors.forEach((error: ErrorObject) => {
         if (error.errMsg) {
           testMessages = addNewLine(testMessages, error.errMsg);
         }
@@ -112,9 +114,6 @@ export default class AllureReporter {
         // TODO: Add detailed error stacktrace
         // How to convert CallSiteRecord to stacktrace?
         const callSite = error.callsite;
-        if (error.userAgent) {
-          testDetails = addNewLine(testDetails, `User Agent: ${error.userAgent}`);
-        }
         if (callSite) {
           if (callSite.filename) {
             testDetails = addNewLine(testDetails, `File name: ${callSite.filename}`);
@@ -123,12 +122,9 @@ export default class AllureReporter {
             testDetails = addNewLine(testDetails, `Line number: ${callSite.lineNum}`);
           }
         }
-
-        // currentTest.detailsTrace = error.callsite;
-        // error.callsite.stackFrames.forEach(stackFrame => {
-        //   console.log(stackFrame.getFileName());
-        //   //console.log(stackFrame.toString());
-        // });
+        if (error.userAgent) {
+          testDetails = addNewLine(testDetails, `User Agent(s): ${error.userAgent}`);
+        }
       });
     } else {
       currentTest.status = Status.PASSED;
@@ -207,8 +203,6 @@ export default class AllureReporter {
   private mergeSteps(steps: TestStep[]): TestStep[] {
     const mergedSteps: TestStep[] = [];
     steps.forEach((step) => {
-      // If the step exist merge the steps.
-      // If not add the step to the mergedStep list.
       let stepExists: boolean = false;
       mergedSteps.forEach((mergedStep) => {
         stepExists = mergedStep.mergeOnSameName(step);
@@ -218,6 +212,25 @@ export default class AllureReporter {
       }
     });
     return mergedSteps;
+  }
+
+  /* Merge the errors together based on their message. */
+  private mergeErrors(errors: ErrorObject[]): ErrorObject[] {
+    const mergedErrors: ErrorObject[] = [];
+    errors.forEach((error) => {
+      let errorExists: boolean = false;
+      mergedErrors.forEach((mergedError) => {
+        if (error.errMsg === mergedError.errMsg) {
+          errorExists = true;
+          /* eslint-disable-next-line no-param-reassign */
+          mergedError.userAgent = `${mergedError.userAgent}, ${error.userAgent}`;
+        }
+      });
+      if (!errorExists) {
+        mergedErrors.push(error);
+      }
+    });
+    return mergedErrors;
   }
 
   private addScreenshotAttachments(test: AllureTest, testRunInfo: TestRunInfo): void {

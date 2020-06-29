@@ -337,7 +337,7 @@ describe('Allure reporter', () => {
     expect(mockAllureTest.status).toBe(Status.FAILED);
     expect(mockAllureTest.detailsMessage).toBe(testError.errMsg);
     expect(mockAllureTest.detailsTrace).toBe(
-      `User Agent: ${testError.userAgent}\nFile name: ${testError.callsite.filename}\nLine number: ${testError.callsite.lineNum}`,
+      `File name: ${testError.callsite.filename}\nLine number: ${testError.callsite.lineNum}\nUser Agent(s): ${testError.userAgent}`,
     );
     expect(mockAllureTest.stage).toBe(Stage.FINISHED);
     expect(mockTestEndTest).toBeCalledTimes(1);
