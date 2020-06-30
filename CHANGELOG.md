@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [0.2.1](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v0.2.0...v0.2.1) (2020-06-30)
+
+
+### Chores
+
+* **Version:** Bump version to v1.0.0 ([e89d78e](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/e89d78e19316cd1085a556dab452bdc56aa7285e))
+
 ## [0.2.0](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v0.1.3...v0.2.0) (2020-06-30)
 
 
