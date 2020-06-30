@@ -205,3 +205,4 @@ More information can be found in [CONTRIBUTING](https://github.com/isaaceindhove
 
 ## License
 [MIT](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/master/LICENSE) © ISAAC E-commerce Solutions BV
+
