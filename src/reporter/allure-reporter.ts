@@ -203,12 +203,14 @@ export default class AllureReporter {
   private mergeSteps(steps: TestStep[]): TestStep[] {
     const mergedSteps: TestStep[] = [];
     steps.forEach((step) => {
-      let stepExists: boolean = false;
-      mergedSteps.forEach((mergedStep) => {
-        stepExists = mergedStep.mergeOnSameName(step);
-      });
-      if (!stepExists) {
-        mergedSteps.push(new TestStep(step.name, step.screenshotAmount));
+      if (step && step.name) {
+        let stepExists: boolean = false;
+        mergedSteps.forEach((mergedStep) => {
+          stepExists = mergedStep.mergeOnSameName(step);
+        });
+        if (!stepExists) {
+          mergedSteps.push(new TestStep(step.name, step.screenshotAmount));
+        }
       }
     });
     return mergedSteps;
@@ -218,16 +220,20 @@ export default class AllureReporter {
   private mergeErrors(errors: ErrorObject[]): ErrorObject[] {
     const mergedErrors: ErrorObject[] = [];
     errors.forEach((error) => {
-      let errorExists: boolean = false;
-      mergedErrors.forEach((mergedError) => {
-        if (error.errMsg === mergedError.errMsg) {
-          errorExists = true;
-          /* eslint-disable-next-line no-param-reassign */
-          mergedError.userAgent = `${mergedError.userAgent}, ${error.userAgent}`;
+      if (error && error.errMsg) {
+        let errorExists: boolean = false;
+        mergedErrors.forEach((mergedError) => {
+          if (error.errMsg === mergedError.errMsg) {
+            errorExists = true;
+            if (error.userAgent && mergedError.userAgent !== error.userAgent) {
+              /* eslint-disable-next-line no-param-reassign */
+              mergedError.userAgent = `${mergedError.userAgent}, ${error.userAgent}`;
+            }
+          }
+        });
+        if (!errorExists) {
+          mergedErrors.push(error);
         }
-      });
-      if (!errorExists) {
-        mergedErrors.push(error);
       }
     });
     return mergedErrors;
@@ -251,7 +257,7 @@ export default class AllureReporter {
       }
 
       // Add the useragent data to the screenshots to differentiate between browsers within the tests.
-      if (this.userAgents && this.userAgents.length > 1) {
+      if (this.userAgents && this.userAgents.length > 1 && screenshot.userAgent) {
         screenshotName = `${screenshotName} - ${screenshot.userAgent}`;
       }
 
@@ -261,7 +267,10 @@ export default class AllureReporter {
 
   private getCurrentTest(name: string): AllureTest | null {
     if (name) {
-      return this.tests[name.toString()];
+      const allureTest: AllureTest = this.tests[name.toString()];
+      if (allureTest) {
+        return allureTest;
+      }
     }
     return null;
   }

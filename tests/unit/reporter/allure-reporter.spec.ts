@@ -39,6 +39,7 @@ const mockReporterAddScreenshotAttachment = jest.fn();
 const mockRuntimeStartGroup = jest.fn().mockImplementation((name) => name);
 const mockRuntimeEndGroup = jest.fn().mockImplementation((name) => name);
 const mockRuntimeWriteCategoriesDefinitions = jest.fn();
+const mockRuntimewriteEnvironmentInfo = jest.fn();
 const mockAddMetadataToTest = jest.fn();
 const mockTestStepMergeOnSameName = jest.fn();
 const mockMergeSteps = jest.fn().mockImplementation((steps) => {
@@ -80,6 +81,7 @@ jest.mock('allure-js-commons', () => {
         startGroup: mockRuntimeStartGroup,
         endGroup: mockRuntimeEndGroup,
         writeCategoriesDefinitions: mockRuntimeWriteCategoriesDefinitions,
+        writeEnvironmentInfo: mockRuntimewriteEnvironmentInfo,
       };
     }),
     AllureGroup: jest.fn().mockImplementation(() => {
@@ -132,7 +134,7 @@ jest.mock('../../../src/testcafe/step', () => {
   };
 });
 
-describe('Allure reporter', () => {
+describe('Allure reporter - Instancing', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -157,7 +159,7 @@ describe('Allure reporter', () => {
     // @ts-ignore
     expect(reporter.runtime).toBeDefined();
   });
-  it('Should write globals to runtime', () => {
+  it('Should write category globals to runtime if exists', () => {
     const reporter: AllureReporter = new AllureReporter();
     const categories = loadCategoriesConfig();
 
@@ -165,6 +167,35 @@ describe('Allure reporter', () => {
 
     expect(mockRuntimeWriteCategoriesDefinitions).toHaveBeenCalledTimes(1);
     expect(mockRuntimeWriteCategoriesDefinitions).toBeCalledWith(categories);
+  });
+  it('Should write userAgent environment globals to runtime', () => {
+    const reporter: AllureReporter = new AllureReporter();
+    const userAgents = ['chrome'];
+    const userAgentsEnvironment = { browsers: userAgents.toString() };
+
+    // @ts-ignore
+    reporter.userAgents = ['chrome'];
+
+    reporter.setGlobals();
+
+    expect(mockRuntimewriteEnvironmentInfo).toHaveBeenCalledTimes(1);
+    expect(mockRuntimewriteEnvironmentInfo).toBeCalledWith(userAgentsEnvironment);
+  });
+  it('Should not write userAgent environment globals to runtime if null', () => {
+    const reporter: AllureReporter = new AllureReporter();
+
+    // @ts-ignore
+    reporter.userAgents = null;
+
+    reporter.setGlobals();
+
+    expect(mockRuntimewriteEnvironmentInfo).toHaveBeenCalledTimes(0);
+  });
+});
+
+describe('Allure reporter - Grouping', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
   it('Should start group correctly', () => {
     const reporter: AllureReporter = new AllureReporter();
@@ -229,6 +260,13 @@ describe('Allure reporter', () => {
 
     expect(mockGroupStartTest).not.toHaveBeenCalled();
   });
+});
+
+describe('Allure reporter - Test Processing', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('Should end passing test with no steps', () => {
     const testName: string = 'testname';
     const testMeta: object = { severity: Severity.TRIVIAL };
@@ -380,6 +418,29 @@ describe('Allure reporter', () => {
     expect(mockAllureTest.stage).toBe(Stage.FINISHED);
     expect(mockTestEndTest).toBeCalledTimes(1);
   });
+  it('Should start new test if non-existing test is ended', () => {
+    const testName: string = 'testname';
+    const testMeta: object = { severity: Severity.TRIVIAL };
+    const testRunInfo: TestRunInfo = {};
+    const reporter: AllureReporter = new AllureReporter();
+    // @ts-ignore
+    reporter.getCurrentTest = mockReporterGetCurrentTestNull;
+    // @ts-ignore
+    reporter.startTest = mockReporterStartTest;
+
+    reporter.endTest(testName, testRunInfo, testMeta);
+
+    expect(mockReporterGetCurrentTestNull).toBeCalledTimes(2);
+    expect(mockReporterStartTest).toBeCalledTimes(1);
+    expect(mockReporterStartTest).toBeCalledWith(testName, testMeta);
+  });
+});
+
+describe('Allure reporter - Helper Functions', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('Should add screenshots to an ended test without steps', () => {
     const testScreenshotManual: Screenshot = { screenshotPath: 'testPathOnManual', takenOnFail: false };
     const testScreenshotOnFail: Screenshot = { screenshotPath: 'testPathOnFail', takenOnFail: true };
@@ -458,23 +519,6 @@ describe('Allure reporter', () => {
 
     expect(mockTestAddAttachment).not.toBeCalled();
   });
-
-  it('Should start new test if non-existing test is ended', () => {
-    const testName: string = 'testname';
-    const testMeta: object = { severity: Severity.TRIVIAL };
-    const testRunInfo: TestRunInfo = {};
-    const reporter: AllureReporter = new AllureReporter();
-    // @ts-ignore
-    reporter.getCurrentTest = mockReporterGetCurrentTestNull;
-    // @ts-ignore
-    reporter.startTest = mockReporterStartTest;
-
-    reporter.endTest(testName, testRunInfo, testMeta);
-
-    expect(mockReporterGetCurrentTestNull).toBeCalledTimes(2);
-    expect(mockReporterStartTest).toBeCalledTimes(1);
-    expect(mockReporterStartTest).toBeCalledWith(testName, testMeta);
-  });
   it('Should set and get current test', () => {
     const reporter: AllureReporter = new AllureReporter();
     const test: AllureTest = new AllureTest(null);
@@ -484,5 +528,19 @@ describe('Allure reporter', () => {
 
     // @ts-ignore
     expect(reporter.getCurrentTest(testName)).toBe(test);
+  });
+  it('Should return null if test could not be found', () => {
+    const reporter: AllureReporter = new AllureReporter();
+    const testName: string = 'test';
+
+    // @ts-ignore
+    expect(reporter.getCurrentTest(testName)).toBe(null);
+  });
+  it('Should return null if testName is null', () => {
+    const reporter: AllureReporter = new AllureReporter();
+    const testName: string = null;
+
+    // @ts-ignore
+    expect(reporter.getCurrentTest(testName)).toBe(null);
   });
 });

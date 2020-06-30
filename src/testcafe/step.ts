@@ -28,7 +28,9 @@ export class TestStep {
 
   public mergeOnSameName(testStep: TestStep): boolean {
     if (this.name === testStep.name) {
-      this.screenshotAmount += testStep.screenshotAmount;
+      if (testStep.screenshotAmount) {
+        this.screenshotAmount += testStep.screenshotAmount;
+      }
       return true;
     }
     return false;

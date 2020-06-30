@@ -11,7 +11,7 @@ createTestCafe()
   .then((tc) => {
     testcafe = tc;
     const runner = testcafe.createRunner();
-    const browsers = process.env.TESTCAFE_BROWSER || ['chrome:headless', 'firefox:headless'];
+    const browsers = process.env.TESTCAFE_BROWSER || 'chrome:headless';
 
     return runner
       .src(['tests/e2e/*.ts'])
