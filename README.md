@@ -1,8 +1,7 @@
-# testcafe-reporter-allure
+# @isaac.frontend/testcafe-reporter-allure
+[![NPM downloads per week](https://img.shields.io/npm/dw/@isaac.frontend/testcafe-reporter-allure)](https://www.npmjs.com/package/@isaac.frontend/testcafe-reporter-allure) [![npm (scoped)](https://img.shields.io/npm/v/@isaac.frontend/testcafe-reporter-allure)](https://www.npmjs.com/package/@isaac.frontend/testcafe-reporter-allure) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-
-This project is an [Allure](http://allure.qatools.ru/) reporter plugin for [TestCafé](https://devexpress.github.io/testcafe/).
+This project is an [Allure](https://allure.qatools.ru/) reporter plugin for [TestCafé](https://devexpress.github.io/testcafe/).
 
 The inspiration for this project was its namesake, [testcafe-reporter-allure](https://www.npmjs.com/package/testcafe-reporter-allure), made by azohra-core, making use of the 2.0.0 version of the [allure-js-commons](https://github.com/allure-framework/allure-js/tree/master/packages/allure-js-commons) package.
 
