@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.0.1](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v1.0.0...v1.0.1) (2020-06-30)
+
+
+### Documentation
+
+* **README:** Add LICENSE shield ([3a44db6](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/3a44db60dae38a87a0dafd1857ef78cacdfb2788))
+
 ### [0.2.1](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v0.2.0...v0.2.1) (2020-06-30)
 
 
