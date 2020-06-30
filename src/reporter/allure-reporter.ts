@@ -25,14 +25,14 @@ export default class AllureReporter {
 
   private userAgents: string[] = null;
 
-  // TestCafé does not run the groups concurrently when running the tests concurrently and will end the tests sequentially based on their group/fixture.
-  // This allows for only a single group and group meta to be stored at once.
-  // Saving them in the same way as the tests is also not possible because TestCafé does not call the reporter when a group has ended it is, therefore, not possible to end the groups based on their name.
+  /* TestCafé does not run the groups concurrently when running the tests concurrently and will end the tests sequentially based on their group/fixture.
+  This allows for only a single group and group meta to be stored at once.
+  Saving them in the same way as the tests is also not possible because TestCafé does not call the reporter when a group has ended it is, therefore, not possible to end the groups based on their name. */
   private group: AllureGroup = null;
 
   private groupMetadata: Metadata;
 
-  // To differentiate between the running tests when running concurrently they are stored using their name as the unique key.
+  /* To differentiate between the running tests when running concurrently they are stored using their name as the unique key. */
   private tests: { [name: string]: AllureTest } = {};
 
   constructor(allureConfig?: AllureConfig, userAgents?: string[]) {
@@ -199,6 +199,32 @@ export default class AllureReporter {
     }
   }
 
+  private addScreenshotAttachments(test: AllureTest, testRunInfo: TestRunInfo): void {
+    if (testRunInfo.screenshots) {
+      testRunInfo.screenshots.forEach((screenshot: Screenshot) => {
+        this.addScreenshotAttachment(test, screenshot);
+      });
+    }
+  }
+
+  private addScreenshotAttachment(test: ExecutableItemWrapper, screenshot: Screenshot): void {
+    if (screenshot.screenshotPath) {
+      let screenshotName: string;
+      if (screenshot.takenOnFail) {
+        screenshotName = reporterConfig.LABEL.SCREENSHOT_ON_FAIL;
+      } else {
+        screenshotName = reporterConfig.LABEL.SCREENSHOT_MANUAL;
+      }
+
+      // Add the useragent data to the screenshots to differentiate between browsers within the tests.
+      if (this.userAgents && this.userAgents.length > 1 && screenshot.userAgent) {
+        screenshotName = `${screenshotName} - ${screenshot.userAgent}`;
+      }
+
+      test.addAttachment(screenshotName, ContentType.PNG, screenshot.screenshotPath);
+    }
+  }
+
   /* Merge the steps together based on their name. */
   private mergeSteps(steps: TestStep[]): TestStep[] {
     const mergedSteps: TestStep[] = [];
@@ -237,32 +263,6 @@ export default class AllureReporter {
       }
     });
     return mergedErrors;
-  }
-
-  private addScreenshotAttachments(test: AllureTest, testRunInfo: TestRunInfo): void {
-    if (testRunInfo.screenshots) {
-      testRunInfo.screenshots.forEach((screenshot: Screenshot) => {
-        this.addScreenshotAttachment(test, screenshot);
-      });
-    }
-  }
-
-  private addScreenshotAttachment(test: ExecutableItemWrapper, screenshot: Screenshot): void {
-    if (screenshot.screenshotPath) {
-      let screenshotName: string;
-      if (screenshot.takenOnFail) {
-        screenshotName = reporterConfig.LABEL.SCREENSHOT_ON_FAIL;
-      } else {
-        screenshotName = reporterConfig.LABEL.SCREENSHOT_MANUAL;
-      }
-
-      // Add the useragent data to the screenshots to differentiate between browsers within the tests.
-      if (this.userAgents && this.userAgents.length > 1 && screenshot.userAgent) {
-        screenshotName = `${screenshotName} - ${screenshot.userAgent}`;
-      }
-
-      test.addAttachment(screenshotName, ContentType.PNG, screenshot.screenshotPath);
-    }
   }
 
   private getCurrentTest(name: string): AllureTest | null {
