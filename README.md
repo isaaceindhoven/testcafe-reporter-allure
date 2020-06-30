@@ -14,6 +14,7 @@ The inspiration for this project was its namesake, [testcafe-reporter-allure](ht
   - [Test Steps](#test-steps)
   - [Jenkins](#jenkins)
 - [Configuration](#configuration)
+  - [Concurrency and Multi-Browser test-runs](#concurrency-and-multi-browser-test-runs)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -125,6 +126,7 @@ test('Example test with steps', async (t) => {
 ```
 
 ### Jenkins
+
 Because the testcafe-reporter-allure package used Allure to visualize the reports, it is also compatible with the [Allure-Jenkins](https://plugins.jenkins.io/allure-jenkins-plugin/) allowing for the reports to be added to each pipeline run.
 
 An example [Jenkinsfile](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/master/examples/base-implementation/Jenkinsfile) implementing this can be found in the [examples/base-implementation](https://github.com/isaaceindhoven/testcafe-reporter-allure/tree/master/examples/base-implementation). These pipeline stages can be added to your own projects Jenkinsfile to implement the plugins features. Within the `test:e2e` stage, the environment property `TESTCAFE_BROWSER` can be set to define the browser used within the test run. 
@@ -137,6 +139,7 @@ Lastly, all browsers have to be run in `:headless` mode, as can be seen within t
 
 
 ## Configuration
+
 Testcafe-reporter-allure provides a sensible default for the configuration. However, if a different configuration is needed, this default can be overridden by creating the file `allure.config.js` and/or `allure-categories.config.js` in the root of your project. The `allure.config.js` is for the base configuration options, and the `allure-categories.config.js` is specifically for editing the [categories](https://docs.qameta.io/allure/#_categories) config used by the Allure Commandline to sort the tests based on pattern matching.
 
 An example `allure.config.js`:
@@ -153,6 +156,7 @@ module.export = {
   ENABLE_SCREENSHOTS: true,
   ENABLE_QUARANTINE: false,
   ENABLE_LOGGING: false,
+  CONCURRENCY: 1,
 
   META: {
     SEVERITY: 'Normal',
@@ -196,6 +200,30 @@ module.export = [
   },
 ];
 ```
+
+### Concurrency and Multi-Browser test-runs
+
+The testcafe-allure-reporter supports both TestCafé's concurrency and multi-browser test-run features these can both be set using either the runner.js with the TestCafé API or the TestCafé CLI. Also, the concurrency can be set via the `allure.config.js` file, as seen in the previous chapter.
+
+NOTE: Concurrency regards the number of browser instances opened PER browser. For example, if the concurrency is 5, and both Firefox and Chrome are used, TestCafé will open 5 Firefox and 5 Chrome instances.
+
+With the API in the runner.js, multiple browsers can be set by passing them as an array into the `.browsers()` function. Concurrency can be set by passing a number into the `.concurrency()` function.
+
+```
+const allureReporter = require('testcafe-reporter-allure');
+
+testCafe
+    .createRunner()
+    .src(['tests/e2e/*.ts'])
+    .browsers([firefox:headless, chrome:headless]) <--
+    .reporter(allureReporter)
+    .concurrency(1) <--
+    .run();
+```
+
+With the CLI multiple browsers can be added to the `testcafe` command separated with a comma without a tag. For example: `testcafe chrome,firefox`. Also all local browsers can be run a once by using the `all` alias instead of seperate browsers.
+
+The concurrency can be set within the commandline with the `-c or --concurrency` tag. For example: `testcafe --concurrency 5`.
 
 ## Contributing
 

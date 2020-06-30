@@ -11,7 +11,7 @@ import {
   Stage,
   Status,
 } from 'allure-js-commons';
-import { Screenshot, TestRunInfo } from '../testcafe/models';
+import { ErrorObject, Screenshot, TestRunInfo } from '../testcafe/models';
 import { TestStep } from '../testcafe/step';
 import { loadCategoriesConfig, loadReporterConfig } from '../utils/config';
 import addNewLine from '../utils/utils';
@@ -21,15 +21,21 @@ const reporterConfig = loadReporterConfig();
 const categoriesConfig: Category[] = loadCategoriesConfig();
 
 export default class AllureReporter {
-  private groups: AllureGroup[] = [];
-
-  private runningTest: AllureTest | null = null;
-
   private runtime: AllureRuntime = null;
+
+  private userAgents: string[] = null;
+
+  /* TestCafé does not run the groups concurrently when running the tests concurrently and will end the tests sequentially based on their group/fixture.
+  This allows for only a single group and group meta to be stored at once.
+  Saving them in the same way as the tests is also not possible because TestCafé does not call the reporter when a group has ended it is, therefore, not possible to end the groups based on their name. */
+  private group: AllureGroup = null;
 
   private groupMetadata: Metadata;
 
-  constructor(allureConfig?: AllureConfig) {
+  /* To differentiate between the running tests when running concurrently they are stored using their name as the unique key. */
+  private tests: { [name: string]: AllureTest } = {};
+
+  constructor(allureConfig?: AllureConfig, userAgents?: string[]) {
     let config: AllureConfig;
     if (!allureConfig) {
       config = new AllureConfig(reporterConfig.RESULT_DIR);
@@ -37,6 +43,7 @@ export default class AllureReporter {
       config = allureConfig;
     }
 
+    this.userAgents = userAgents;
     this.runtime = new AllureRuntime(config);
   }
 
@@ -44,26 +51,26 @@ export default class AllureReporter {
     // Writing the globals has to be done after the first group has been written for a currently unknown reason.
     // Best to call this function in reporterTaskEnd and to write it as the last thing.
     this.runtime.writeCategoriesDefinitions(categoriesConfig);
-    // this.runtime.writeEnvironmentInfo();
+    if (this.userAgents) {
+      this.runtime.writeEnvironmentInfo({ browsers: this.userAgents.toString() });
+    }
   }
 
   public startGroup(name: string, meta: object): void {
     this.groupMetadata = new Metadata(meta);
     this.groupMetadata.suite = name;
-    const suite = this.runtime.startGroup(name);
-    this.groups.push(suite);
+    this.group = this.runtime.startGroup(name);
   }
 
   public endGroup(): void {
-    const currentGroup = this.getCurrentGroup();
+    const currentGroup = this.group;
     if (currentGroup !== null) {
       currentGroup.endGroup();
-      this.groups.pop();
     }
   }
 
   public startTest(name: string, meta: object): void {
-    const currentGroup = this.getCurrentGroup();
+    const currentGroup = this.group;
     if (currentGroup === null) {
       throw new Error('No active suite');
     }
@@ -73,16 +80,16 @@ export default class AllureReporter {
     currentTest.historyId = name;
     currentTest.stage = Stage.RUNNING;
 
-    this.setCurrentTest(currentTest);
+    this.setCurrentTest(name, currentTest);
   }
 
   public endTest(name: string, testRunInfo: TestRunInfo, meta: object): void {
-    let currentTest = this.getCurrentTest();
+    let currentTest = this.getCurrentTest(name);
 
     // If no currentTest exists create a new one
     if (currentTest === null) {
       this.startTest(name, meta);
-      currentTest = this.getCurrentTest();
+      currentTest = this.getCurrentTest(name);
     }
 
     const hasErrors = !!testRunInfo.errs && !!testRunInfo.errs.length;
@@ -97,7 +104,9 @@ export default class AllureReporter {
     } else if (hasErrors) {
       currentTest.status = Status.FAILED;
 
-      testRunInfo.errs.forEach((error: any) => {
+      const mergedErrors = this.mergeErrors(testRunInfo.errs);
+
+      mergedErrors.forEach((error: ErrorObject) => {
         if (error.errMsg) {
           testMessages = addNewLine(testMessages, error.errMsg);
         }
@@ -105,9 +114,6 @@ export default class AllureReporter {
         // TODO: Add detailed error stacktrace
         // How to convert CallSiteRecord to stacktrace?
         const callSite = error.callsite;
-        if (error.userAgent) {
-          testDetails = addNewLine(testDetails, `User Agent: ${error.userAgent}`);
-        }
         if (callSite) {
           if (callSite.filename) {
             testDetails = addNewLine(testDetails, `File name: ${callSite.filename}`);
@@ -116,12 +122,9 @@ export default class AllureReporter {
             testDetails = addNewLine(testDetails, `Line number: ${callSite.lineNum}`);
           }
         }
-
-        // currentTest.detailsTrace = error.callsite;
-        // error.callsite.stackFrames.forEach(stackFrame => {
-        //   console.log(stackFrame.getFileName());
-        //   //console.log(stackFrame.toString());
-        // });
+        if (error.userAgent) {
+          testDetails = addNewLine(testDetails, `User Agent(s): ${error.userAgent}`);
+        }
       });
     } else {
       currentTest.status = Status.PASSED;
@@ -162,12 +165,14 @@ export default class AllureReporter {
   However because both the screenshots and the TestSteps are saved chronologically it can be determined what screenshots are part
   each TestStep by keeping an index of the current screenshot and the number of screenshots taken per TestStep and looping through them. */
   private addStepsWithAttachments(test: AllureTest, testRunInfo: TestRunInfo, steps: TestStep[]) {
-    const stepAmount: number = steps.length;
+    const mergedSteps = this.mergeSteps(steps);
+
+    const stepAmount: number = mergedSteps.length;
     const stepLastIndex: number = stepAmount - 1;
     let screenshotIndex: number = 0;
 
     for (let i = 0; i < stepAmount; i += 1) {
-      const testStep: TestStep = steps[i];
+      const testStep: TestStep = mergedSteps[i];
       const allureStep: AllureStep = test.startStep(testStep.name);
 
       if (testStep.screenshotAmount && testStep.screenshotAmount > 0) {
@@ -180,9 +185,9 @@ export default class AllureReporter {
         }
       }
 
-      // Steps do not record the state they finished because this data is not available from TestCafé.
-      // If a step is not last it can be assumed that the step was successfull because otherwise the test would of stopped earlier.
-      // If a step is last the status from the test itself should be copied.
+      /* Steps do not record the state they finished because this data is not available from TestCafé.
+      If a step is not last it can be assumed that the step was successfull because otherwise the test would of stopped earlier.
+      If a step is last the status from the test itself should be copied. */
       if (i === stepLastIndex) {
         allureStep.status = test.status;
       } else {
@@ -210,24 +215,69 @@ export default class AllureReporter {
       } else {
         screenshotName = reporterConfig.LABEL.SCREENSHOT_MANUAL;
       }
+
+      // Add the useragent data to the screenshots to differentiate between browsers within the tests.
+      if (this.userAgents && this.userAgents.length > 1 && screenshot.userAgent) {
+        screenshotName = `${screenshotName} - ${screenshot.userAgent}`;
+      }
+
       test.addAttachment(screenshotName, ContentType.PNG, screenshot.screenshotPath);
     }
   }
 
-  private getCurrentGroup(): AllureGroup | null {
-    if (this.groups.length === 0) {
-      return null;
+  /* Merge the steps together based on their name. */
+  private mergeSteps(steps: TestStep[]): TestStep[] {
+    const mergedSteps: TestStep[] = [];
+    steps.forEach((step) => {
+      if (step && step.name) {
+        let stepExists: boolean = false;
+        mergedSteps.forEach((mergedStep) => {
+          stepExists = mergedStep.mergeOnSameName(step);
+        });
+        if (!stepExists) {
+          mergedSteps.push(new TestStep(step.name, step.screenshotAmount));
+        }
+      }
+    });
+    return mergedSteps;
+  }
+
+  /* Merge the errors together based on their message. */
+  private mergeErrors(errors: ErrorObject[]): ErrorObject[] {
+    const mergedErrors: ErrorObject[] = [];
+    errors.forEach((error) => {
+      if (error && error.errMsg) {
+        let errorExists: boolean = false;
+        mergedErrors.forEach((mergedError) => {
+          if (error.errMsg === mergedError.errMsg) {
+            errorExists = true;
+            if (error.userAgent && mergedError.userAgent !== error.userAgent) {
+              /* eslint-disable-next-line no-param-reassign */
+              mergedError.userAgent = `${mergedError.userAgent}, ${error.userAgent}`;
+            }
+          }
+        });
+        if (!errorExists) {
+          mergedErrors.push(error);
+        }
+      }
+    });
+    return mergedErrors;
+  }
+
+  private getCurrentTest(name: string): AllureTest | null {
+    if (name) {
+      const allureTest: AllureTest = this.tests[name.toString()];
+      if (allureTest) {
+        return allureTest;
+      }
     }
-    return this.groups[this.groups.length - 1];
+    return null;
   }
 
-  private getCurrentTest(): AllureTest | null {
-    // TODO: Add parralel testing support
-    return this.runningTest;
-  }
-
-  private setCurrentTest(test: AllureTest | null) {
-    // TODO: Add parralel testing support
-    this.runningTest = test;
+  private setCurrentTest(name: string, test: AllureTest): void {
+    if (name && test) {
+      this.tests[name] = test;
+    }
   }
 }

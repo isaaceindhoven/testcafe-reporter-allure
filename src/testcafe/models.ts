@@ -36,3 +36,14 @@ export interface TestRunInfo {
   quarantine?: object;
   skipped?: boolean;
 }
+
+export interface ErrorObject {
+  errMsg?: string;
+  callsite?: CallSite;
+  userAgent?: string;
+}
+
+export interface CallSite {
+  filename?: string;
+  lineNum?: string;
+}

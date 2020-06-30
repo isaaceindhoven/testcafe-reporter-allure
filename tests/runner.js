@@ -11,17 +11,18 @@ createTestCafe()
   .then((tc) => {
     testcafe = tc;
     const runner = testcafe.createRunner();
-    const browser = process.env.TESTCAFE_BROWSER || 'chrome:headless';
+    const browsers = process.env.TESTCAFE_BROWSER || 'chrome:headless';
 
     return runner
       .src(['tests/e2e/*.ts'])
-      .browsers(browser)
+      .browsers(browsers)
       .reporter(allureReporter)
       .tsConfigPath('tsconfig.test.json')
       .screenshots({
         path: reporterConfig.SCREENSHOT_DIR,
         takeOnFails: true,
       })
+      .concurrency(reporterConfig.CONCURRENCY)
       .run({
         quarantineMode: reporterConfig.ENABLE_QUARANTINE,
         disableScreenshots: !reporterConfig.ENABLE_SCREENSHOTS,
