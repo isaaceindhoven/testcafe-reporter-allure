@@ -42,7 +42,7 @@ When using TestCafé via the command line, the reporter can be specified by usin
 
 When using TestCafé via the API, the reporter can be specified by either passing the reporter name or the reporter object in the `reporter()` method within the `runner.js` file.
 
-```
+```js
 testCafe
     .createRunner()
     .src(['tests/e2e/*.ts'])
@@ -53,7 +53,7 @@ testCafe
 
 or
 
-```
+```js
 const allureReporter = require('testcafe-reporter-allure');
 
 testCafe
@@ -77,7 +77,7 @@ Metadata can be added to a test by using the `meta()` function. The metadata can
 
 Metadata added to a `fixture` will be inherited by all tests coupled to that fixture to avoid having to declare metadata that is the same for all tests within the fixture multiple times. 
 
-```
+```js
 test.meta({
   severity: Severity.TRIVIAL,
   issue: 'TEST-ISSUE',
@@ -109,7 +109,7 @@ With this reporter, test-steps can be defined to split a TestCafé `test` into m
 
 These steps will show up as test-steps within the Allure-Report and will include a screenshot of the page state at the end of the step. These screenshots could then be used to visually follow along with what the test does within each step and get a quick overview where a test might be failing.
 
-```
+```js
 import step from 'testcafe-reporter-allure';
 
 test('Example test with steps', async (t) => {
@@ -142,7 +142,7 @@ Lastly, all browsers have to be run in `:headless` mode, as can be seen within t
 Testcafe-reporter-allure provides a sensible default for the configuration. However, if a different configuration is needed, this default can be overridden by creating the file `allure.config.js` and/or `allure-categories.config.js` in the root of your project. The `allure.config.js` is for the base configuration options, and the `allure-categories.config.js` is specifically for editing the [categories](https://docs.qameta.io/allure/#_categories) config used by the Allure Commandline to sort the tests based on pattern matching.
 
 An example `allure.config.js`:
-```
+```js
 module.export = {
   RESULT_DIR: './allure/allure-results',
   REPORT_DIR: './allure/allure-report',
@@ -172,7 +172,7 @@ module.export = {
 ```
 
 An example `allure-categories.config.js`:
-```
+```js
 module.export = [
   {
     name: 'Ignored tests',
@@ -208,7 +208,7 @@ NOTE: Concurrency regards the number of browser instances opened PER browser. Fo
 
 With the API in the runner.js, multiple browsers can be set by passing them as an array into the `.browsers()` function. Concurrency can be set by passing a number into the `.concurrency()` function.
 
-```
+```js
 const allureReporter = require('testcafe-reporter-allure');
 
 testCafe
