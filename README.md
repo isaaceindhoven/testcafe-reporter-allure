@@ -143,7 +143,7 @@ Testcafe-reporter-allure provides a sensible default for the configuration. Howe
 
 An example `allure.config.js`:
 ```js
-module.export = {
+module.exports = {
   RESULT_DIR: './allure/allure-results',
   REPORT_DIR: './allure/allure-report',
   SCREENSHOT_DIR: './allure/screenshots',
@@ -173,7 +173,7 @@ module.export = {
 
 An example `allure-categories.config.js`:
 ```js
-module.export = [
+module.exports = [
   {
     name: 'Ignored tests',
     matchedStatuses: [Status.SKIPPED],
