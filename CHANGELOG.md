@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.0.2](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v1.0.1...v1.0.2) (2020-07-29)
+
+
+### Chores
+
+* **deps:** update all non-major dependencies ([50454eb](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/50454ebc9d4fb58544280fe84e2b5e810cd6a102))
+* **deps:** update all non-major dependencies ([5bd1b4c](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/5bd1b4cea12e91c8bbf81e0e56e4c4ed77b778e3))
+* **deps:** update all non-major dependencies ([87c8d36](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/87c8d36138a3c723bcc9653accf470ae21e39e35))
+* **deps:** update dependency eslint-config-airbnb-typescript to v9 ([88aab5a](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/88aab5a23e5b5b70e1826a05c9c26dc931512862))
+* **release:** v1.0.1 ([a92f20a](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/a92f20aba89e6f01e61c996756db9eb046b54bbc))
+
 ### [1.0.1](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v1.0.0...v1.0.1) (2020-06-30)
 
 
