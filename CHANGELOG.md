@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.0.3](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v1.0.2...v1.0.3) (2020-07-30)
+
+
+### Chores
+
+* **husky:** only run linting on pre-commit ([de6de72](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/de6de723f9b8c042cb1b9496794e134912f8b0da))
+* **husky:** remove unused pre-commit comment ([7005776](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/70057762e64676d41b967436b61deb832fdc50aa))
+
+
+### Documentation
+
+* **all:** implement vuepress for documentation ([7d13571](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/7d13571bfbcc6b3471814874b431315f8528c41c))
+* **README:** Enriched JS snippets ([9bc34ca](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/9bc34ca95e98e4802bcf368d3fbc88a447e171fd))
+* **README:** Fix module.export typo ([9089c08](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/9089c0896e975768e68342543bf63534ff797f7a))
+
 ### [1.0.2](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v1.0.1...v1.0.2) (2020-07-29)
 
 
