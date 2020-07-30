@@ -22,3 +22,5 @@ allure.config.js
 examples/base-implementation/allure/*
 
 *.tgz
+
+docs/.vuepress/dist
