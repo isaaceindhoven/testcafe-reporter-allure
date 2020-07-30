@@ -2,7 +2,6 @@ module.exports = {
   title: '@isaac.frontend/testcafe-reporter-allure',
   description: 'Documentation for @isaac.frontend/testcafe-reporter-allure',
   ...(process.env.NODE_ENV !== 'development' && { base: '/testcafe-reporter-allure/' }),
-  base: '',
   themeConfig: {
     nav: [
       { text: 'Github', link: 'https://github.com/isaaceindhoven/testcafe-reporter-allure' },
