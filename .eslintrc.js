@@ -4,4 +4,5 @@ module.exports = {
     project: ['./tsconfig.test.json'],
   },
   extends: ['airbnb-typescript/base', 'plugin:prettier/recommended'],
+  ignorePatterns: ['docs/**/*.js'],
 };
