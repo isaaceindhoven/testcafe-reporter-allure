@@ -79,7 +79,7 @@ test.meta({
   suite: 'Flaky Test Example Group',
   description:
     'Does, however, require that TestCafé runs in Quarantine mode, will fail on the first two attempts and succeed on the third.',
-})('Actual flaky test example', async (t: TestController) => {
+})('Actual flaky test example', async (t) => {
   // eslint-disable-next-line no-param-reassign
   t.fixtureCtx.flakyVariable += 1;
   await t.expect(t.fixtureCtx.flakyVariable).eql(2);
