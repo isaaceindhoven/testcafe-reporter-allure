@@ -68,6 +68,7 @@ const mockAllureStep: AllureStep = new AllureStep(null);
 const mockTestStep: TestStep = new TestStep('testStep');
 
 jest.mock('allure-js-commons', () => {
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   const { Severity, Status, Stage, ContentType } = jest.requireActual('allure-js-commons');
   return {
     ContentType,

@@ -44,6 +44,7 @@ describe('Test results', () => {
     report.tests.forEach((test) => {
       test.labels.forEach((label) => {
         if (label.name === 'severity') {
+          // eslint-disable-next-line jest/no-conditional-expect
           expect(label.value).toBeContainedWithinEnum(Severity);
         }
       });
@@ -70,6 +71,7 @@ describe('Test results', () => {
     report.tests.forEach((test) => {
       test.links.forEach((link) => {
         if (link.type) {
+          // eslint-disable-next-line jest/no-conditional-expect
           expect(link.type).toBeContainedWithinEnum(LinkType);
         }
       });

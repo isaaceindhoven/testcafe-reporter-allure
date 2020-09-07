@@ -5,4 +5,13 @@ module.exports = {
   },
   extends: ['airbnb-typescript/base', 'plugin:prettier/recommended'],
   ignorePatterns: ['docs/**/*.js'],
+  overrides: [
+    {
+      files: '**/e2e/*.*',
+      globals: {
+        fixture: false,
+        test: false,
+      },
+    },
+  ],
 };
