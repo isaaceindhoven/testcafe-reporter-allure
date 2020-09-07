@@ -1,5 +1,4 @@
 /* eslint-disable class-methods-use-this,no-param-reassign */
-import 'testcafe/ts-defs';
 import { loadReporterConfig } from '../utils/config';
 
 const reporterConfig = loadReporterConfig();
