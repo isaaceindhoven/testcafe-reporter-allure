@@ -137,7 +137,6 @@ jest.mock('../../../src/testcafe/step', () => {
     }),
   };
 });
-jest.mock('fs');
 
 describe('Allure reporter - Instancing', () => {
   beforeEach(() => {
