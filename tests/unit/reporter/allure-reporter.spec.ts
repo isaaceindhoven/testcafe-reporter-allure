@@ -134,6 +134,7 @@ jest.mock('../../../src/testcafe/step', () => {
     }),
   };
 });
+jest.mock('uuid', () => ({ v4: () => '00000000-0000-0000-0000-000000000000' }));
 
 describe('Allure reporter - Instancing', () => {
   beforeEach(() => {
@@ -245,7 +246,7 @@ describe('Allure reporter - Grouping', () => {
     expect(mockReporterSetCurrentTest).toHaveBeenCalledTimes(1);
 
     expect(mockAllureTest.fullName).toBe(`${mockGroupName} : ${testName}`);
-    expect(mockAllureTest.historyId).toBe(testName);
+    expect(mockAllureTest.historyId).toBe('00000000-0000-0000-0000-000000000000');
     expect(mockAllureTest.stage).toBe(Stage.RUNNING);
   });
   it('Should not start test if no group exists', () => {
