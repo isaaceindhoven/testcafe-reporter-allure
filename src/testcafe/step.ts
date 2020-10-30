@@ -36,6 +36,7 @@ export class TestStep {
     return false;
   }
 
+  // eslint-disable-next-line no-undef
   public addStepToTest(test: TestController): void {
     // Steps can be added to the metadata of the test for persistance.
     const meta: any = this.getMeta(test);
@@ -59,6 +60,7 @@ export class TestStep {
 /* The TestController loses its parameters when returned as a TestControllerPromise. 
    Therefore the steps cannot be added without a clean TestController.
 */
+// eslint-disable-next-line no-undef
 export default async function step(name: string, testController: TestController, stepAction: any) {
   let stepPromise = stepAction;
   const testStep = new TestStep(name);
