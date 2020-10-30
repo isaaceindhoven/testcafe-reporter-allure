@@ -98,8 +98,8 @@ export default class AllureReporter {
     const hasWarnings = !!testRunInfo.warnings && !!testRunInfo.warnings.length;
     const isSkipped = testRunInfo.skipped;
 
-    let testMessages: string = null;
-    let testDetails: string = null;
+    let testMessages: string = '';
+    let testDetails: string = '';
 
     if (isSkipped) {
       currentTest.status = Status.SKIPPED;

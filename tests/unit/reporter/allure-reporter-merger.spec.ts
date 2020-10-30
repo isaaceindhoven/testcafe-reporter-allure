@@ -26,7 +26,7 @@ describe('Allure reporter - Merge Functions', () => {
     expect(testStepTwo.screenshotAmount).toBe(2);
   });
 
-  it('Should not merge steps if they dont have the same name', () => {
+  it("Should not merge steps if they don't have the same name", () => {
     const reporter: AllureReporter = new AllureReporter();
     const testStepOne: TestStep = new TestStep('testStepOne', 1);
     const testStepTwo: TestStep = new TestStep('testStepTwo', 2);
@@ -61,7 +61,7 @@ describe('Allure reporter - Merge Functions', () => {
     expect(actualErrors).toStrictEqual(expectedErrors);
   });
 
-  it('Should not merge errors if they dont have the same message', () => {
+  it("Should not merge errors if they don't have the same message", () => {
     const reporter: AllureReporter = new AllureReporter();
 
     const errorOne: ErrorObject = { errMsg: 'errorOne', userAgent: 'chrome' };
