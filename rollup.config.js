@@ -7,8 +7,9 @@ export default ['src/index.ts', 'src/utils.ts'].map((input) => ({
       tsconfig: 'tsconfig.prod.json',
     }),
   ],
-  external: ['allure-js-commons', 'rimraf', 'merge-anything', 'path'],
+  external: ['allure-js-commons', 'rimraf', 'merge-anything', 'path', 'uuid', 'fs'],
   output: {
+    exports: 'auto',
     dir: 'dist',
     format: 'cjs',
   },
