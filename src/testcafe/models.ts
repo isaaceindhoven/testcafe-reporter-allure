@@ -4,6 +4,8 @@ TestCafe does not export the TestController interface, to reduce the chance of m
 the following global interfaces are created to help use the unexported testRun object. 
 Only the nessesary functions are exported to reduce the complexity and because the TestController is not needed
 within the tests, there 't' provides all definitions to use it within the context of the e2e-tests. */
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
 declare global {
   interface TestController {
     testRun: TestRun;
@@ -15,6 +17,7 @@ declare global {
     meta: object;
   }
 }
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 // https://devexpress.github.io/testcafe/documentation/reference/plugin-api/reporter.html#screenshots-object
 export interface Screenshot {

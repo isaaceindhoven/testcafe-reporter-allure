@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 declare global {
   namespace jest {
     interface Matchers<R> {
@@ -6,6 +7,7 @@ declare global {
     }
   }
 }
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 // eslint-disable-next-line no-undef
 expect.extend({
