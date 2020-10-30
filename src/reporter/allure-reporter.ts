@@ -11,6 +11,7 @@ import {
   Stage,
   Status,
 } from 'allure-js-commons';
+import { v4 as uuid } from 'uuid';
 import * as fs from 'fs';
 import { ErrorObject, Screenshot, TestRunInfo } from '../testcafe/models';
 import { TestStep } from '../testcafe/step';
@@ -78,7 +79,7 @@ export default class AllureReporter {
 
     const currentTest = currentGroup.startTest(name);
     currentTest.fullName = `${currentGroup.name} : ${name}`;
-    currentTest.historyId = name;
+    currentTest.historyId = uuid();
     currentTest.stage = Stage.RUNNING;
 
     this.setCurrentTest(name, currentTest);
