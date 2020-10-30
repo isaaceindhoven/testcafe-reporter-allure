@@ -12,6 +12,7 @@ import {
   Status,
 } from 'allure-js-commons';
 import { v4 as uuid } from 'uuid';
+import * as fs from 'fs';
 import { ErrorObject, Screenshot, TestRunInfo } from '../testcafe/models';
 import { TestStep } from '../testcafe/step';
 import { loadCategoriesConfig, loadReporterConfig } from '../utils/config';
@@ -209,7 +210,7 @@ export default class AllureReporter {
   }
 
   private addScreenshotAttachment(test: ExecutableItemWrapper, screenshot: Screenshot): void {
-    if (screenshot.screenshotPath) {
+    if (screenshot.screenshotPath && fs.existsSync(screenshot.screenshotPath)) {
       let screenshotName: string;
       if (screenshot.takenOnFail) {
         screenshotName = reporterConfig.LABEL.SCREENSHOT_ON_FAIL;
@@ -222,7 +223,10 @@ export default class AllureReporter {
         screenshotName = `${screenshotName} - ${screenshot.userAgent}`;
       }
 
-      test.addAttachment(screenshotName, ContentType.PNG, screenshot.screenshotPath);
+      const img = fs.readFileSync(screenshot.screenshotPath);
+
+      const file = this.runtime.writeAttachment(img, ContentType.PNG);
+      test.addAttachment(screenshotName, ContentType.PNG, file);
     }
   }
 
