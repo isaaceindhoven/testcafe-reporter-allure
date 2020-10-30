@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.0](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v1.0.3...v1.1.0) (2020-10-30)
+
+
+### Features
+
+* copy screenshots to allure report folder before attaching to report ([4090c76](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/4090c7624ef6af937815a1456c5d7f0b953c47ba))
+
+
+### Bug Fixes
+
+* **reporter:** fix default detailsMessage and detailsTrace value ([f3e59e0](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/f3e59e096292a485d3d9334f197e4c552fdcbf8a))
+* set historyId to uuid instead of test name ([8eaac30](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/8eaac30f7c57370510f7b4d22965318c3e2dbfd4))
+
+
+### Documentation
+
+* **vuepress:** fix base ([e947325](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/e94732547ee56e9675216b331ee209d128e7da95))
+* **vuepress:** fix base ([ef15a25](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/ef15a2513557d4bcdf16c788bc9c844f4f7526ab))
+
+
+### Tests
+
+* **eslint:** fix linting ([33f8123](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/33f81238f22fa555754495f80b07a94986d31e7f))
+* **eslint:** ignore global declaration unused-var error ([ad0130b](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/ad0130b1ad5e3560f11773a386e5e4824da0860b))
+* **ESLint:** Ignore docs folder ([c68633d](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/c68633ded7d0a86de713a6045ac90ef9d022d35e))
+* **step:** remove faulty testcafe/ts-defs ([17ced1a](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/17ced1a13f5a3354b5ec7a644a492dc062016435))
+
+
+### Chores
+
+* **deps:** update all non-major dependencies ([c841837](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/c84183712a8926789b304a1a9c8e2d45842f05e1))
+* **deps:** update dependency eslint-config-airbnb-typescript to v12 ([21a1d05](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/21a1d05414505ae5a334f28d381cb4047aa0b2a8))
+* add IntellIJ to gitignore ([b460e6c](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/b460e6c992878c8ce5f33d48f1511f2806312024))
+* cleanup ([fa5c0f0](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/fa5c0f01a718e66395342df39e692f5de0eda378))
+* **deps:** pin dependencies ([80d3640](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/80d3640c4c621128997f8742fd571610116c869c))
+* **deps:** update all non-major dependencies ([7e6e09e](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/7e6e09ed9821ade7797495162725df03a5320e4d))
+* **deps:** update all non-major dependencies ([7a653e3](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/7a653e3f5360b87fe0cb416106414850b2524e3f))
+* **deps:** update all non-major dependencies ([f8a5646](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/f8a564692cc6feed087707bb58cbdd4c9b6ad4f4))
+* **deps:** update all non-major dependencies ([3a6eb94](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/3a6eb943c7d9e0e1445ddda08b67f8e42aa3d67e))
+* **deps:** update all non-major dependencies ([6720fc4](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/6720fc4d8954fd97dd1f342a3324d0b274a786f0))
+* **deps:** update commitlint monorepo to v11 ([dae1cc2](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/dae1cc2814e9d2504bf5de39a0b5e00d101e4975))
+* **deps:** update dependency @rollup/plugin-typescript to v6 ([0509940](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/0509940e9a572ef141168118d45fe85239aa22a2))
+* **deps:** update dependency eslint-config-airbnb-typescript to v10 ([90e6d0e](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/90e6d0ea14e0d1820efc2873c6d93cd5d0a22414))
+* **deps:** update dependency typescript to v4 ([06c5fe3](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/06c5fe3b830ad9715cc01f137e06337c4d245a9d))
+* **deps:** update typescript-eslint monorepo to v4 ([96a249d](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/96a249d788b02eed701cb191833b0cc01f686688))
+* **npm:** Fix package-lock issues ([92dc9b9](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/92dc9b97ea2f3910b3c40de20b4f9944816d846e))
+
 ### [1.0.3](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v1.0.2...v1.0.3) (2020-07-30)
 
 
