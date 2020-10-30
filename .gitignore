@@ -24,3 +24,5 @@ examples/base-implementation/allure/*
 *.tgz
 
 docs/.vuepress/dist
+
+.idea

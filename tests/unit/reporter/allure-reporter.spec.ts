@@ -10,6 +10,7 @@ import {
   Stage,
   Status,
 } from 'allure-js-commons';
+import * as fs from 'fs';
 import AllureReporter from '../../../src/reporter/allure-reporter';
 import Metadata from '../../../src/reporter/metadata';
 import { Screenshot, TestRunInfo } from '../../../src/testcafe/models';
@@ -40,6 +41,7 @@ const mockRuntimeStartGroup = jest.fn().mockImplementation((name) => name);
 const mockRuntimeEndGroup = jest.fn().mockImplementation((name) => name);
 const mockRuntimeWriteCategoriesDefinitions = jest.fn();
 const mockRuntimewriteEnvironmentInfo = jest.fn();
+const mockRuntimeWriteAttachment = jest.fn().mockImplementation(() => 'filename.png');
 const mockAddMetadataToTest = jest.fn();
 const mockTestStepMergeOnSameName = jest.fn();
 const mockMergeSteps = jest.fn().mockImplementation((steps) => {
@@ -83,6 +85,7 @@ jest.mock('allure-js-commons', () => {
         endGroup: mockRuntimeEndGroup,
         writeCategoriesDefinitions: mockRuntimeWriteCategoriesDefinitions,
         writeEnvironmentInfo: mockRuntimewriteEnvironmentInfo,
+        writeAttachment: mockRuntimeWriteAttachment,
       };
     }),
     AllureGroup: jest.fn().mockImplementation(() => {
@@ -443,6 +446,9 @@ describe('Allure reporter - Helper Functions', () => {
   });
 
   it('Should add screenshots to an ended test without steps', () => {
+    jest.spyOn(fs, 'existsSync').mockReturnValue(true);
+    jest.spyOn(fs, 'readFileSync').mockReturnValue('');
+
     const testScreenshotManual: Screenshot = { screenshotPath: 'testPathOnManual', takenOnFail: false };
     const testScreenshotOnFail: Screenshot = { screenshotPath: 'testPathOnFail', takenOnFail: true };
     const testScreenshots: Screenshot[] = [testScreenshotManual, testScreenshotOnFail];
@@ -452,16 +458,8 @@ describe('Allure reporter - Helper Functions', () => {
     reporter.addScreenshotAttachments(mockAllureTest, testRunInfo);
 
     expect(mockTestAddAttachment).toBeCalledTimes(2);
-    expect(mockTestAddAttachment).toBeCalledWith(
-      'Screenshot taken manually',
-      ContentType.PNG,
-      testScreenshotManual.screenshotPath,
-    );
-    expect(mockTestAddAttachment).toBeCalledWith(
-      'Screenshot taken on fail',
-      ContentType.PNG,
-      testScreenshotOnFail.screenshotPath,
-    );
+    expect(mockTestAddAttachment).toBeCalledWith('Screenshot taken manually', ContentType.PNG, 'filename.png');
+    expect(mockTestAddAttachment).toBeCalledWith('Screenshot taken on fail', ContentType.PNG, 'filename.png');
   });
   it('Should add screenshots to an ended test with steps', () => {
     const testScreenshotManual: Screenshot = { screenshotPath: 'testPathOnManual', takenOnFail: false };
