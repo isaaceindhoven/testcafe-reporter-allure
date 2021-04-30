@@ -20,6 +20,9 @@ module.exports = {
           { type: 'style', release: 'patch' },
           { type: 'test', release: 'patch' },
         ],
+        parserOpts: {
+          noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES'],
+        },
       },
     ],
 
