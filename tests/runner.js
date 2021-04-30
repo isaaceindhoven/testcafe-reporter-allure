@@ -16,7 +16,7 @@ createTestCafe()
     return runner
       .src(['tests/e2e/*.ts'])
       .browsers(browsers)
-      .reporter(allureReporter)
+      .reporter([{ name: 'spec', name: allureReporter }])
       .tsConfigPath('tsconfig.test.json')
       .screenshots({
         path: reporterConfig.SCREENSHOT_DIR,

@@ -163,7 +163,7 @@ export default class AllureReporter {
 
   /* To add the screenshots to the correct test steps they have to be loaded from testRunInfo.screenshots.
   Because of how the screenshots are registered within TestCafé the only data the TestStep has via the metadata is the amount
-  of screenshots taken an no reference to which screeshot was taken.
+  of screenshots taken and no reference to which screeshot was taken.
   However because both the screenshots and the TestSteps are saved chronologically it can be determined what screenshots are part
   each TestStep by keeping an index of the current screenshot and the number of screenshots taken per TestStep and looping through them. */
   private addStepsWithAttachments(test: AllureTest, testRunInfo: TestRunInfo, steps: TestStep[]) {
@@ -180,8 +180,10 @@ export default class AllureReporter {
       if (testStep.screenshotAmount && testStep.screenshotAmount > 0) {
         for (let j = 0; j < testStep.screenshotAmount; j += 1) {
           const screenshot: Screenshot = testRunInfo.screenshots[screenshotIndex];
-
-          this.addScreenshotAttachment(allureStep, screenshot);
+          
+          if (screenshot) {
+            this.addScreenshotAttachment(allureStep, screenshot);
+          }
 
           screenshotIndex += 1;
         }
