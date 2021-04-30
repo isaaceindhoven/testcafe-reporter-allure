@@ -21,8 +21,8 @@
   },
   "devDependencies": {
     "allure-commandline": "^2.13.0",
-    "testcafe": "^1.8.6",
-    "testcafe-reporter-allure": "npm:@isaac.frontend/testcafe-reporter-allure@^0.1.0"
+    "testcafe": "^1.14.0",
+    "testcafe-reporter-allure": "../../"
   },
   "dependencies": {}
 }
