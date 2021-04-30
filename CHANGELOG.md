@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [1.1.2](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v1.1.1...v1.1.2) (2021-04-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **release:** DO A MAJOR UPDATE
+
+### ci
+
+* **release:** make semantice release do major updates ([ea0e97a](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/ea0e97aa29eaae0376f84747efdf3ae410133909))
+
 ### [1.1.1](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v1.1.0...v1.1.1) (2021-04-30)
 
 
