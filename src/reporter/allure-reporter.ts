@@ -177,7 +177,7 @@ export default class AllureReporter {
       const testStep: TestStep = mergedSteps[i];
       const allureStep: AllureStep = test.startStep(testStep.name);
 
-      if (testStep.screenshotAmount && testStep.screenshotAmount > 0) {
+      if (testRunInfo && testStep.screenshotAmount && testStep.screenshotAmount > 0) {
         for (let j = 0; j < testStep.screenshotAmount; j += 1) {
           const screenshot: Screenshot = testRunInfo.screenshots[screenshotIndex];
 

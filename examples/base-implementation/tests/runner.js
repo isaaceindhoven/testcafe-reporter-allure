@@ -17,7 +17,7 @@ createTestCafe()
       .src(['tests/e2e/*.ts'])
       .browsers(browsers)
       .reporter(allureReporter)
-      .tsConfigPath('tsconfig.json')
+      .compilerOptions({ typescript: { configPath: 'tsconfig.json' } })
       .screenshots({
         path: reporterConfig.SCREENSHOT_DIR,
         takeOnFails: true,
