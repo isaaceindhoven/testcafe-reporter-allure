@@ -4,6 +4,9 @@
   "author": "ISAAC E-commerce Solutions BV",
   "license": "MIT",
   "description": "An Allure reporter plugin for TestCafé. Used to generate test reports for e2e-tests.",
+  "engines": {
+    "node": ">=12"
+  },
   "keywords": [
     "testcafé",
     "allure",
