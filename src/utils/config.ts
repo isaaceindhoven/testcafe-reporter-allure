@@ -1,5 +1,5 @@
 import { Category, Status } from 'allure-js-commons';
-import { merge } from 'merge-anything';
+import { defaultsDeep } from 'lodash';
 import * as path from 'path';
 
 const defaultReporterConfig = {
@@ -72,7 +72,7 @@ function loadCustomConfig(configFile: string): object {
 
 export function loadReporterConfig(): any {
   const customConfig = loadCustomConfig(defaultReporterConfig.REPORTER_CONFIG_FILE);
-  const mergedConfig: object = merge(defaultReporterConfig, customConfig);
+  const mergedConfig: object = defaultsDeep(defaultReporterConfig, customConfig);
   return mergedConfig;
 }
 
