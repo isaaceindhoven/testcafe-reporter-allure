@@ -83,7 +83,7 @@ jobs:
     needs: build
 
     env:
-      TESTCAFE_BROWSER: 'edge:headless'
+      TESTCAFE_BROWSER: 'chrome:headless'
 
     strategy:
       matrix:
@@ -101,8 +101,8 @@ jobs:
     - name: Install dependencies
       uses: bahmutov/npm-install@v1
 
-    - name: Setup edge
-      uses: browser-actions/setup-edge@latest
+    - name: Setup Chrome
+      uses: browser-actions/setup-chrome@latest
 
     - name: Run e2e tests
       run: 'npm run test:e2e'
