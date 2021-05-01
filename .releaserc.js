@@ -4,10 +4,7 @@ module.exports = {
   dryRun: false,
   plugins: [
     // https://github.com/semantic-release/commit-analyzer/
-    [
-      '@semantic-release/commit-analyzer',
-      { preset: 'conventionalcommits' },
-    ],
+    ['@semantic-release/commit-analyzer', { preset: 'conventionalcommits' }],
 
     // https://github.com/semantic-release/release-notes-generator
     [
