@@ -101,6 +101,12 @@ jobs:
     - name: Install dependencies
       uses: bahmutov/npm-install@v1
 
+    - name: Download build artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: build
+        path: dist
+
     - name: Setup Chrome
       uses: browser-actions/setup-chrome@latest
 
