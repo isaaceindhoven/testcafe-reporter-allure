@@ -87,6 +87,10 @@ export default class Metadata {
     // Labels only accept specific keys/names as valid, it will ignore all other labels
     // Other variabels have to be added as parameters or links.
 
+    // Add default labels for language and framework that could be used by other libraries that parse allure results
+    test.addLabel('framework', 'TestCafe');
+    test.addLabel('language', 'typescript/javascript');
+
     // Only the first severity value is loaded.
     if (this.severity) {
       test.addLabel(LabelName.SEVERITY, this.severity);
