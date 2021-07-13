@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 const createTestCafe = require('testcafe');
-/* eslint-disable-next-line import/no-unresolved */
+/* eslint-disable-next-line import/no-unresolved, import/extensions */
 const allureReporter = require('../dist');
-/* eslint-disable-next-line import/no-unresolved */
+/* eslint-disable-next-line import/no-unresolved, import/extensions */
 const { reporterConfig } = require('../dist/utils');
 
 let testcafe = null;
