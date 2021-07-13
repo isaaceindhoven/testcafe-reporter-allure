@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v1.1.2...v2.0.0) (2021-05-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* update release commit-analyzer
+
+### ci
+
+* update release commit-analyzer ([3497063](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/3497063aeebad8353dda24c1d14c1115e2b3c426))
+
+### [1.1.2](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v1.1.1...v1.1.2) (2021-04-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **release:** DO A MAJOR UPDATE
+
+### ci
+
+* **release:** make semantice release do major updates ([ea0e97a](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/ea0e97aa29eaae0376f84747efdf3ae410133909))
+
+### [1.1.1](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v1.1.0...v1.1.1) (2021-04-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **node:** Drop v10 support
+
+### Bug Fixes
+
+* **steps:** validate testRunInfo ([ebef196](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/ebef196f92d6be34f2da61f33f4a439a7c0c644b))
+
+
+### Refactors
+
+* **config:** replace merge-anything with lodash ([88979e9](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/88979e9793a69a892972e774ec1a4deb01b541aa))
+
+
+### Chores
+
+* **deps:** fix npm vulnerabilities ([a4e161f](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/a4e161faa026be1e823b0f03957e80f3eef4c4c6))
+* **deps:** update actions/setup-node action to v2 ([e4c7a57](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/e4c7a577d1859216e39f0404352ef0c898d92340))
+* **deps:** update all dependencies ([56e8544](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/56e85448f847f3920b084995b0f911daebcdc240))
+* **deps:** update all non-major dependencies ([eea9649](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/eea9649caabc7a3c84b827e5eb101c09e2f8f7af))
+* **deps:** update all non-major dependencies ([e3f1b4a](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/e3f1b4a706239039a311312644422276d3806961))
+* **deps:** update all non-major dependencies ([ed8be30](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/ed8be301ca91b92e0f7ff0ed570216af7cb4ad95))
+* **deps:** update all non-major dependencies ([c07e2fc](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/c07e2fceddd6b2ce6df4507497c72f25fbb05a17))
+* **deps:** update all non-major dependencies ([a4e2932](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/a4e2932909701e2245970a39806380bba7e9bd6b))
+* **deps:** update all non-major dependencies ([25e0f75](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/25e0f7580918f318f58933d206d25a195ca45cda))
+* **deps:** update all non-major dependencies ([a93af57](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/a93af570d5b0aaa61840c69b5bf6e983586f7831))
+* **deps:** update all non-major dependencies ([3250d67](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/3250d6733d8aa80473bdfcc3ed1e5e94ac000a45))
+* **deps:** update all non-major dependencies ([414cd0d](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/414cd0da6df19e4b3f93605c292f60033bb1e255))
+* **deps:** update all non-major dependencies ([48f2b10](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/48f2b10e897d29c4dc7f77200039321fb360490f))
+* **deps:** update all non-major dependencies ([25e3dab](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/25e3dab1be02e9cd5325d446e6a1ee555f1e0ef1))
+* **deps:** update all non-major dependencies ([64567ef](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/64567ef4b0fca3c1593b5b4b85fb32a80e20a29e))
+* **deps:** update all non-major dependencies ([1923679](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/192367995cad7f8bd68e9addd8af030cb9565fdb))
+* **deps:** update all non-major dependencies ([29873e1](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/29873e14d1072ef2473fd9f0e99d5b026102312d))
+* **deps:** update all non-major dependencies ([b3eff6f](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/b3eff6f5e3840b6912807111dcb8f8b2f0cf86d3))
+* **deps:** update all non-major dependencies ([17c03d6](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/17c03d66b166987f9aab41d1507a54288320164a))
+* **deps:** update all non-major dependencies ([268c3b5](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/268c3b541b602b2c7c6c931fad77c12b35e1655c))
+* **deps:** update commitlint monorepo to v12 ([e130945](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/e130945b145891c90ebd9b739be0d6ab69f23884))
+* **deps:** update dependency @rollup/plugin-typescript to v8 ([e6bc255](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/e6bc2551409b01046e0a6fd36bd11cc37ba57803))
+* **deps:** update dependency eslint-config-prettier to v7 ([ceaaadc](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/ceaaadc83fb8e6f90dba6ac0d259c98718e70f00))
+* **deps:** update dependency eslint-config-prettier to v8 ([50f9501](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/50f9501573393001f801d0def9c48c2e76633b10))
+* **deps:** update dependency husky to v5 ([d06a5cf](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/d06a5cf9ed2f2f04b7b45c9f180ad152a4d4035c))
+* **deps:** update dependency merge-anything to v4 ([143fc75](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/143fc75c6d7314e2d1031521dd830265dfdcbbcb))
+* **deps:** update dependency semantic-release to v17.2.3 [security] ([c9606da](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/c9606dadface0e03212c65ca2142e2e65cdc67fc))
+* **deps:** update node.js to v14.16.1 ([55ccceb](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/55cccebb44137359996fef4426b84e709f03cd1a))
+* **node:** Drop v10 support ([535d6ff](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/535d6ff7ae3f8288683866a59733a2d2783d689a))
+* **node:** update to 14, test on 12, 14 and 16 ([e8389ae](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/e8389aea1235bfc465ea0b0821e9b6d30b7d84c2))
+
 ## [1.1.0](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v1.0.3...v1.1.0) (2020-10-30)
 
 
