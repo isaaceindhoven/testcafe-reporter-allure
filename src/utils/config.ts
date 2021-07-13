@@ -72,7 +72,7 @@ function loadCustomConfig(configFile: string): object {
 
 export function loadReporterConfig(): any {
   const customConfig = loadCustomConfig(defaultReporterConfig.REPORTER_CONFIG_FILE);
-  const mergedConfig: object = defaultsDeep(defaultReporterConfig, customConfig);
+  const mergedConfig: object = defaultsDeep(customConfig, defaultReporterConfig);
   return mergedConfig;
 }
 
