@@ -204,7 +204,7 @@ describe('Metadata merging', () => {
     expect(localMetaData.parent_suite).toBe(groupMeta.suite);
 
     expect(mockAddParameter).toHaveBeenCalledTimes(1);
-    expect(mockAddLabel).toHaveBeenCalledTimes(7);
+    expect(mockAddLabel).toHaveBeenCalledTimes(9);
     expect(mockAddLink).toHaveBeenCalledTimes(1);
   });
   it('Should use group metadata if local is missing them', () => {
@@ -239,7 +239,7 @@ describe('Metadata merging', () => {
     expect(localMetaData.parent_suite).toBe(groupMeta.suite);
 
     expect(mockAddParameter).toHaveBeenCalledTimes(1);
-    expect(mockAddLabel).toHaveBeenCalledTimes(6); // One less than above test because sub_suite is not defined
+    expect(mockAddLabel).toHaveBeenCalledTimes(8); // One less than above test because sub_suite is not defined
     expect(mockAddLink).toHaveBeenCalledTimes(1);
   });
   it('Should only add metadata if it is defined', () => {
@@ -251,7 +251,7 @@ describe('Metadata merging', () => {
 
     // No calls to AllureTest functions have been made if there is no metadata, execept for a default severity label.
     expect(mockAddParameter).toHaveBeenCalledTimes(0);
-    expect(mockAddLabel).toHaveBeenCalledTimes(1);
+    expect(mockAddLabel).toHaveBeenCalledTimes(3);
     expect(mockAddLink).toHaveBeenCalledTimes(0);
   });
   it('Should validate if the groupMetadata object is valid', () => {

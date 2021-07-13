@@ -1,4 +1,4 @@
-import { InMemoryAllureWriter, LinkType, Severity, Stage, Status } from 'allure-js-commons';
+import { InMemoryAllureWriter, LinkType, Severity, Stage, Status, LabelName } from 'allure-js-commons';
 import { createObjectReport } from '../../utils/create-report';
 import '../../utils/jest-enum-matcher';
 
@@ -53,8 +53,11 @@ describe('Test results', () => {
   it('Should contain a specific severity', () => {
     const report: InMemoryAllureWriter = createObjectReport();
 
-    const label = report.tests[0].labels[0];
-    expect(label.value).toBe(Severity.BLOCKER);
+    const testLabels = report.tests[0].labels;
+    const severityLabel = testLabels.filter((label) => {
+      return label.name === LabelName.SEVERITY;
+    });
+    expect(severityLabel[0].value).toBe(Severity.BLOCKER);
   });
   it('Should contain a specific link', () => {
     const report: InMemoryAllureWriter = createObjectReport();
