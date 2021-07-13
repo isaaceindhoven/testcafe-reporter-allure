@@ -13,14 +13,6 @@ Array [
     "fullName": "All Failed Fixture : Failed Test 1 Incorrect Assert",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "Normal",
       },
@@ -74,14 +66,6 @@ Array [
     "description": undefined,
     "fullName": "All Failed Fixture : Failed Test 2",
     "labels": Array [
-      Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
       Object {
         "name": "severity",
         "value": "Normal",
@@ -137,14 +121,6 @@ Array [
     "fullName": "All Failed Fixture : Failed Test 3 No ",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "Normal",
       },
@@ -198,14 +174,6 @@ Array [
     "description": undefined,
     "fullName": "All Failed Fixture : Failed Test 4 Error Thrown",
     "labels": Array [
-      Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
       Object {
         "name": "severity",
         "value": "Normal",
@@ -285,14 +253,6 @@ Array [
     "fullName": "All Failed Fixture : Failed Test 4 Selector DNE with 2 screenshots",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "Normal",
       },
@@ -347,14 +307,6 @@ Array [
     "fullName": "All Failed Fixture : Failed Test 5 Selector Click DNE",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "Normal",
       },
@@ -404,14 +356,6 @@ Array [
     "fullName": "All Skipped Fixture : Skipped Test 0",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "Normal",
       },
@@ -460,14 +404,6 @@ Array [
     "description": undefined,
     "fullName": "All Skipped Fixture : Skipped Test 1",
     "labels": Array [
-      Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
       Object {
         "name": "severity",
         "value": "Normal",
@@ -523,14 +459,6 @@ Array [
     "fullName": "Failing Assert Fixture : FAF Test",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "Normal",
       },
@@ -584,14 +512,6 @@ Array [
     "description": undefined,
     "fullName": "Failing Fixture Setup : FF Test",
     "labels": Array [
-      Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
       Object {
         "name": "severity",
         "value": "Normal",
@@ -647,14 +567,6 @@ Array [
     "fullName": "Mixed Fixture : MF Failed Test Selector DNE",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "Normal",
       },
@@ -704,14 +616,6 @@ Array [
     "fullName": "Mixed Fixture : MF Skipped Test",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "Normal",
       },
@@ -760,14 +664,6 @@ Array [
     "description": "Checks something foo",
     "fullName": "Mixed Fixture : Pass/Fail Test With ALL META 0",
     "labels": Array [
-      Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
       Object {
         "name": "severity",
         "value": "critical",
@@ -827,14 +723,6 @@ Array [
     "fullName": "Mixed Fixture : Pass/Fail Test With ALL META 1",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "critical",
       },
@@ -893,14 +781,6 @@ Array [
     "fullName": "TestCafé Example Fixture - Flaky Tests : Actual flaky test example",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "Normal",
       },
@@ -944,14 +824,6 @@ Array [
     "description": undefined,
     "fullName": "TestCafé Example Fixture - Flaky Tests : Manual flaky test example",
     "labels": Array [
-      Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
       Object {
         "name": "severity",
         "value": "Normal",
@@ -1001,14 +873,6 @@ Array [
     "description": undefined,
     "fullName": "TestCafé Example Fixture - Main : Example failing e2e test with steps",
     "labels": Array [
-      Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
       Object {
         "name": "severity",
         "value": "Normal",
@@ -1063,14 +927,6 @@ Array [
     "fullName": "TestCafé Example Fixture - Main : Example failing e2e test without steps",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "Normal",
       },
@@ -1119,14 +975,6 @@ Array [
     "fullName": "TestCafé Example Fixture - Main : Example skipped test",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "Normal",
       },
@@ -1174,14 +1022,6 @@ Array [
     "description": "An example discription",
     "fullName": "TestCafé Example Fixture - Main : Example test with all metadata",
     "labels": Array [
-      Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
       Object {
         "name": "severity",
         "value": "trivial",
@@ -1250,14 +1090,6 @@ Array [
     "fullName": "TestCafé Example Fixture - Main : Example test with minimal metadata",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "Normal",
       },
@@ -1306,14 +1138,6 @@ Array [
     "fullName": "TestCafé Example Fixture - Meta Overrides : Example severity metadata override BLOCKER",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "blocker",
       },
@@ -1354,14 +1178,6 @@ Array [
     "fullName": "TestCafé Example Fixture - Meta Overrides : Example severity metadata override MINOR",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "minor",
       },
@@ -1401,14 +1217,6 @@ Array [
     "description": "Checks something else",
     "fullName": "TestCafé Example Fixture - Meta Overrides : Passing Test 0",
     "labels": Array [
-      Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
       Object {
         "name": "severity",
         "value": "critical",
@@ -1475,14 +1283,6 @@ Array [
     "fullName": "TestCafé Example Fixture - Meta Overrides : Passing Test 1",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "critical",
       },
@@ -1548,14 +1348,6 @@ Array [
     "fullName": "TestCafé Example Fixture - Meta Overrides : Passing Test With ALL META 0",
     "labels": Array [
       Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
-      Object {
         "name": "severity",
         "value": "critical",
       },
@@ -1608,14 +1400,6 @@ Array [
     "description": "Checks something",
     "fullName": "TestCafé Example Fixture - Meta Overrides : Passing Test With ALL META 1",
     "labels": Array [
-      Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
       Object {
         "name": "severity",
         "value": "critical",
@@ -1678,14 +1462,6 @@ Array [
     "description": undefined,
     "fullName": "TestCafé Example Fixture - Meta Overrides : Passing Test with 2 screenshots",
     "labels": Array [
-      Object {
-        "name": "framework",
-        "value": "TestCafe",
-      },
-      Object {
-        "name": "language",
-        "value": "typescript/javascript",
-      },
       Object {
         "name": "severity",
         "value": "critical",

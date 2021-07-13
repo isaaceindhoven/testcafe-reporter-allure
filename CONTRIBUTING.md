@@ -33,7 +33,6 @@ To ensure a smooth code review and merging process please check if the Pull Requ
 - The GitHub Action pipeline concludes successfully:
   - The code follows the style guide used within this project. This can be tested locally by running: `npm run test:lint`.
   - The code passes all unit tests. This can be tested locally by running: `npm run test:unit`.
-- The change does not break the example e2e tests. This can be tested locally by running `npm run test:e2e`. After running e2e tests, `allure` directory will have `allure-restults` that can be used to see example allure report. Please run `npm run allure` and check how final report will look like
-- The change pass integration tests that should be run only after e2e tests passed. This can be tested locally by running `npm run test:e2e`, then after e2e finished run `npm run test:integration`
+- The change does not break the example e2e tests. This can be tested locally by running `npm run test:e2e:allure`.
 
 You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
