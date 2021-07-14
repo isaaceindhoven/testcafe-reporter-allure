@@ -1,0 +1,1851 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Allure result snaphots 1`] = `
+Array [
+  Object {
+    "attachments": Array [
+      Object {
+        "name": "Screenshot taken on fail",
+        "type": "image/png",
+      },
+    ],
+    "description": undefined,
+    "fullName": "All Failed Fixture : Failed Test 1 Incorrect Assert",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "All Failed Fixture",
+      },
+    ],
+    "links": Array [],
+    "name": "Failed Test 1 Incorrect Assert",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "failed",
+    "statusDetails": Object {
+      "message": "AssertionError: expected 1 to deeply equal 0",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [
+      Object {
+        "name": "Screenshot taken on fail",
+        "type": "image/png",
+      },
+    ],
+    "description": undefined,
+    "fullName": "All Failed Fixture : Failed Test 2",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "All Failed Fixture",
+      },
+    ],
+    "links": Array [],
+    "name": "Failed Test 2",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "failed",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [
+      Object {
+        "name": "Screenshot taken on fail",
+        "type": "image/png",
+      },
+    ],
+    "description": undefined,
+    "fullName": "All Failed Fixture : Failed Test 3 No ",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "All Failed Fixture",
+      },
+    ],
+    "links": Array [],
+    "name": "Failed Test 3 No ",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "failed",
+    "statusDetails": Object {
+      "message": "TypeError: bar.toString2 is not a function",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [
+      Object {
+        "name": "Screenshot taken on fail",
+        "type": "image/png",
+      },
+    ],
+    "description": undefined,
+    "fullName": "All Failed Fixture : Failed Test 4 Error Thrown",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "All Failed Fixture",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "big suite",
+      },
+      Object {
+        "name": "epic",
+        "value": "big epic",
+      },
+      Object {
+        "name": "feature",
+        "value": "big feature",
+      },
+      Object {
+        "name": "story",
+        "value": "big story",
+      },
+    ],
+    "links": Array [],
+    "name": "Failed Test 4 Error Thrown",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "failed",
+    "statusDetails": Object {
+      "message": "Error: Boo",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [
+      Object {
+        "name": "Screenshot taken manually",
+        "type": "image/png",
+      },
+      Object {
+        "name": "Screenshot taken manually",
+        "type": "image/png",
+      },
+      Object {
+        "name": "Screenshot taken on fail",
+        "type": "image/png",
+      },
+    ],
+    "description": undefined,
+    "fullName": "All Failed Fixture : Failed Test 4 Selector DNE with 2 screenshots",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "All Failed Fixture",
+      },
+    ],
+    "links": Array [],
+    "name": "Failed Test 4 Selector DNE with 2 screenshots",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "failed",
+    "statusDetails": Object {
+      "message": "AssertionError: expected false to be truthy",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [
+      Object {
+        "name": "Screenshot taken on fail",
+        "type": "image/png",
+      },
+    ],
+    "description": undefined,
+    "fullName": "All Failed Fixture : Failed Test 5 Selector Click DNE",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "All Failed Fixture",
+      },
+    ],
+    "links": Array [],
+    "name": "Failed Test 5 Selector Click DNE",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "failed",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "All Skipped Fixture : Skipped Test 0",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "All Skipped Fixture",
+      },
+    ],
+    "links": Array [],
+    "name": "Skipped Test 0",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "skipped",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "All Skipped Fixture : Skipped Test 1",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "All Skipped Fixture",
+      },
+    ],
+    "links": Array [],
+    "name": "Skipped Test 1",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "skipped",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [
+      Object {
+        "name": "Screenshot taken on fail",
+        "type": "image/png",
+      },
+    ],
+    "description": undefined,
+    "fullName": "Failing Assert Fixture : FAF Test",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "Failing Assert Fixture",
+      },
+    ],
+    "links": Array [],
+    "name": "FAF Test",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "failed",
+    "statusDetails": Object {
+      "message": "AssertionError: expected 1 to deeply equal 0",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [
+      Object {
+        "name": "Screenshot taken on fail",
+        "type": "image/png",
+      },
+    ],
+    "description": undefined,
+    "fullName": "Failing Fixture Setup : FF Test",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "Failing Fixture Setup",
+      },
+    ],
+    "links": Array [],
+    "name": "FF Test",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "failed",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [
+      Object {
+        "name": "Screenshot taken on fail",
+        "type": "image/png",
+      },
+    ],
+    "description": undefined,
+    "fullName": "Mixed Fixture : MF Failed Test Selector DNE",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "Mixed Fixture",
+      },
+    ],
+    "links": Array [],
+    "name": "MF Failed Test Selector DNE",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "failed",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "Mixed Fixture : MF Skipped Test",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "Mixed Fixture",
+      },
+    ],
+    "links": Array [],
+    "name": "MF Skipped Test",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "skipped",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": "Checks something foo",
+    "fullName": "Mixed Fixture : Pass/Fail Test With ALL META 0",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "critical",
+      },
+      Object {
+        "name": "suite",
+        "value": "Mixed Fixture",
+      },
+      Object {
+        "name": "story",
+        "value": "I am a user story",
+      },
+    ],
+    "links": Array [],
+    "name": "Pass/Fail Test With ALL META 0",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [
+      Object {
+        "name": "Screenshot taken on fail",
+        "type": "image/png",
+      },
+    ],
+    "description": "Checks something foo",
+    "fullName": "Mixed Fixture : Pass/Fail Test With ALL META 1",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "critical",
+      },
+      Object {
+        "name": "suite",
+        "value": "Mixed Fixture",
+      },
+      Object {
+        "name": "story",
+        "value": "I am a user story",
+      },
+    ],
+    "links": Array [],
+    "name": "Pass/Fail Test With ALL META 1",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "failed",
+    "statusDetails": Object {
+      "message": "AssertionError: expected 1 to deeply equal 0",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [
+      Object {
+        "name": "Screenshot taken on fail",
+        "type": "image/png",
+      },
+    ],
+    "description": "Does, however, require that TestCafé runs in Quarantine mode, will fail on the first two attempts and succeed on the third.",
+    "fullName": "TestCafé Example Fixture - Flaky Tests : Actual flaky test example",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "parentSuite",
+        "value": "Example Fixture Group",
+      },
+      Object {
+        "name": "suite",
+        "value": "TestCafé Example Fixture - Flaky Tests",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Flaky Test Example Group",
+      },
+    ],
+    "links": Array [],
+    "name": "Actual flaky test example",
+    "parameters": Array [],
+    "stage": "finished",
+    "status": "failed",
+    "statusDetails": Object {
+      "message": "AssertionError: expected 1 to deeply equal 2",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "TestCafé Example Fixture - Flaky Tests : Manual flaky test example",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "parentSuite",
+        "value": "Example Fixture Group",
+      },
+      Object {
+        "name": "suite",
+        "value": "TestCafé Example Fixture - Flaky Tests",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Flaky Test Example Group",
+      },
+    ],
+    "links": Array [],
+    "name": "Manual flaky test example",
+    "parameters": Array [
+      Object {
+        "name": "Flaky test",
+        "value": "true",
+      },
+    ],
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": Object {
+      "message": "Flaky test",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "TestCafé Example Fixture - Main : Example failing e2e test with steps",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "parentSuite",
+        "value": "Example Fixture Group",
+      },
+      Object {
+        "name": "suite",
+        "value": "TestCafé Example Fixture - Main",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Failing Test Example Group",
+      },
+      Object {
+        "name": "epic",
+        "value": "Example Epic Ticket",
+      },
+    ],
+    "links": Array [],
+    "name": "Example failing e2e test with steps",
+    "parameters": Array [],
+    "stage": "finished",
+    "status": "failed",
+    "statusDetails": Object {
+      "message": "AssertionError: expected 'Thank you, John Smith!' to deeply equal 'Thank you, Jane Smith!'",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [
+      Object {
+        "name": "Screenshot taken on fail",
+        "type": "image/png",
+      },
+    ],
+    "description": undefined,
+    "fullName": "TestCafé Example Fixture - Main : Example failing e2e test without steps",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "parentSuite",
+        "value": "Example Fixture Group",
+      },
+      Object {
+        "name": "suite",
+        "value": "TestCafé Example Fixture - Main",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Failing Test Example Group",
+      },
+      Object {
+        "name": "epic",
+        "value": "Example Epic Ticket",
+      },
+    ],
+    "links": Array [],
+    "name": "Example failing e2e test without steps",
+    "parameters": Array [],
+    "stage": "finished",
+    "status": "failed",
+    "statusDetails": Object {
+      "message": "AssertionError: expected 'Thank you, John Smith!' to deeply equal 'Thank you, Jane Smith!'",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "TestCafé Example Fixture - Main : Example skipped test",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "parentSuite",
+        "value": "Example Fixture Group",
+      },
+      Object {
+        "name": "suite",
+        "value": "TestCafé Example Fixture - Main",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Main Example Group",
+      },
+      Object {
+        "name": "epic",
+        "value": "Example Epic Ticket",
+      },
+    ],
+    "links": Array [],
+    "name": "Example skipped test",
+    "parameters": Array [],
+    "stage": "finished",
+    "status": "skipped",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": "An example discription",
+    "fullName": "TestCafé Example Fixture - Main : Example test with all metadata",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "trivial",
+      },
+      Object {
+        "name": "parentSuite",
+        "value": "Example Fixture Group",
+      },
+      Object {
+        "name": "suite",
+        "value": "TestCafé Example Fixture - Main",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Main Example Group",
+      },
+      Object {
+        "name": "epic",
+        "value": "Example Epic Ticket",
+      },
+      Object {
+        "name": "feature",
+        "value": "Example Feature Ticket",
+      },
+      Object {
+        "name": "story",
+        "value": "Example Story Ticket",
+      },
+    ],
+    "links": Array [
+      Object {
+        "name": "JIRA Issue: TEST-ISSUE",
+        "type": "issue",
+        "url": "https://jira.example.nl/browse/TEST-ISSUE",
+      },
+    ],
+    "name": "Example test with all metadata",
+    "parameters": Array [
+      Object {
+        "name": "otherMeta",
+        "value": "Example otherMeta parameter.",
+      },
+    ],
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "TestCafé Example Fixture - Main : Example test with minimal metadata",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "parentSuite",
+        "value": "Example Fixture Group",
+      },
+      Object {
+        "name": "suite",
+        "value": "TestCafé Example Fixture - Main",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Main Example Group",
+      },
+      Object {
+        "name": "epic",
+        "value": "Example Epic Ticket",
+      },
+    ],
+    "links": Array [],
+    "name": "Example test with minimal metadata",
+    "parameters": Array [],
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "TestCafé Example Fixture - Meta Overrides : Example severity metadata override BLOCKER",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "blocker",
+      },
+      Object {
+        "name": "parentSuite",
+        "value": "Example Fixture Group",
+      },
+      Object {
+        "name": "suite",
+        "value": "TestCafé Example Fixture - Meta Overrides",
+      },
+    ],
+    "links": Array [],
+    "name": "Example severity metadata override BLOCKER",
+    "parameters": Array [],
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "TestCafé Example Fixture - Meta Overrides : Example severity metadata override MINOR",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "minor",
+      },
+      Object {
+        "name": "parentSuite",
+        "value": "Example Fixture Group",
+      },
+      Object {
+        "name": "suite",
+        "value": "TestCafé Example Fixture - Meta Overrides",
+      },
+    ],
+    "links": Array [],
+    "name": "Example severity metadata override MINOR",
+    "parameters": Array [],
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": "Checks something else",
+    "fullName": "TestCafé Example Fixture - Meta Overrides : Passing Test 0",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "critical",
+      },
+      Object {
+        "name": "parentSuite",
+        "value": "Example Fixture Group",
+      },
+      Object {
+        "name": "suite",
+        "value": "TestCafé Example Fixture - Meta Overrides",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "big suite",
+      },
+      Object {
+        "name": "epic",
+        "value": "big epic",
+      },
+      Object {
+        "name": "feature",
+        "value": "big feature",
+      },
+      Object {
+        "name": "story",
+        "value": "big story",
+      },
+    ],
+    "links": Array [],
+    "name": "Passing Test 0",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+    ],
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": "Checks something else",
+    "fullName": "TestCafé Example Fixture - Meta Overrides : Passing Test 1",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "critical",
+      },
+      Object {
+        "name": "parentSuite",
+        "value": "Example Fixture Group",
+      },
+      Object {
+        "name": "suite",
+        "value": "TestCafé Example Fixture - Meta Overrides",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "big suite",
+      },
+      Object {
+        "name": "epic",
+        "value": "big epic",
+      },
+      Object {
+        "name": "feature",
+        "value": "big feature",
+      },
+      Object {
+        "name": "story",
+        "value": "big story",
+      },
+    ],
+    "links": Array [],
+    "name": "Passing Test 1",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+    ],
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": "Checks something",
+    "fullName": "TestCafé Example Fixture - Meta Overrides : Passing Test With ALL META 0",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "critical",
+      },
+      Object {
+        "name": "parentSuite",
+        "value": "Example Fixture Group",
+      },
+      Object {
+        "name": "suite",
+        "value": "TestCafé Example Fixture - Meta Overrides",
+      },
+      Object {
+        "name": "story",
+        "value": "As user I want to be able to do...",
+      },
+    ],
+    "links": Array [],
+    "name": "Passing Test With ALL META 0",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+    ],
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": "Checks something",
+    "fullName": "TestCafé Example Fixture - Meta Overrides : Passing Test With ALL META 1",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "critical",
+      },
+      Object {
+        "name": "parentSuite",
+        "value": "Example Fixture Group",
+      },
+      Object {
+        "name": "suite",
+        "value": "TestCafé Example Fixture - Meta Overrides",
+      },
+      Object {
+        "name": "story",
+        "value": "As user I want to be able to do...",
+      },
+    ],
+    "links": Array [],
+    "name": "Passing Test With ALL META 1",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+    ],
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [
+      Object {
+        "name": "Screenshot taken manually",
+        "type": "image/png",
+      },
+      Object {
+        "name": "Screenshot taken manually",
+        "type": "image/png",
+      },
+    ],
+    "description": undefined,
+    "fullName": "TestCafé Example Fixture - Meta Overrides : Passing Test with 2 screenshots",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "critical",
+      },
+      Object {
+        "name": "parentSuite",
+        "value": "Example Fixture Group",
+      },
+      Object {
+        "name": "suite",
+        "value": "TestCafé Example Fixture - Meta Overrides",
+      },
+    ],
+    "links": Array [],
+    "name": "Passing Test with 2 screenshots",
+    "parameters": Array [
+      Object {
+        "name": "type",
+        "value": "smoke",
+      },
+      Object {
+        "name": "tier2",
+        "value": "true",
+      },
+    ],
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": undefined,
+    "description": undefined,
+    "fullName": undefined,
+    "labels": undefined,
+    "links": undefined,
+    "name": "All Failed Fixture",
+    "parameters": undefined,
+    "stage": undefined,
+    "status": undefined,
+    "statusDetails": undefined,
+    "steps": undefined,
+  },
+  Object {
+    "attachments": undefined,
+    "description": undefined,
+    "fullName": undefined,
+    "labels": undefined,
+    "links": undefined,
+    "name": "All Skipped Fixture",
+    "parameters": undefined,
+    "stage": undefined,
+    "status": undefined,
+    "statusDetails": undefined,
+    "steps": undefined,
+  },
+  Object {
+    "attachments": undefined,
+    "description": undefined,
+    "fullName": undefined,
+    "labels": undefined,
+    "links": undefined,
+    "name": "Failing Assert Fixture",
+    "parameters": undefined,
+    "stage": undefined,
+    "status": undefined,
+    "statusDetails": undefined,
+    "steps": undefined,
+  },
+  Object {
+    "attachments": undefined,
+    "description": undefined,
+    "fullName": undefined,
+    "labels": undefined,
+    "links": undefined,
+    "name": "Failing Fixture Setup",
+    "parameters": undefined,
+    "stage": undefined,
+    "status": undefined,
+    "statusDetails": undefined,
+    "steps": undefined,
+  },
+  Object {
+    "attachments": undefined,
+    "description": undefined,
+    "fullName": undefined,
+    "labels": undefined,
+    "links": undefined,
+    "name": "Mixed Fixture",
+    "parameters": undefined,
+    "stage": undefined,
+    "status": undefined,
+    "statusDetails": undefined,
+    "steps": undefined,
+  },
+  Object {
+    "attachments": undefined,
+    "description": undefined,
+    "fullName": undefined,
+    "labels": undefined,
+    "links": undefined,
+    "name": "TestCafé Example Fixture - Flaky Tests",
+    "parameters": undefined,
+    "stage": undefined,
+    "status": undefined,
+    "statusDetails": undefined,
+    "steps": undefined,
+  },
+  Object {
+    "attachments": undefined,
+    "description": undefined,
+    "fullName": undefined,
+    "labels": undefined,
+    "links": undefined,
+    "name": "TestCafé Example Fixture - Main",
+    "parameters": undefined,
+    "stage": undefined,
+    "status": undefined,
+    "statusDetails": undefined,
+    "steps": undefined,
+  },
+  Object {
+    "attachments": undefined,
+    "description": undefined,
+    "fullName": undefined,
+    "labels": undefined,
+    "links": undefined,
+    "name": "TestCafé Example Fixture - Meta Overrides",
+    "parameters": undefined,
+    "stage": undefined,
+    "status": undefined,
+    "statusDetails": undefined,
+    "steps": undefined,
+  },
+  Object {
+    "attachments": undefined,
+    "description": undefined,
+    "fullName": undefined,
+    "labels": undefined,
+    "links": undefined,
+    "name": undefined,
+    "parameters": undefined,
+    "stage": undefined,
+    "status": undefined,
+    "statusDetails": undefined,
+    "steps": undefined,
+  },
+]
+`;

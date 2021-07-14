@@ -7,6 +7,10 @@ module.exports = {
   ignorePatterns: ['docs/**/*.js'],
   overrides: [
     {
+      files: '**/(unit|integration)/*.*',
+      extends: ['plugin:jest/recommended'],
+    },
+    {
       files: '**/e2e/*.*',
       globals: {
         fixture: false,
