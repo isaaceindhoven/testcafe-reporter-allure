@@ -66,6 +66,7 @@ export default class Metadata {
       if (steps) {
         this.steps = steps;
       }
+
       Object.keys(otherMeta).forEach((key) => {
         if (this.isString(otherMeta[key])) {
           this.otherMeta.set(key, otherMeta[key]);
