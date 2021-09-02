@@ -1,4 +1,3 @@
-import { t } from 'testcafe';
 import { Severity } from 'testcafe-reporter-allure/dist/utils';
 
 fixture('TestCafé Example Fixture - Documentation').page('http://devexpress.github.io/testcafe/example')

@@ -883,6 +883,291 @@ Array [
     },
   },
   Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "Planned Fixture : Example skipped test 1",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "Planned Fixture",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Skip Reason Example Group",
+      },
+    ],
+    "links": Array [],
+    "name": "Example skipped test 1",
+    "parameters": Array [
+      Object {
+        "name": "skipReason",
+        "value": "Not automated",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "skipped",
+    "statusDetails": Object {
+      "message": "Skipped: Not automated",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "Planned Fixture : Example skipped test 2",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "Planned Fixture",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Skip Reason Example Group",
+      },
+    ],
+    "links": Array [],
+    "name": "Example skipped test 2",
+    "parameters": Array [
+      Object {
+        "name": "skipReason",
+        "value": "Not automated",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "skipped",
+    "statusDetails": Object {
+      "message": "Skipped: Not automated",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "Planned Fixture : Example skipped test 3",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "Planned Fixture",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Skip Reason Example Group",
+      },
+    ],
+    "links": Array [],
+    "name": "Example skipped test 3",
+    "parameters": Array [
+      Object {
+        "name": "skipReason",
+        "value": "Not automated",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "skipped",
+    "statusDetails": Object {
+      "message": "Skipped: Not automated",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "Planned Fixture : Example skipped test with bug reason 1",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "Planned Fixture",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Skip Reason Example Group",
+      },
+    ],
+    "links": Array [],
+    "name": "Example skipped test with bug reason 1",
+    "parameters": Array [
+      Object {
+        "name": "skipReason",
+        "value": "Known product bug BUG-1111",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "skipped",
+    "statusDetails": Object {
+      "message": "Skipped: Known product bug BUG-1111",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "Planned Fixture : Example skipped test with bug reason 2",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "Planned Fixture",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Skip Reason Example Group",
+      },
+    ],
+    "links": Array [],
+    "name": "Example skipped test with bug reason 2",
+    "parameters": Array [
+      Object {
+        "name": "skipReason",
+        "value": "Known product bug BUG-2222",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "skipped",
+    "statusDetails": Object {
+      "message": "Skipped: Known product bug BUG-2222",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
     "attachments": Array [
       Object {
         "name": "Screenshot taken on fail",
@@ -1789,6 +2074,19 @@ Array [
     "labels": undefined,
     "links": undefined,
     "name": "Mixed Fixture",
+    "parameters": undefined,
+    "stage": undefined,
+    "status": undefined,
+    "statusDetails": undefined,
+    "steps": undefined,
+  },
+  Object {
+    "attachments": undefined,
+    "description": undefined,
+    "fullName": undefined,
+    "labels": undefined,
+    "links": undefined,
+    "name": "Planned Fixture",
     "parameters": undefined,
     "stage": undefined,
     "status": undefined,

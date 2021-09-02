@@ -81,7 +81,7 @@ test
     suite: 'Another Example Group',
     skipReason: 'Not automated',
   })
-  .skip('Example not automated e2e test 1', async (t) => {
+  .skip('Example not automated e2e test 1', async () => {
     // planned test
   });
 
@@ -90,7 +90,7 @@ test
     suite: 'Another Example Group',
     skipReason: 'Not automated',
   })
-  .skip('Example not automated e2e test 2', async (t) => {
+  .skip('Example not automated e2e test 2', async () => {
     // planned test
   });
 
@@ -99,7 +99,7 @@ test
     suite: 'Another Example Group',
     skipReason: 'Not automated',
   })
-  .skip('Example not automated e2e test 3', async (t) => {
+  .skip('Example not automated e2e test 3', async () => {
     // planned test
   });
 
@@ -108,7 +108,7 @@ test
     suite: 'Main Example Group',
     skipReason: 'Not automated',
   })
-  .skip('Example skipped test 1', async (t) => {
+  .skip('Example skipped test 1', async () => {
     // planned test
   });
 
@@ -117,7 +117,7 @@ test
     suite: 'Main Example Group',
     skipReason: 'Not automated',
   })
-  .skip('Example skipped test 2', async (t) => {
+  .skip('Example skipped test 2', async () => {
     // planned test
   });
 
@@ -126,6 +126,6 @@ test
     suite: 'Main Example Group',
     skipReason: 'Not automated',
   })
-  .skip('Example skipped test 3', async (t) => {
+  .skip('Example skipped test 3', async () => {
     // planned test
   });

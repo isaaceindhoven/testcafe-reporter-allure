@@ -229,13 +229,13 @@ test.meta(SMOKE).meta(TIER2)('FAF Test', async () => {});
 /**
  * Section for skip reason tests
  */
-fixture('Planned Fixture').meta(OWNERS);
+fixture('Skip reason fixture').meta(OWNERS);
 test
     .meta({
         suite: 'Skip Reason Example Group',
         skipReason: 'Known product bug BUG-1111',
     })
-    .skip('Example skipped test with bug reason 1', async (t) => {
+    .skip('Example skipped test with bug reason 1', async () => {
         // planned test
     });
 
@@ -244,7 +244,7 @@ test
         suite: 'Skip Reason Example Group',
         skipReason: 'Known product bug BUG-2222',
     })
-    .skip('Example skipped test with bug reason 2', async (t) => {
+    .skip('Example skipped test with bug reason 2', async () => {
         // planned test
     });
 
@@ -253,7 +253,7 @@ test
       suite: 'Skip Reason Example Group',
       skipReason: 'Not automated',
     })
-    .skip('Example skipped test 1', async (t) => {
+    .skip('Example skipped test 1', async () => {
       // planned test
     });
 
@@ -262,7 +262,7 @@ test
       suite: 'Skip Reason Example Group',
       skipReason: 'Not automated',
     })
-    .skip('Example skipped test 2', async (t) => {
+    .skip('Example skipped test 2', async () => {
       // planned test
     });
 
@@ -271,6 +271,6 @@ test
       suite: 'Skip Reason Example Group',
       skipReason: 'Not automated',
     })
-    .skip('Example skipped test 3', async (t) => {
+    .skip('Example skipped test 3', async () => {
       // planned test
     });
