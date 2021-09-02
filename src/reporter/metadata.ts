@@ -28,12 +28,14 @@ export default class Metadata {
 
   steps: TestStep[];
 
+  skipReason: string;
+
   otherMeta: Map<string, string>;
 
   constructor(meta?: any, test?: boolean) {
     this.otherMeta = new Map();
     if (meta) {
-      const { severity, description, issue, suite, epic, story, feature, flaky, steps, ...otherMeta } = meta;
+      const { severity, description, issue, suite, epic, story, feature, flaky, steps, skipReason, ...otherMeta } = meta;
 
       if (this.isValidEnumValue(severity, Severity)) {
         this.severity = severity;
@@ -65,6 +67,10 @@ export default class Metadata {
       }
       if (steps) {
         this.steps = steps;
+      }
+
+      if (this.isString(skipReason)) {
+        this.skipReason = skipReason;
       }
       Object.keys(otherMeta).forEach((key) => {
         if (this.isString(otherMeta[key])) {

@@ -225,3 +225,52 @@ fixture.meta(OWNERS)`Failing Assert Fixture`.beforeEach(async (t) => {
   await t.expect(1).eql(0);
 });
 test.meta(SMOKE).meta(TIER2)('FAF Test', async () => {});
+
+/**
+ * Section for skip reason tests
+ */
+fixture('Planned Fixture').meta(OWNERS);
+test
+    .meta({
+        suite: 'Skip Reason Example Group',
+        skipReason: 'Known product bug BUG-1111',
+    })
+    .skip('Example skipped test with bug reason 1', async (t) => {
+        // planned test
+    });
+
+test
+    .meta({
+        suite: 'Skip Reason Example Group',
+        skipReason: 'Known product bug BUG-2222',
+    })
+    .skip('Example skipped test with bug reason 2', async (t) => {
+        // planned test
+    });
+
+test
+    .meta({
+      suite: 'Skip Reason Example Group',
+      skipReason: 'Not automated',
+    })
+    .skip('Example skipped test 1', async (t) => {
+      // planned test
+    });
+
+test
+    .meta({
+      suite: 'Skip Reason Example Group',
+      skipReason: 'Not automated',
+    })
+    .skip('Example skipped test 2', async (t) => {
+      // planned test
+    });
+
+test
+    .meta({
+      suite: 'Skip Reason Example Group',
+      skipReason: 'Not automated',
+    })
+    .skip('Example skipped test 3', async (t) => {
+      // planned test
+    });

@@ -101,8 +101,13 @@ export default class AllureReporter {
     let testMessages: string = '';
     let testDetails: string = '';
 
+    const currentMetadata = new Metadata(meta, true);
+
     if (isSkipped) {
       currentTest.status = Status.SKIPPED;
+      if (currentMetadata.skipReason) {
+        testMessages = addNewLine(testMessages, `Skipped: ${currentMetadata.skipReason}`);
+      }
     } else if (hasErrors) {
       currentTest.status = Status.FAILED;
 
@@ -138,7 +143,6 @@ export default class AllureReporter {
       });
     }
 
-    const currentMetadata = new Metadata(meta, true);
     if (testRunInfo.unstable) {
       currentMetadata.setFlaky();
     }
