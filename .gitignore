@@ -20,6 +20,7 @@ allure/*
 allure.config.js
 
 examples/base-implementation/allure/*
+examples/base-implementation-with-custom-config/allure/*
 
 *.tgz
 
