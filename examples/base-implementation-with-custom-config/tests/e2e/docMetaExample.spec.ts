@@ -1,9 +1,7 @@
-import { Severity } from 'testcafe-reporter-allure/dist/utils';
-
 fixture('TestCafé Example Fixture - Documentation').page('http://devexpress.github.io/testcafe/example')
 
 test.meta({
-    severity: Severity.TRIVIAL,
+    severity: 'trivial',
     issue: 'TEST-ISSUE',
     description: 'An example description',
     epic: 'Example Epic Ticket',
@@ -16,14 +14,14 @@ test.meta({
 });
 
 test.meta({
-    severity: Severity.TRIVIAL,
+    severity: 'trivial',
     issue: 'TEST-ISSUE',
     description: 'An example description',
     epic: 'Example Epic Ticket',
     feature: 'Example Feature Ticket',
     story: 'Example Story Ticket',
     suite: 'Main Example Group',
-    skipReason: 'Known bug BUG-ISSUE-1'
+    skipReason: 'Skipped: Known bug BUG-ISSUE-1'
     // ... any other key: value property as custom metadata
 }).skip('Example test with metadata', async () => {
     // Test Code
@@ -31,14 +29,14 @@ test.meta({
 
 
 test.meta({
-    severity: Severity.TRIVIAL,
+    severity: 'trivial',
     issue: 'TEST-ISSUE',
     description: 'An example description',
     epic: 'Example Epic Ticket',
     feature: 'Example Feature Ticket',
     story: 'Example Story Ticket',
     suite: 'Main Example Group',
-    skipReason: 'Not automated'
+    skipReason: 'Skipped: Not automated'
     // ... any other key: value property as custom metadata
 }).skip('Example planned test', async () => {
     // Test Code

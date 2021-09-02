@@ -14,7 +14,6 @@
   },
   "homepage": "https://github.com/isaaceindhoven/testcafe-reporter-allure#readme",
   "scripts": {
-    "test:e2e:api": "node tests/runner.js",
     "test:e2e:cli": "testcafe firefox tests/e2e/example.spec.ts --reporter allure --screenshots path=allure/screenshots,takeOnFails=true",
     "test:doc:example": "testcafe firefox tests/e2e/docMetaExample.spec.ts --reporter allure --screenshots path=allure/screenshots,takeOnFails=true",
     "allure": "allure generate ./allure/allure-results --clean -o ./allure/allure-report && allure open ./allure/allure-report",
