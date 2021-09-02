@@ -885,7 +885,7 @@ Array [
   Object {
     "attachments": Array [],
     "description": undefined,
-    "fullName": "Planned Fixture : Example skipped test 1",
+    "fullName": "Skip reason fixture : Example skipped test 1",
     "labels": Array [
       Object {
         "name": "framework",
@@ -901,7 +901,7 @@ Array [
       },
       Object {
         "name": "suite",
-        "value": "Planned Fixture",
+        "value": "Skip reason fixture",
       },
       Object {
         "name": "subSuite",
@@ -942,7 +942,7 @@ Array [
   Object {
     "attachments": Array [],
     "description": undefined,
-    "fullName": "Planned Fixture : Example skipped test 2",
+    "fullName": "Skip reason fixture : Example skipped test 2",
     "labels": Array [
       Object {
         "name": "framework",
@@ -958,7 +958,7 @@ Array [
       },
       Object {
         "name": "suite",
-        "value": "Planned Fixture",
+        "value": "Skip reason fixture",
       },
       Object {
         "name": "subSuite",
@@ -999,7 +999,7 @@ Array [
   Object {
     "attachments": Array [],
     "description": undefined,
-    "fullName": "Planned Fixture : Example skipped test 3",
+    "fullName": "Skip reason fixture : Example skipped test 3",
     "labels": Array [
       Object {
         "name": "framework",
@@ -1015,7 +1015,7 @@ Array [
       },
       Object {
         "name": "suite",
-        "value": "Planned Fixture",
+        "value": "Skip reason fixture",
       },
       Object {
         "name": "subSuite",
@@ -1056,7 +1056,7 @@ Array [
   Object {
     "attachments": Array [],
     "description": undefined,
-    "fullName": "Planned Fixture : Example skipped test with bug reason 1",
+    "fullName": "Skip reason fixture : Example skipped test with bug reason 1",
     "labels": Array [
       Object {
         "name": "framework",
@@ -1072,7 +1072,7 @@ Array [
       },
       Object {
         "name": "suite",
-        "value": "Planned Fixture",
+        "value": "Skip reason fixture",
       },
       Object {
         "name": "subSuite",
@@ -1113,7 +1113,7 @@ Array [
   Object {
     "attachments": Array [],
     "description": undefined,
-    "fullName": "Planned Fixture : Example skipped test with bug reason 2",
+    "fullName": "Skip reason fixture : Example skipped test with bug reason 2",
     "labels": Array [
       Object {
         "name": "framework",
@@ -1129,7 +1129,7 @@ Array [
       },
       Object {
         "name": "suite",
-        "value": "Planned Fixture",
+        "value": "Skip reason fixture",
       },
       Object {
         "name": "subSuite",
@@ -2086,7 +2086,7 @@ Array [
     "fullName": undefined,
     "labels": undefined,
     "links": undefined,
-    "name": "Planned Fixture",
+    "name": "Skip reason fixture",
     "parameters": undefined,
     "stage": undefined,
     "status": undefined,

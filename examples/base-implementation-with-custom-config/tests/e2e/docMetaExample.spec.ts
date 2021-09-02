@@ -11,7 +11,7 @@ test.meta({
     story: 'Example Story Ticket',
     suite: 'Main Example Group',
     // ... any other key: value property as custom metadata
-})('Example test with metadata', async (t) => {
+})('Example test with metadata', async () => {
     // Test Code
 });
 
@@ -25,7 +25,7 @@ test.meta({
     suite: 'Main Example Group',
     skipReason: 'Known bug BUG-ISSUE-1'
     // ... any other key: value property as custom metadata
-}).skip('Example test with metadata', async (t) => {
+}).skip('Example test with metadata', async () => {
     // Test Code
 });
 
@@ -40,6 +40,6 @@ test.meta({
     suite: 'Main Example Group',
     skipReason: 'Not automated'
     // ... any other key: value property as custom metadata
-}).skip('Example planned test', async (t) => {
+}).skip('Example planned test', async () => {
     // Test Code
 });
