@@ -105,8 +105,8 @@ export default class AllureReporter {
 
     if (isSkipped) {
       currentTest.status = Status.SKIPPED;
-      if (currentMetadata.skipReason) {
-        testMessages = addNewLine(testMessages, currentMetadata.skipReason);
+      if (currentMetadata.otherMeta && currentMetadata.otherMeta.has('skipReason')) {
+        testMessages = addNewLine(testMessages, currentMetadata.otherMeta.get('skipReason'));
       }
     } else if (hasErrors) {
       currentTest.status = Status.FAILED;

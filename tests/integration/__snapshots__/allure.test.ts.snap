@@ -912,6 +912,10 @@ Array [
     "name": "Example skipped test 1",
     "parameters": Array [
       Object {
+        "name": "skipReason",
+        "value": "Not automated",
+      },
+      Object {
         "name": "owner",
         "value": "team",
       },
@@ -964,6 +968,10 @@ Array [
     "links": Array [],
     "name": "Example skipped test 2",
     "parameters": Array [
+      Object {
+        "name": "skipReason",
+        "value": "Not automated",
+      },
       Object {
         "name": "owner",
         "value": "team",
@@ -1018,6 +1026,10 @@ Array [
     "name": "Example skipped test 3",
     "parameters": Array [
       Object {
+        "name": "skipReason",
+        "value": "Not automated",
+      },
+      Object {
         "name": "owner",
         "value": "team",
       },
@@ -1071,6 +1083,10 @@ Array [
     "name": "Example skipped test with bug reason 1",
     "parameters": Array [
       Object {
+        "name": "skipReason",
+        "value": "Known product bug BUG-1111",
+      },
+      Object {
         "name": "owner",
         "value": "team",
       },
@@ -1123,6 +1139,10 @@ Array [
     "links": Array [],
     "name": "Example skipped test with bug reason 2",
     "parameters": Array [
+      Object {
+        "name": "skipReason",
+        "value": "Known product bug BUG-2222",
+      },
       Object {
         "name": "owner",
         "value": "team",
