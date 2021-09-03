@@ -1,5 +1,3 @@
 module.exports = {
-  '*.{js,ts,tsx}': ['eslint --fix'],
-  // Do not ignore config files
-  '.*.{js,ts,tsx}': ['eslint --ignore-pattern !.* --fix'],
+  '.*.{js,ts,tsx}': ['eslint --ext .js,.ts --ignore-pattern !.* --ignore-path .gitignore . --fix', 'git add .'],
 };

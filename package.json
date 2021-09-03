@@ -36,7 +36,8 @@
     "semantic-release": "semantic-release",
     "pack:contents": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "prepare": "is-ci || husky install"
   },
   "files": [
     "dist/*"
@@ -72,7 +73,8 @@
     "eslint-plugin-prettier": "3.4.0",
     "fs-extra": "10.0.0",
     "globby": "11.0.4",
-    "husky": "7.0.1",
+    "husky": "^7.0.0",
+    "is-ci": "^3.0.0",
     "jest": "27.0.6",
     "lint-staged": "11.1.2",
     "normalize-newline": "3.0.0",
