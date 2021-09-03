@@ -14,7 +14,7 @@ const defaultReporterConfig = {
   CLEAN_REPORT_DIR: true,
   CLEAN_SCREENSHOT_DIR: true,
 
-  ENABLE_SCREENSHOTS: true,
+		  ENABLE_SCREENSHOTS: true,
   ENABLE_QUARANTINE: false,
   ENABLE_LOGGING: false,
   CONCURRENCY: 1,
