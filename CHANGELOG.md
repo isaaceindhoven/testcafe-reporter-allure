@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.0](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v2.1.0...v2.2.0) (2021-09-13)
+
+
+### Features
+
+* **categories:** Skipped messages ([fe37b31](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/fe37b3147ab2ba176a5e8d33807603b3e3345485))
+
+
+### Bug Fixes
+
+* temporary lock allure-js-commons to 2.0.0-beta.8 without TypeError ([f0dadbc](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/f0dadbce0e5fb7acbe536fd86c20078c09b9f5bd))
+
+
+### Tests
+
+* **eslint:** create separate fix script ([a405e69](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/a405e69f8d89392c00d0a28605fb475c257abd9d))
+
+
+### Chores
+
+* **deps:** pin dependencies ([#110](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/110)) ([8f7612e](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/8f7612e12175abe372f8c2cbbc75402af38073df))
+* **deps:** update all non-major dependencies ([1e8eb45](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/1e8eb4584db939f613572bb488be37fe18eb6f6f))
+* **deps:** update all non-major dependencies ([a2c5971](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/a2c5971e8ed148b6c01eb0025a688a72bc0432ec))
+* **deps:** update all non-major dependencies ([#94](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/94)) ([549c8ca](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/549c8cad6bd5f9b11bc71c0decc01b4e4774bb53))
+* **deps:** update all non-major dependencies ([#95](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/95)) ([d91e61b](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/d91e61b2d6ccf809c63a17fe40c96177a54660fa))
+* **deps:** update all non-major dependencies ([#99](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/99)) ([9c9870e](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/9c9870ecdca38d1116cdeff21e9cdc68fc600fae))
+* **deps:** update commitlint monorepo to v13 ([#96](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/96)) ([b9310d7](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/b9310d76c1c673e09196d04b6d2b5a4589398089))
+* **deps:** update dependency @types/jest to v27 ([#101](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/101)) ([2b36c51](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/2b36c5143c8590d678fad1f23ea2c08de2f9801c))
+* **deps:** update dependency eslint-config-airbnb-typescript to v14 ([#104](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/104)) ([03dcb72](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/03dcb72c067156f61be2299e8d48ae70c9634102))
+* **deps:** update dependency eslint-plugin-prettier to v4 ([#111](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/111)) ([c0036f4](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/c0036f4f0d3921457166a2aca7ce66a21bf09641))
+* **husky:** install v7 of husky with correct hooks ([f203df2](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/f203df23d80d95b61cd29e3fbdd31e3dd4aba243))
+* **husky:** make an incorrect linted file ([03b45e1](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/03b45e119c82a768fe2ae174732d890641d44576))
+* **npm:** audit fix ([a54c319](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/a54c3196c899cdd0727183dcf68ebd4a480d4c8d))
+
 ## [2.1.0](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v2.0.0...v2.1.0) (2021-07-14)
 
 
