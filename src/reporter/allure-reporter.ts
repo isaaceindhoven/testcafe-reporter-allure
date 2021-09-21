@@ -210,7 +210,7 @@ export default class AllureReporter {
   }
 
   private addScreenshotAttachment(test: ExecutableItemWrapper, screenshot: Screenshot): void {
-    if (screenshot.screenshotPath && fs.existsSync(screenshot.screenshotPath)) {
+    if (screenshot && screenshot.screenshotPath && fs.existsSync(screenshot.screenshotPath)) {
       let screenshotName: string;
       if (screenshot.takenOnFail) {
         screenshotName = reporterConfig.LABEL.SCREENSHOT_ON_FAIL;

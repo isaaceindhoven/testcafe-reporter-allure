@@ -527,6 +527,16 @@ describe('Allure reporter', () => {
       expect(mockTestAddAttachment).not.toBeCalled();
     });
 
+    it('Should not add screenshot if object is undefined', () => {
+      const testScreenshotManual: Screenshot = undefined;
+      const reporter: AllureReporter = new AllureReporter();
+
+      // @ts-ignore
+      reporter.addScreenshotAttachment(mockAllureTest, testScreenshotManual);
+
+      expect(mockTestAddAttachment).not.toBeCalled();
+    });
+
     it('Should set and get current test', () => {
       const reporter: AllureReporter = new AllureReporter();
       const test: AllureTest = new AllureTest(null);
