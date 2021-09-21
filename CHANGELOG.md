@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.2.1](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v2.2.0...v2.2.1) (2021-09-21)
+
+
+### Bug Fixes
+
+* add check if screenshot object is not undefined ([900ed66](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/900ed66ba960203b420910133cc060852bb0e660))
+
 ## [2.2.0](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v2.1.0...v2.2.0) (2021-09-13)
 
 
