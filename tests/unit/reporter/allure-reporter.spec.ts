@@ -365,10 +365,13 @@ describe('Allure reporter', () => {
     it('Should add errors to ended test', () => {
       const testName: string = 'testname';
       const testMeta: object = { severity: Severity.TRIVIAL };
+      const testStacktrace = 'testStacktrace';
+      const mockReadSync = jest.fn(() => testStacktrace);
       const testError: any = {
         callsite: {
           filename: 'testFilename',
           lineNum: 'testLineNum',
+          renderSync: mockReadSync,
         },
         userAgent: 'testUserAgent',
         errMsg: 'testErrorMessage',
@@ -385,10 +388,35 @@ describe('Allure reporter', () => {
       expect(mockAllureTest.status).toBe(Status.FAILED);
       expect(mockAllureTest.detailsMessage).toBe(testError.errMsg);
       expect(mockAllureTest.detailsTrace).toBe(
-        `File name: ${testError.callsite.filename}\nLine number: ${testError.callsite.lineNum}\nUser Agent(s): ${testError.userAgent}`,
+        `File name: ${testError.callsite.filename}\nLine number: ${testError.callsite.lineNum}\nStacktrace:\n${testStacktrace}\nUser Agent(s): ${testError.userAgent}`,
       );
       expect(mockAllureTest.stage).toBe(Stage.FINISHED);
       expect(mockTestEndTest).toBeCalledTimes(1);
+    });
+
+    it('Should log console.error with invalid stacktrace', () => {
+      const testName: string = 'testname';
+      const testMeta: object = { severity: Severity.TRIVIAL };
+      const testError: any = {
+        callsite: {
+          filename: 'testFilename',
+          lineNum: 'testLineNum',
+        },
+        userAgent: 'testUserAgent',
+        errMsg: 'testErrorMessage',
+      };
+      const testErrors: any[] = [testError];
+      const testRunInfo: TestRunInfo = { errs: testErrors };
+      const reporter: AllureReporter = new AllureReporter();
+      // @ts-ignore
+      reporter.getCurrentTest = mockReporterGetCurrentTestExists;
+
+      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      try {
+        reporter.endTest(testName, testRunInfo, testMeta);
+      } catch (e) {
+        expect(consoleSpy).toHaveBeenCalled();
+      }
     });
 
     it('Should not add empty errors to ended test', () => {
