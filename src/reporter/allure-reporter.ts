@@ -248,10 +248,6 @@ export default class AllureReporter {
     }
   }
 
-  private addStacktraceAttachment(test: ExecutableItemWrapper, file): void {
-    test.addAttachment('stacktrace', ContentType.TEXT, file);
-  }
-
   /* Merge the steps together based on their name. */
   private mergeSteps(steps: TestStep[]): TestStep[] {
     const mergedSteps: TestStep[] = [];
