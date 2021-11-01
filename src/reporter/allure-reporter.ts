@@ -38,14 +38,8 @@ export default class AllureReporter {
   private tests: { [name: string]: AllureTest } = {};
 
   constructor(allureConfig?: AllureConfig, userAgents?: string[]) {
-    let config: AllureConfig;
-    if (!allureConfig) {
-      config = new AllureConfig(reporterConfig.RESULT_DIR);
-    } else {
-      config = allureConfig;
-    }
     this.userAgents = userAgents;
-    this.runtime = new AllureRuntime(config);
+    this.runtime = new AllureRuntime(allureConfig || { resultsDir: reporterConfig.RESULT_DIR });
   }
 
   public setGlobals(): void {

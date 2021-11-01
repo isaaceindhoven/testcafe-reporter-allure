@@ -1,8 +1,9 @@
 /* eslint-disable import/prefer-default-export */
 import { Category, TestResult, TestResultContainer } from 'allure-js-commons';
-import { IAllureWriter } from 'allure-js-commons/dist/src/writers';
+import { AllureWriter } from 'allure-js-commons/dist/src/writers';
+import { PathLike } from 'fs';
 
-export class AllureTestWriter implements IAllureWriter {
+export class AllureTestWriter implements AllureWriter {
   public reporter = null;
 
   constructor(reporter: any) {
@@ -31,5 +32,11 @@ export class AllureTestWriter implements IAllureWriter {
 
   writeResult(result: TestResult) {
     this.writeData(result);
+  }
+
+  // eslint-disable-next-line class-methods-use-this, @typescript-eslint/no-unused-vars
+  writeAttachmentFromPath(_fromPath: PathLike, _fileName: string) {
+    // eslint-disable-next-line no-console
+    console.warn('writeAttachmentFromPath not implemented');
   }
 }

@@ -77,7 +77,6 @@ jest.mock('allure-js-commons', () => {
     Status,
     Severity,
     Stage,
-    AllureConfig: jest.fn(),
     AllureRuntime: jest.fn().mockImplementation(() => {
       return {
         constructor: () => {},
@@ -148,7 +147,6 @@ describe('Allure reporter', () => {
     it('Should instantiate an AllureRuntime if no custom config is given', () => {
       const reporter: AllureReporter = new AllureReporter();
 
-      expect(AllureConfig).toHaveBeenCalledTimes(1);
       expect(AllureRuntime).toHaveBeenCalledTimes(1);
 
       // @ts-ignore
@@ -161,7 +159,6 @@ describe('Allure reporter', () => {
 
       expect(AllureRuntime).toHaveBeenCalledTimes(1);
       expect(AllureRuntime).toBeCalledWith(allureConfig);
-      expect(AllureConfig).not.toHaveBeenCalled();
 
       // @ts-ignore
       expect(reporter.runtime).toBeDefined();
