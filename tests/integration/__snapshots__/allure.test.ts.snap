@@ -49,6 +49,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "AssertionError: expected 1 to deeply equal 0",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -111,6 +117,7 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -173,6 +180,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "TypeError: bar.toString2 is not a function",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -251,6 +264,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "Error: Boo",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -321,6 +340,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "AssertionError: expected false to be truthy",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -383,6 +408,7 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -440,6 +466,7 @@ Array [
     "status": "skipped",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -497,6 +524,7 @@ Array [
     "status": "skipped",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -559,6 +587,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "AssertionError: expected 1 to deeply equal 0",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -621,6 +655,7 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -683,6 +718,7 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -740,6 +776,7 @@ Array [
     "status": "skipped",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -801,6 +838,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -867,6 +905,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "AssertionError: expected 1 to deeply equal 0",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -924,6 +968,7 @@ Array [
     "status": "skipped",
     "statusDetails": Object {
       "message": "Not automated",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -981,6 +1026,7 @@ Array [
     "status": "skipped",
     "statusDetails": Object {
       "message": "Not automated",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1038,6 +1084,7 @@ Array [
     "status": "skipped",
     "statusDetails": Object {
       "message": "Not automated",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1095,6 +1142,7 @@ Array [
     "status": "skipped",
     "statusDetails": Object {
       "message": "Known product bug BUG-1111",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1152,6 +1200,7 @@ Array [
     "status": "skipped",
     "statusDetails": Object {
       "message": "Known product bug BUG-2222",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1209,6 +1258,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "AssertionError: expected 1 to deeply equal 2",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -1266,6 +1321,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "Flaky test",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1322,6 +1378,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "AssertionError: expected 'Thank you, John Smith!' to deeply equal 'Thank you, Jane Smith!'",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -1383,6 +1445,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "AssertionError: expected 'Thank you, John Smith!' to deeply equal 'Thank you, Jane Smith!'",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -1439,6 +1507,7 @@ Array [
     "status": "skipped",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1514,6 +1583,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1570,6 +1640,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1618,6 +1689,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1666,6 +1738,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1739,6 +1812,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1812,6 +1886,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1873,6 +1948,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1934,6 +2010,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -2000,6 +2077,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
