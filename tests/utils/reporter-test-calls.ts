@@ -61,7 +61,7 @@ export default [
             },
           },
           {
-            err: new ActionElementNotFoundError({ apiFnChain: ['one', 'two', 'three'], apiFnIndex: 1 }),
+            err: new ActionElementNotFoundError(null, { apiFnChain: ['one', 'two', 'three'], apiFnIndex: 1 }),
 
             metaInfo: {
               userAgent: 'Firefox 47 / Mac OS X 10.10.1',
@@ -162,7 +162,7 @@ export default [
       {
         errs: makeErrors([
           {
-            err: new ActionElementNotFoundError({ apiFnChain: ['one', 'two', 'three'], apiFnIndex: 1 }),
+            err: new ActionElementNotFoundError(null, { apiFnChain: ['one', 'two', 'three'], apiFnIndex: 1 }),
 
             metaInfo: {
               userAgent: 'Firefox 47 / Mac OS X 10.10.1',

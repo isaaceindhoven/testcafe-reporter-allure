@@ -58,7 +58,7 @@ test.meta({
 
 | Metadata | Description |
 | ------------- | ------------- |
-| Severity | The severity values are dictated by the [allure-js-commons](https://github.com/allure-framework/allure-js/tree/master/packages/allure-js-commons) package, these values are: `blocker, critical, normal, minor, trivial`;  |
+| Severity | The severity values are dictated by the [allure-js-commons](https://github.com/allure-framework/allure-js/tree/main/packages/allure-js-commons) package, these values are: `blocker, critical, normal, minor, trivial`;  |
 | Issue  | A Jira Issue can be coupled to a test, creating a link within the Allure Report to the Jira Issue page. The URL to the Jira page can be set in the [allure-js-commons](https://github.com/isaaceindhoven/testcafe-reporter-allure#configuration).  |
 | Epic, Feature, Story  | To sort the tests based on the `epic`, `feature`, and/or `story`, these metadata options can be used to form a tree structure. The tree is structured as follows: An epic can have multiple features, a feature can have multiple stories, and a story can have multiple tests. |
 | Suite  | Within the Allure Report, the tests are organized by `fixture` by default. For a more expansive organization of the tests and fixtures, the `suite` parameter can be set. When the `suite` parameter is set within a `test`, a subcategory is created within the `fixture` that will group all tests that have the same `suite` parameter together. When the `suite` parameter is set within a `fixture`, a parent category is created that will group multiple fixtures that have the same `suite` parameter.  |
