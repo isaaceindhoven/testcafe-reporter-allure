@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.0](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v2.2.1...v2.3.0) (2021-11-06)
+
+
+### Features
+
+* **allure:** Add stacktrace support ([ece3de1](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/ece3de1cd80c2695f5c2a03ff25d4974ff7181c3))
+
+
+### Documentation
+
+* **contributing:** fix typo ([74ae301](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/74ae30163e393f486b9728f5ba31198cab59ce8b))
+
+
+### Refactors
+
+* **allure:** allure-js-commons beta 13 compatibility ([#121](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/121)) ([16a8b04](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/16a8b04593a5e5560fd63f825e218794a17a0cea))
+
+
+### Chores
+
+* **deps:** pin dependency eslint-config-airbnb-base to 14.2.1 ([#114](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/114)) ([80fd810](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/80fd8109f5f271436a10251b0da9abcb8053be51))
+* **deps:** update all non-major dependencies ([526ae67](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/526ae67549e35725645f571472a50db8ec79c1ed))
+* **deps:** update all non-major dependencies ([#122](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/122)) ([83485f9](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/83485f974a8384b93901999b2d3a853808c92f5e))
+* **deps:** update commitlint monorepo to v14 (major) ([#130](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/130)) ([98bcba4](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/98bcba45125490986ae0f74cb2d017d06f7e2128))
+* **deps:** update dependency eslint to v8 ([#123](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/123)) ([ca99949](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/ca99949ecb0a5277c2598d74fe2be28ee3e61dd0))
+* **deps:** update dependency eslint to v8.2.0 ([#132](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/132)) ([27f21b6](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/27f21b6a1b1768ab7ae43df84416ce1a4bac2555))
+* **deps:** update dependency eslint-config-airbnb-typescript to v15 ([#129](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/129)) ([906d74e](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/906d74e0eafcdb7b134e51d7d9662e68e7d66c80))
+* **deps:** update dependency eslint-plugin-jest to v25 ([#124](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/124)) ([84bd356](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/84bd356b88b48dc9bbae4b978059436f985a2887))
+* **deps:** update dependency jest to v27.2.2 ([#120](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/120)) ([044473a](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/044473a3df33722c1bb07d316e6600f1b526924e))
+* **deps:** update semantic-release monorepo ([#116](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/116)) ([eb51e8b](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/eb51e8bedfe0a0c3a947988fadb3f485f4c088e0))
+* **deps:** update semantic-release monorepo ([#118](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/118)) ([6248237](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/6248237456e9800d7aeebcf4ea65063bc2ae93c1))
+* **deps:** update typescript-eslint monorepo to v5 ([#128](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/128)) ([a517211](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/a517211e2c238d5f407eef5f91e08894555d7732))
+* **git:** rename master to main ([060a792](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/060a7924339c8f301a43a8b8e4769e7eb4972673))
+* **renovate:** ignore allure-js-commons updates ([a73d7c2](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/a73d7c2c0f37da14c38089e5d4e4d2fed35447e0))
+* **renovate:** lockFile maintenance ([3ce3e40](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/3ce3e406455f47cc1e089440d44a89c79ceed414))
+
 ### [2.2.1](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v2.2.0...v2.2.1) (2021-09-21)
 
 
