@@ -1168,6 +1168,116 @@ Array [
     },
   },
   Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "Skip reason fixture : Example test with invalid tag type=String that will be ignored",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "Skip reason fixture",
+      },
+    ],
+    "links": Array [],
+    "name": "Example test with invalid tag type=String that will be ignored",
+    "parameters": Array [
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "Skip reason fixture : Example test with with valid tag type=Array",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "Skip reason fixture",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Tags Example Group with valid tag type-Array",
+      },
+      Object {
+        "name": "tag",
+        "value": "e2e",
+      },
+      Object {
+        "name": "tag",
+        "value": "smoke",
+      },
+    ],
+    "links": Array [],
+    "name": "Example test with with valid tag type=Array",
+    "parameters": Array [
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": Object {
+      "message": "",
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
     "attachments": Array [
       Object {
         "name": "Screenshot taken on fail",

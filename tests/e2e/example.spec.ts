@@ -274,3 +274,18 @@ test
     .skip('Example skipped test 3', async () => {
       // planned test
     });
+
+test
+    .meta({
+        suite: 'Tags Example Group with valid tag type-Array',
+        tags: ['e2e', 'smoke'],
+    })('Example test with with valid tag type=Array', async () => {
+        // body of the test
+    });
+
+test
+    .meta({
+      tags: 'e2e', // tag that is not an Array type will be ignored
+    })('Example test with invalid tag type=String that will be ignored', async () => {
+      // body of the test
+    });
