@@ -3,7 +3,7 @@ module.exports = {
   parserOptions: {
     project: ['./tsconfig.test.json'],
   },
-  extends: ['airbnb-typescript/base', 'plugin:prettier/recommended'],
+  extends: ['airbnb-base', 'airbnb-typescript/base', 'plugin:prettier/recommended'],
   ignorePatterns: ['docs/**/*.js'],
   overrides: [
     {

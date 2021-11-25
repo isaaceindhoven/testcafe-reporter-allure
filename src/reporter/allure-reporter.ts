@@ -38,15 +38,8 @@ export default class AllureReporter {
   private tests: { [name: string]: AllureTest } = {};
 
   constructor(allureConfig?: AllureConfig, userAgents?: string[]) {
-    let config: AllureConfig;
-    if (!allureConfig) {
-      config = new AllureConfig(reporterConfig.RESULT_DIR);
-    } else {
-      config = allureConfig;
-    }
-
     this.userAgents = userAgents;
-    this.runtime = new AllureRuntime(config);
+    this.runtime = new AllureRuntime(allureConfig || { resultsDir: reporterConfig.RESULT_DIR });
   }
 
   public setGlobals(): void {
@@ -118,15 +111,30 @@ export default class AllureReporter {
           testMessages = addNewLine(testMessages, error.errMsg);
         }
 
-        // TODO: Add detailed error stacktrace
-        // How to convert CallSiteRecord to stacktrace?
         const callSite = error.callsite;
+
+        let stacktrace: string = 'NO_STACKTRACE_DATA_FOUND';
+        // This info is in a bit of a transition, use the callsite object if it's available.
+
         if (callSite) {
           if (callSite.filename) {
             testDetails = addNewLine(testDetails, `File name: ${callSite.filename}`);
           }
           if (callSite.lineNum) {
             testDetails = addNewLine(testDetails, `Line number: ${callSite.lineNum}`);
+          }
+          // renderSync needs to be in a try catch to avoid a file not found error
+          // See the following github issue for details: https://github.com/inikulin/callsite-record/issues/2#issuecomment-223263941
+          try {
+            // eslint-disable-next-line global-require
+            const noColorRenderer = require('callsite-record').renderers.noColor;
+            stacktrace = error.callsite.renderSync({
+              renderer: noColorRenderer,
+            });
+            testDetails = addNewLine(testDetails, `Stacktrace:\n${stacktrace}`);
+          } catch (err) {
+            // eslint-disable-next-line no-console
+            console.error(`Error in callsite.renderSync in Allure reporting:\n${err}`);
           }
         }
         if (error.userAgent) {
@@ -214,7 +222,7 @@ export default class AllureReporter {
   }
 
   private addScreenshotAttachment(test: ExecutableItemWrapper, screenshot: Screenshot): void {
-    if (screenshot.screenshotPath && fs.existsSync(screenshot.screenshotPath)) {
+    if (screenshot && screenshot.screenshotPath && fs.existsSync(screenshot.screenshotPath)) {
       let screenshotName: string;
       if (screenshot.takenOnFail) {
         screenshotName = reporterConfig.LABEL.SCREENSHOT_ON_FAIL;

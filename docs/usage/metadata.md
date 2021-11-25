@@ -23,6 +23,7 @@ test.meta({
   // Test Code
 });
 
+// Skipped test example
 test.meta({
     severity: Severity.TRIVIAL,
     issue: 'TEST-ISSUE',
@@ -31,13 +32,13 @@ test.meta({
     feature: 'Example Feature Ticket',
     story: 'Example Story Ticket',
     suite: 'Main Example Group',
-    skipReason: 'Known product bug BUG-ISSUE-1'
+    skipReason: 'Skipped: Known product bug BUG-ISSUE-1'
     // ... any other key: value property as custom metadata
 }).skip('Example test with metadata', async (t) => {
     // Test Code
 });
 
-
+// Skipped test example
 test.meta({
     severity: Severity.TRIVIAL,
     issue: 'TEST-ISSUE',
@@ -46,7 +47,7 @@ test.meta({
     feature: 'Example Feature Ticket',
     story: 'Example Story Ticket',
     suite: 'Main Example Group',
-    skipReason: 'Not implemented'
+    skipReason: 'Skipped: Not implemented'
     // ... any other key: value property as custom metadata
 }).skip('Example planned test', async (t) => {
     // Test Code
@@ -57,11 +58,11 @@ test.meta({
 
 | Metadata | Description |
 | ------------- | ------------- |
-| Severity | The severity values are dictated by the [allure-js-commons](https://github.com/allure-framework/allure-js/tree/master/packages/allure-js-commons) package, these values are: `blocker, critical, normal, minor, trivial`;  |
+| Severity | The severity values are dictated by the [allure-js-commons](https://github.com/allure-framework/allure-js/tree/main/packages/allure-js-commons) package, these values are: `blocker, critical, normal, minor, trivial`;  |
 | Issue  | A Jira Issue can be coupled to a test, creating a link within the Allure Report to the Jira Issue page. The URL to the Jira page can be set in the [allure-js-commons](https://github.com/isaaceindhoven/testcafe-reporter-allure#configuration).  |
 | Epic, Feature, Story  | To sort the tests based on the `epic`, `feature`, and/or `story`, these metadata options can be used to form a tree structure. The tree is structured as follows: An epic can have multiple features, a feature can have multiple stories, and a story can have multiple tests. |
 | Suite  | Within the Allure Report, the tests are organized by `fixture` by default. For a more expansive organization of the tests and fixtures, the `suite` parameter can be set. When the `suite` parameter is set within a `test`, a subcategory is created within the `fixture` that will group all tests that have the same `suite` parameter together. When the `suite` parameter is set within a `fixture`, a parent category is created that will group multiple fixtures that have the same `suite` parameter.  |
-| SkipReason  | A test meta tag to allow showing skip reason in allure categories.  |
+| skipReason  | A test meta tag to allow showing skip reason in allure categories.  |
 
 ## Custom metadata
 
@@ -69,15 +70,44 @@ It is also possible to add custom metadata to a `test`. These will be added as p
 
 ## Result
 
-## Suite overview
+### Suite overview
+
+If pré-defined metadata was used as in code example above, it will be added to the allure test result view.
+
+### Example of a test result view for a passed test
 
 ![Example of the metadata for passed test.](../images/passed.png)
+
+### Example of a test result view for a skipped test
+
+Skip reason will be shown as a message on test result overview: 
 
 ![Example of the metadata for skipped test with skip reason bug.](../images/skippedBug.png)
 
 ![Example of the metadata for skipped test with skip reason not automated.](../images/skippedNotAutomated.png)
 
+Skip message can be used as a filter in allure categories view.
+
 ## Categories
 
-Example of custom categories with skip tests that has meta `skipReason`.
+Example of a custom `allure-categories.config.js` with `skipReason` message to be in `messageRegex` filter: 
+```js
+module.exports = [
+    {
+        name: 'Not automated',
+        messageRegex: '.*Not automated.*',
+    },
+    {
+        name: 'Known bugs',
+        messageRegex: '.*Known bug.*',
+    },
+    {
+        name: 'Automated',
+        matchedStatuses: ['failed', 'passed'],
+    },
+];
+```
+Using `allure-categories.config.js` with code above and `skipReason` meta in skipped TestCafe tests will produce following categories:
 ![Example of the custom categories for](../images/customCategories.png)
+
+This approach can result in simple code coverage report in your allure results.  

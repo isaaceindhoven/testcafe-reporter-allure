@@ -1,5 +1,5 @@
 module.exports = {
-  branches: ['master'],
+  branches: ['main'],
   ci: true,
   dryRun: false,
   plugins: [

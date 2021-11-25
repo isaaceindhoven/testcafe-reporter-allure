@@ -32,6 +32,8 @@ const defaultReporterConfig = {
   },
 };
 
+export type ReporterConfig = typeof defaultReporterConfig;
+
 const defaultCategoriesConfig: Category[] = [
   {
     name: 'Ignored tests',
@@ -59,9 +61,9 @@ const defaultCategoriesConfig: Category[] = [
 ];
 
 function loadCustomConfig(configFile: string): object {
-  let customConfig: object = null;
+  let customConfig: Partial<ReporterConfig> = {};
   try {
-    // The presence of this config module is not guarenteed therefore this approach is needed.
+    // The presence of this config module is not guaranteed therefore this approach is needed.
     /* eslint-disable-next-line import/no-dynamic-require,global-require */
     customConfig = require(path.resolve(process.cwd(), configFile));
   } catch (error) {
@@ -70,9 +72,9 @@ function loadCustomConfig(configFile: string): object {
   return customConfig;
 }
 
-export function loadReporterConfig(): any {
+export function loadReporterConfig() {
   const customConfig = loadCustomConfig(defaultReporterConfig.REPORTER_CONFIG_FILE);
-  const mergedConfig: object = defaultsDeep(customConfig, defaultReporterConfig);
+  const mergedConfig: ReporterConfig = defaultsDeep(customConfig, defaultReporterConfig);
   return mergedConfig;
 }
 

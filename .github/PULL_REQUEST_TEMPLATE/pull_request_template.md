@@ -1,7 +1,7 @@
 ### Requirements for Adding, Changing, or Removing a Feature
 
 * Fill out the template below. Any Pull Request that does not include enough information to be reviewed in a timely manner may be closed at the maintainers' discretion.
-* More information regarding creating Pull Requests can be found in [CONTRIBUTING](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/master/CONTRIBUTING.md#creating-a-pull-request).
+* More information regarding creating Pull Requests can be found in [CONTRIBUTING](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/main/CONTRIBUTING.md#creating-a-pull-request).
 
 ### Issue
 
@@ -21,7 +21,7 @@ What are the possible side-effects or negative impacts of the code change?
 
 ### Verification Process
 
-Please provide the process of how the changes can be verified having the desired effect. This is both as a sanity check to ensure that all steps within [CONTRIBUTING](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/master/CONTRIBUTING.md#creating-a-pull-request) have been followed and to help the reviewers verify the changes in the Pull Request.
+Please provide the process of how the changes can be verified having the desired effect. This is both as a sanity check to ensure that all steps within [CONTRIBUTING](https://github.com/isaaceindhoven/testcafe-reporter-allure/blob/main/CONTRIBUTING.md#creating-a-pull-request) have been followed and to help the reviewers verify the changes in the Pull Request.
 
 - How did you verify that all new functionality works as expected?
 - How did you verify that all changed functionality works as expected?
