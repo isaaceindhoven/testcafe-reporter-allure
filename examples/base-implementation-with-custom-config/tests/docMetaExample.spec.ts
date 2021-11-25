@@ -50,7 +50,7 @@ test
 test
   .meta({
     suite: 'Another Example Group',
-    tags: ['not-automated'],
+    tags: 'not-automated', // string tags are also supported
     skipReason: 'Not automated',
   })
   .skip('Example not automated e2e test 3', async () => {

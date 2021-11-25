@@ -277,15 +277,16 @@ test
 
 test
     .meta({
-        suite: 'Tags Example Group with valid tag type-Array',
-        tags: ['e2e', 'smoke'],
+        suite: 'Tags Example',
+        tags: ['e2e', 'smoke'], // array type is more desirable and more reasonable
     })('Example test with with valid tag type=Array', async () => {
         // body of the test
     });
 
 test
     .meta({
-      tags: 'e2e', // tag that is not an Array type will be ignored
+      suite: 'Tags Example',
+      tags: 'e2e', // string type is also supported
     })('Example test with invalid tag type=String that will be ignored', async () => {
       // body of the test
     });

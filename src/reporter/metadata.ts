@@ -70,6 +70,8 @@ export default class Metadata {
       }
       if (Array.isArray(tags)) {
         this.tags = tags;
+      } else if(this.isString(tags)) {
+        this.tags = [tags];
       }
 
       Object.keys(otherMeta).forEach((key) => {
