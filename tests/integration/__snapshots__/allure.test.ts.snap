@@ -1219,7 +1219,7 @@ Array [
   Object {
     "attachments": Array [],
     "description": undefined,
-    "fullName": "Skip reason fixture : Example test with invalid tag type=String that will be ignored",
+    "fullName": "Skip reason fixture : Example test with string that is also supported",
     "labels": Array [
       Object {
         "name": "framework",
@@ -1247,7 +1247,7 @@ Array [
       },
     ],
     "links": Array [],
-    "name": "Example test with invalid tag type=String that will be ignored",
+    "name": "Example test with string that is also supported",
     "parameters": Array [
       Object {
         "name": "owner",

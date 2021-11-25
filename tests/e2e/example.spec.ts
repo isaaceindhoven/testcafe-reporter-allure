@@ -285,6 +285,6 @@ test.meta({
 test.meta({
   suite: 'Tags Example',
   tags: 'e2e', // string type is also supported
-})('Example test with invalid tag type=String that will be ignored', async () => {
+})('Example test with string that is also supported', async () => {
   // body of the test
 });
