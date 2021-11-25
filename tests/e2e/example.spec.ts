@@ -231,62 +231,60 @@ test.meta(SMOKE).meta(TIER2)('FAF Test', async () => {});
  */
 fixture('Skip reason fixture').meta(OWNERS);
 test
-    .meta({
-        suite: 'Skip Reason Example Group',
-        skipReason: 'Known product bug BUG-1111',
-    })
-    .skip('Example skipped test with bug reason 1', async () => {
-        // planned test
-    });
+  .meta({
+    suite: 'Skip Reason Example Group',
+    skipReason: 'Known product bug BUG-1111',
+  })
+  .skip('Example skipped test with bug reason 1', async () => {
+    // planned test
+  });
 
 test
-    .meta({
-        suite: 'Skip Reason Example Group',
-        skipReason: 'Known product bug BUG-2222',
-    })
-    .skip('Example skipped test with bug reason 2', async () => {
-        // planned test
-    });
+  .meta({
+    suite: 'Skip Reason Example Group',
+    skipReason: 'Known product bug BUG-2222',
+  })
+  .skip('Example skipped test with bug reason 2', async () => {
+    // planned test
+  });
 
 test
-    .meta({
-      suite: 'Skip Reason Example Group',
-      skipReason: 'Not automated',
-    })
-    .skip('Example skipped test 1', async () => {
-      // planned test
-    });
+  .meta({
+    suite: 'Skip Reason Example Group',
+    skipReason: 'Not automated',
+  })
+  .skip('Example skipped test 1', async () => {
+    // planned test
+  });
 
 test
-    .meta({
-      suite: 'Skip Reason Example Group',
-      skipReason: 'Not automated',
-    })
-    .skip('Example skipped test 2', async () => {
-      // planned test
-    });
+  .meta({
+    suite: 'Skip Reason Example Group',
+    skipReason: 'Not automated',
+  })
+  .skip('Example skipped test 2', async () => {
+    // planned test
+  });
 
 test
-    .meta({
-      suite: 'Skip Reason Example Group',
-      skipReason: 'Not automated',
-    })
-    .skip('Example skipped test 3', async () => {
-      // planned test
-    });
+  .meta({
+    suite: 'Skip Reason Example Group',
+    skipReason: 'Not automated',
+  })
+  .skip('Example skipped test 3', async () => {
+    // planned test
+  });
 
-test
-    .meta({
-        suite: 'Tags Example',
-        tags: ['e2e', 'smoke'], // array type is more desirable and more reasonable
-    })('Example test with with valid tag type=Array', async () => {
-        // body of the test
-    });
+test.meta({
+  suite: 'Tags Example',
+  tags: ['e2e', 'smoke'], // array type is more desirable and more reasonable
+})('Example test with with valid tag type=Array', async () => {
+  // body of the test
+});
 
-test
-    .meta({
-      suite: 'Tags Example',
-      tags: 'e2e', // string type is also supported
-    })('Example test with invalid tag type=String that will be ignored', async () => {
-      // body of the test
-    });
+test.meta({
+  suite: 'Tags Example',
+  tags: 'e2e', // string type is also supported
+})('Example test with invalid tag type=String that will be ignored', async () => {
+  // body of the test
+});

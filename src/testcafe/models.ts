@@ -1,3 +1,5 @@
+import { CallsiteRecord } from 'callsite-record';
+
 export {};
 /* https://github.com/DevExpress/testcafe/issues/2826#issuecomment-524377039
 TestCafe does not export the TestController interface, to reduce the chance of making mistakes within the code
@@ -28,9 +30,15 @@ export interface Screenshot {
   takenOnFail?: boolean;
 }
 
+export type TestCafeError = {
+  errMsg: string;
+  originError?: string;
+  callsite?: CallsiteRecord;
+};
+
 // https://devexpress.github.io/testcafe/documentation/reference/plugin-api/reporter.html#testruninfo-object
 export interface TestRunInfo {
-  errs?: object[];
+  errs?: TestCafeError[];
   warnings?: string[];
   durationMs?: number;
   unstable?: boolean;
@@ -46,7 +54,7 @@ export interface ErrorObject {
   userAgent?: string;
 }
 
-export interface CallSite {
+export interface CallSite extends CallsiteRecord {
   filename?: string;
   lineNum?: string;
 }

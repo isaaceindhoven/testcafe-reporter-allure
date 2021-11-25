@@ -49,6 +49,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "AssertionError: expected 1 to deeply equal 0",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -111,6 +117,7 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -173,6 +180,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "TypeError: bar.toString2 is not a function",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -251,6 +264,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "Error: Boo",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -321,6 +340,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "AssertionError: expected false to be truthy",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -383,6 +408,7 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -440,6 +466,7 @@ Array [
     "status": "skipped",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -497,6 +524,7 @@ Array [
     "status": "skipped",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -559,6 +587,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "AssertionError: expected 1 to deeply equal 0",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -621,6 +655,7 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -683,6 +718,7 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -740,6 +776,7 @@ Array [
     "status": "skipped",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -801,6 +838,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -867,6 +905,302 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "AssertionError: expected 1 to deeply equal 0",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "Skip reason fixture : Example skipped test 1",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "Skip reason fixture",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Skip Reason Example Group",
+      },
+    ],
+    "links": Array [],
+    "name": "Example skipped test 1",
+    "parameters": Array [
+      Object {
+        "name": "skipReason",
+        "value": "Not automated",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "skipped",
+    "statusDetails": Object {
+      "message": "Not automated",
+      "trace": undefined,
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "Skip reason fixture : Example skipped test 2",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "Skip reason fixture",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Skip Reason Example Group",
+      },
+    ],
+    "links": Array [],
+    "name": "Example skipped test 2",
+    "parameters": Array [
+      Object {
+        "name": "skipReason",
+        "value": "Not automated",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "skipped",
+    "statusDetails": Object {
+      "message": "Not automated",
+      "trace": undefined,
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "Skip reason fixture : Example skipped test 3",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "Skip reason fixture",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Skip Reason Example Group",
+      },
+    ],
+    "links": Array [],
+    "name": "Example skipped test 3",
+    "parameters": Array [
+      Object {
+        "name": "skipReason",
+        "value": "Not automated",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "skipped",
+    "statusDetails": Object {
+      "message": "Not automated",
+      "trace": undefined,
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "Skip reason fixture : Example skipped test with bug reason 1",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "Skip reason fixture",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Skip Reason Example Group",
+      },
+    ],
+    "links": Array [],
+    "name": "Example skipped test with bug reason 1",
+    "parameters": Array [
+      Object {
+        "name": "skipReason",
+        "value": "Known product bug BUG-1111",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "skipped",
+    "statusDetails": Object {
+      "message": "Known product bug BUG-1111",
+      "trace": undefined,
+    },
+    "steps": Object {
+      "attachments": undefined,
+      "description": undefined,
+      "fullName": undefined,
+      "labels": undefined,
+      "links": undefined,
+      "name": undefined,
+      "parameters": undefined,
+      "stage": undefined,
+      "status": undefined,
+      "statusDetails": undefined,
+      "steps": undefined,
+    },
+  },
+  Object {
+    "attachments": Array [],
+    "description": undefined,
+    "fullName": "Skip reason fixture : Example skipped test with bug reason 2",
+    "labels": Array [
+      Object {
+        "name": "framework",
+        "value": "TestCafe",
+      },
+      Object {
+        "name": "language",
+        "value": "typescript/javascript",
+      },
+      Object {
+        "name": "severity",
+        "value": "Normal",
+      },
+      Object {
+        "name": "suite",
+        "value": "Skip reason fixture",
+      },
+      Object {
+        "name": "subSuite",
+        "value": "Skip Reason Example Group",
+      },
+    ],
+    "links": Array [],
+    "name": "Example skipped test with bug reason 2",
+    "parameters": Array [
+      Object {
+        "name": "skipReason",
+        "value": "Known product bug BUG-2222",
+      },
+      Object {
+        "name": "owner",
+        "value": "team",
+      },
+    ],
+    "stage": "finished",
+    "status": "skipped",
+    "statusDetails": Object {
+      "message": "Known product bug BUG-2222",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1327,6 +1661,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "AssertionError: expected 1 to deeply equal 2",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -1384,6 +1724,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "Flaky test",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1440,6 +1781,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "AssertionError: expected 'Thank you, John Smith!' to deeply equal 'Thank you, Jane Smith!'",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -1501,6 +1848,12 @@ Array [
     "status": "failed",
     "statusDetails": Object {
       "message": "AssertionError: expected 'Thank you, John Smith!' to deeply equal 'Thank you, Jane Smith!'",
+      "trace": Object {
+        "fileName": true,
+        "lineNumber": true,
+        "stacktrace": true,
+        "userAgent": true,
+      },
     },
     "steps": Object {
       "attachments": undefined,
@@ -1557,6 +1910,7 @@ Array [
     "status": "skipped",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1632,6 +1986,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1688,6 +2043,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1736,6 +2092,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1784,6 +2141,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1857,6 +2215,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1930,6 +2289,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -1991,6 +2351,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -2052,6 +2413,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,
@@ -2118,6 +2480,7 @@ Array [
     "status": "passed",
     "statusDetails": Object {
       "message": "",
+      "trace": undefined,
     },
     "steps": Object {
       "attachments": undefined,

@@ -8,7 +8,7 @@ test.meta({
   feature: 'Example Feature Ticket',
   story: 'Example Story Ticket',
   suite: 'Main Example Group',
-  tags: ['e2e', 'automated', 'smoke']
+  tags: ['e2e', 'automated', 'smoke'],
   // ... any other key: value property as custom metadata
 })('Example test with metadata', async () => {
   // Test Code
@@ -23,7 +23,7 @@ test
     feature: 'Example Feature Ticket',
     story: 'Example Story Ticket',
     suite: 'Main Example Group',
-    skipReason: 'Skipped: Known bug BUG-ISSUE-1'
+    skipReason: 'Skipped: Known bug BUG-ISSUE-1',
     // ... any other key: value property as custom metadata
   })
   .skip('Example test with metadata', async () => {
