@@ -8,6 +8,7 @@ test.meta({
   feature: 'Example Feature Ticket',
   story: 'Example Story Ticket',
   suite: 'Main Example Group',
+  tags: ['e2e', 'automated', 'smoke'],
   // ... any other key: value property as custom metadata
 })('Example test with metadata', async () => {
   // Test Code
@@ -38,9 +39,20 @@ test
     feature: 'Example Feature Ticket',
     story: 'Example Story Ticket',
     suite: 'Main Example Group',
+    tags: ['e2e', 'not-automated'],
     skipReason: 'Skipped: Not automated',
     // ... any other key: value property as custom metadata
   })
   .skip('Example planned test', async () => {
     // Test Code
+  });
+
+test
+  .meta({
+    suite: 'Another Example Group',
+    tags: 'not-automated', // string tags are also supported
+    skipReason: 'Not automated',
+  })
+  .skip('Example not automated e2e test 3', async () => {
+    // planned test
   });
