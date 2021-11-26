@@ -52,6 +52,34 @@ test.meta({
 }).skip('Example planned test', async (t) => {
     // Test Code
 });
+
+test.meta({
+    severity: Severity.TRIVIAL,
+    issue: 'TEST-ISSUE',
+    description: 'An example discription',
+    epic: 'Example Epic Ticket',
+    feature: 'Example Feature Ticket',
+    story: 'Example Story Ticket',
+    suite: 'Main Example Group',
+    tags: ['automated', 'smoke', 'e2e']
+    // ... any other key: value property as custom metadata
+})('Example test with metadata', async (t) => {
+    // Test Code
+});
+
+test.meta({
+    severity: Severity.TRIVIAL,
+    issue: 'TEST-ISSUE',
+    description: 'An example discription',
+    epic: 'Example Epic Ticket',
+    feature: 'Example Feature Ticket',
+    story: 'Example Story Ticket',
+    suite: 'Main Example Group',
+    tags: 'e2e'
+    // ... any other key: value property as custom metadata
+})('Example test with metadata where tag can be a string', async (t) => {
+    // Test Code
+});
 ```
 
 ## Pré-defined metadata
@@ -63,6 +91,7 @@ test.meta({
 | Epic, Feature, Story  | To sort the tests based on the `epic`, `feature`, and/or `story`, these metadata options can be used to form a tree structure. The tree is structured as follows: An epic can have multiple features, a feature can have multiple stories, and a story can have multiple tests. |
 | Suite  | Within the Allure Report, the tests are organized by `fixture` by default. For a more expansive organization of the tests and fixtures, the `suite` parameter can be set. When the `suite` parameter is set within a `test`, a subcategory is created within the `fixture` that will group all tests that have the same `suite` parameter together. When the `suite` parameter is set within a `fixture`, a parent category is created that will group multiple fixtures that have the same `suite` parameter.  |
 | skipReason  | A test meta tag to allow showing skip reason in allure categories.  |
+| tags  | A test meta tag to allow showing tags in allure report. It is recommended to pass "tags" as an array of strings |
 
 ## Custom metadata
 
@@ -87,6 +116,10 @@ Skip reason will be shown as a message on test result overview:
 ![Example of the metadata for skipped test with skip reason not automated.](../images/skippedNotAutomated.png)
 
 Skip message can be used as a filter in allure categories view.
+
+### Example of a test result view for a test with 'tags' metadata
+
+![Example of the metadata for test with "tags" metadata.](../images/tags.png)
 
 ## Categories
 
