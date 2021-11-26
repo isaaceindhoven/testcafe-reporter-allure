@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.0](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v2.3.0...v2.4.0) (2021-11-26)
+
+
+### Features
+
+* **reporter:** Added support for "Tags" labels ([#137](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/137)) ([79e337a](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/79e337a599209a22047305f0985a2550652e24eb))
+
+
+### Chores
+
+* **deps:** update all non-major dependencies ([#133](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/133)) ([ba93a66](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/ba93a66948d7030f901ae1797fde2f5f4142fcf6))
+* **deps:** update all non-major dependencies ([#135](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/135)) ([48cbdd2](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/48cbdd21264afe3024c7454c3d943b7d02dffaac))
+* **deps:** update commitlint monorepo to v15 ([#136](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/136)) ([3d4a55c](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/3d4a55c541e1a9a7e2b70ae46c8c0f7c0d01badc))
+* **release:** 2.4.0 ([904419c](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/904419c8b20626eec8cdc1299fec8eeaab065a34))
+* v2.4.0 ([#138](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/138)) ([bf3755b](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/bf3755bf79b7f8ca48a89c35d7571b9d157ad60a))
+
 ## [2.3.0](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v2.2.1...v2.3.0) (2021-11-06)
 
 
