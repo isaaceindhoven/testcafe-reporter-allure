@@ -15,10 +15,9 @@ const mapTrace = (trace: string) => {
   if (!trace) return undefined;
   return Object.entries(TRACE_SPLITTERS).reduce((acc, [splitterKey, splitterValue], currentIndex) => {
     const firstPartofValue = trace.split(splitterValue)[1];
-    const [value] = firstPartofValue?.split(Object.values(TRACE_SPLITTERS)[currentIndex + 1]);
-
+    if (!firstPartofValue) return acc;
+    const [value] = firstPartofValue.split(Object.values(TRACE_SPLITTERS)[currentIndex + 1]);
     if (!value) return acc;
-
     return {
       ...acc,
       [splitterKey]: true,
