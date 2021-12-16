@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [2.4.1](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v2.4.0...v2.4.1) (2021-12-16)
+
+
+### Bug Fixes
+
+* **allure:** update allure-commandline to latest version to remove log4j dependency ([b8db99e](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/b8db99e6cd9d253219077a9a076c1fb5aba432e3))
+
+
+### Chores
+
+* **deps:** update all non-major dependencies ([cbd0dc4](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/cbd0dc45fe2b461efe0ba99d9c7f8ba28af8f593))
+* **deps:** update all non-major dependencies ([#140](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/140)) ([201e48f](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/201e48fd826ee8898faa2f1658290eaaf043bdc9))
+* **deps:** update all non-major dependencies ([#145](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/145)) ([80a2905](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/80a29058305de10fdcda17fdda129654e880e6ff))
+* **deps:** update dependency eslint-config-airbnb-typescript to v16 ([#141](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/141)) ([d9f8898](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/d9f88985a27d473c015ce1586d4862fa88e472b9))
+* **deps:** update dependency lint-staged to v12 ([#142](https://github.com/isaaceindhoven/testcafe-reporter-allure/issues/142)) ([1c92377](https://github.com/isaaceindhoven/testcafe-reporter-allure/commit/1c92377327c1dfb206524afda6035b8563e3688c))
+
 ## [2.4.0](https://github.com/isaaceindhoven/testcafe-reporter-allure/compare/v2.3.0...v2.4.0) (2021-11-26)
 
 
