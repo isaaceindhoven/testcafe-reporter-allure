@@ -28,7 +28,7 @@ jobs:
         run: "npm run build"
 
       - name: Archive build output
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: build
           path: dist
@@ -114,7 +114,7 @@ jobs:
       run: 'npm run test:e2e'
 
     - name: Archive allure reporter output
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: allure
         path: allure
