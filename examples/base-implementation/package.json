@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "allure-commandline": "^2.13.0",
-    "testcafe": "^1.14.0",
+    "testcafe": "^15.1.317922",
     "testcafe-reporter-allure": "../../"
   },
   "dependencies": {}
