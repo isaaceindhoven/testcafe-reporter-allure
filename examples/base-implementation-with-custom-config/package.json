@@ -1,18 +1,5 @@
 {
   "name": "@isaac.frontend/testcafe-reporter-allure-example-custom-config",
-  "version": "0.1.2",
-  "author": "ISAAC E-commerce Solutions BV",
-  "license": "MIT",
-  "description": "An example implementation of the testcafe-reporter-allure",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/isaaceindhoven/testcafe-reporter-allure.git"
-  },
-  "bugs": {
-    "url": "https://github.com/isaaceindhoven/testcafe-reporter-allure/issues"
-  },
-  "homepage": "https://github.com/isaaceindhoven/testcafe-reporter-allure#readme",
   "scripts": {
     "test:doc:example": "testcafe firefox tests/docMetaExample.spec.ts --reporter allure --screenshots path=allure/screenshots,takeOnFails=true",
     "allure": "allure generate ./allure-results --clean -o ./allure/allure-report && allure open ./allure/allure-report",
