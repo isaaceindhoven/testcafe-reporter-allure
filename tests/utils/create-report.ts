@@ -2,7 +2,7 @@
 import * as normalizeNewline from 'normalize-newline';
 // @ts-ignore
 import { embeddingUtils } from 'testcafe';
-import { InMemoryAllureWriter } from 'allure-js-commons/dist/src/writers';
+import { InMemoryAllureWriter } from 'allure-js-commons';
 import pluginFactory from '../../src';
 import { AllureTestWriter } from '../../src/writers/allure-writer';
 import reporterTestCalls from './reporter-test-calls';

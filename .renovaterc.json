@@ -4,9 +4,6 @@
     "group:allNonMajor",
     ":semanticCommitTypeAll(chore)"
   ],
-  "ignoreDeps": [
-    "allure-js-commons"
-  ],
   "packageRules": [
     {
       "paths": [
