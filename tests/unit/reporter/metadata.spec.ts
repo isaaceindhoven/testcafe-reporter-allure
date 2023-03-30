@@ -1,5 +1,4 @@
-import { Severity } from 'allure-js-commons';
-import { AllureTest } from 'allure-js-commons/dist/src/AllureTest';
+import { Severity, AllureTest } from 'allure-js-commons';
 import Metadata from '../../../src/reporter/metadata';
 import '../../utils/jest-enum-matcher';
 // Mock the AllureTest class to be able to test all Metadata functions.
@@ -8,8 +7,10 @@ import '../../utils/jest-enum-matcher';
 const mockAddLabel = jest.fn();
 const mockAddLink = jest.fn();
 const mockAddParameter = jest.fn();
-jest.mock('allure-js-commons/dist/src/AllureTest', () => {
+jest.mock('allure-js-commons', () => {
+  const original = jest.requireActual('allure-js-commons');
   return {
+    ...original,
     AllureTest: jest.fn().mockImplementation(() => {
       return {
         constructor: () => {},

@@ -1,5 +1,5 @@
 {
-  "name": "@isaac.frontend/testcafe-reporter-allure-example",
+  "name": "@isaac.frontend/testcafe-reporter-allure-example-base-implementation",
   "version": "0.1.2",
   "author": "ISAAC E-commerce Solutions BV",
   "license": "MIT",
@@ -20,8 +20,8 @@
     "list:browsers": "testcafe --list-browsers"
   },
   "devDependencies": {
-    "allure-commandline": "^2.13.0",
-    "testcafe": "^1.14.0",
+    "allure-commandline": "2.21.0",
+    "testcafe": "2.4.0",
     "testcafe-reporter-allure": "../../"
   },
   "dependencies": {}

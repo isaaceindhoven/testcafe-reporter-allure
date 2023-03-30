@@ -1,12 +1,12 @@
 /* eslint-disable import/prefer-default-export */
-import { Category, TestResult, TestResultContainer } from 'allure-js-commons';
-import { AllureWriter } from 'allure-js-commons/dist/src/writers';
+import { Category, TestResult, TestResultContainer, InMemoryAllureWriter } from 'allure-js-commons';
 import { PathLike } from 'fs';
 
-export class AllureTestWriter implements AllureWriter {
+export class AllureTestWriter extends InMemoryAllureWriter {
   public reporter = null;
 
   constructor(reporter: any) {
+    super();
     this.reporter = reporter;
   }
 

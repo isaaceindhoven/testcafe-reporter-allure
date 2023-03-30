@@ -1,11 +1,9 @@
 {
-    "compilerOptions": {
-        "downlevelIteration": true,
-        "moduleResolution": "Node",
-        "allowSyntheticDefaultImports": true,
-        "typeRoots": [
-            "node_modules/@types",
-            "@types"
-        ]
-    }
+  "compilerOptions": {
+    "downlevelIteration": true,
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": ["node_modules/@types", "@types"],
+    "lib": ["ES2015"]
+  }
 }
