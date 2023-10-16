@@ -50,8 +50,8 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.7.2",
-    "@commitlint/config-conventional": "17.7.0",
+    "@commitlint/cli": "17.8.0",
+    "@commitlint/config-conventional": "17.8.0",
     "@rollup/plugin-typescript": "11.1.5",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/commit-analyzer": "11.0.0",
@@ -62,8 +62,8 @@
     "@types/jest": "29.5.5",
     "@types/rimraf": "3.0.2",
     "@types/uuid": "9.0.5",
-    "@typescript-eslint/eslint-plugin": "6.7.4",
-    "@typescript-eslint/parser": "6.7.4",
+    "@typescript-eslint/eslint-plugin": "6.7.5",
+    "@typescript-eslint/parser": "6.7.5",
     "allure-commandline": "2.24.1",
     "eslint": "8.51.0",
     "eslint-config-airbnb-base": "15.0.0",
@@ -93,6 +93,6 @@
     "examples/*"
   ],
   "volta": {
-    "node": "18.18.0"
+    "node": "18.18.2"
   }
 }
