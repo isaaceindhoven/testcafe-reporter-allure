@@ -28,7 +28,7 @@ jobs:
         run: "npm run build"
 
       - name: Archive build output
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build
           path: dist
@@ -100,7 +100,7 @@ jobs:
       uses: bahmutov/npm-install@v1
 
     - name: Download build artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: build
         path: dist
@@ -112,7 +112,7 @@ jobs:
       run: 'npm run test:e2e'
 
     - name: Archive allure reporter output
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: allure
         path: allure
@@ -139,7 +139,7 @@ jobs:
       uses: bahmutov/npm-install@v1
 
     - name: Download build artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: allure
         path: allure
