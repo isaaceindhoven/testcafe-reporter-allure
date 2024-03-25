@@ -50,7 +50,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "19.2.0",
+    "@commitlint/cli": "19.2.1",
     "@commitlint/config-conventional": "19.1.0",
     "@rollup/plugin-typescript": "11.1.6",
     "@semantic-release/changelog": "6.0.3",
@@ -83,10 +83,10 @@
     "prettier": "2.8.8",
     "rollup": "2.79.1",
     "rollup-plugin-typescript2": "0.36.0",
-    "semantic-release": "23.0.4",
+    "semantic-release": "23.0.6",
     "testcafe": "3.5.0",
     "ts-jest": "29.1.2",
-    "typescript": "5.4.2",
+    "typescript": "5.4.3",
     "vuepress": "1.9.10"
   },
   "workspaces": [
