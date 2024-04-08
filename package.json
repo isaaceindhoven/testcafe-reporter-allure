@@ -83,16 +83,16 @@
     "prettier": "2.8.8",
     "rollup": "2.79.1",
     "rollup-plugin-typescript2": "0.36.0",
-    "semantic-release": "23.0.6",
+    "semantic-release": "23.0.7",
     "testcafe": "3.5.0",
     "ts-jest": "29.1.2",
-    "typescript": "5.4.3",
+    "typescript": "5.4.4",
     "vuepress": "1.9.10"
   },
   "workspaces": [
     "examples/*"
   ],
   "volta": {
-    "node": "20.12.0"
+    "node": "20.12.1"
   }
 }
