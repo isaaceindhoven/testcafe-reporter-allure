@@ -80,7 +80,7 @@
     "lint-staged": "15.2.5",
     "normalize-newline": "3.0.0",
     "npm-run-all2": "6.2.0",
-    "prettier": "2.8.8",
+    "prettier": "3.3.3",
     "rollup": "2.79.2",
     "rollup-plugin-typescript2": "0.36.0",
     "semantic-release": "23.1.1",
